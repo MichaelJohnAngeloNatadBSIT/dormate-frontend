@@ -1,0 +1,267 @@
+<div class="container">
+  <div class="row">
+    <div class="col-lg-7 mx-auto">
+      <div class="card mt-2 mx-auto p-4 bg-light">
+        <div class="text-center mt-5">
+          <h2>Dormitory Registration Form</h2>
+        </div>
+        <div class="card-body bg-light">
+          <div class="container" *ngIf="!submitted">
+            <form
+              id="contact-form"
+              role="form"
+              [formGroup]="dormForm"
+              novalidate
+            >
+            
+              <div class="controls">
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="form_title" class="text-primary">Title *</label>
+                      <input
+                        id="form_title"
+                        type="text"
+                        name="title"
+                        class="form-control"
+                        placeholder="Please enter the post Title * "
+                        required="required"
+                        data-error="Title is required."
+                        formControlName="title"
+                        [(ngModel)]="dorm.title"
+                        ngModel maxlength="50"
+                      />
+                    </div>
+                    <div
+                      *ngIf="
+                        dormForm.controls['title'].invalid &&
+                        (dormForm.controls['title'].dirty ||
+                          dormForm.controls['title'].touched)
+                      "
+                      class="alert alert-danger"
+                    >
+                      <div *ngIf="dormForm.controls['title'].errors.required">
+                        Title is required.
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="form_address" class="text-primary">Address *</label>
+                      <input
+                        id="form_address"
+                        type="text"
+                        name="address"
+                        class="form-control"
+                        placeholder="Please enter the dorm address *"
+                        required="required"
+                        data-error="Address is required."
+                        formControlName="address"
+                        [(ngModel)]="dorm.address"
+                        ngModel maxlength="50"
+                      />
+                    </div>
+                    <div
+                      *ngIf="
+                        dormForm.controls['address'].invalid &&
+                        (dormForm.controls['address'].dirty ||
+                          dormForm.controls['address'].touched)
+                      "
+                      class="alert alert-danger"
+                    >
+                      <div *ngIf="dormForm.controls['address'].errors.required">
+                        Address is required.
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="form_bedroom" class="text-secondary">Number of Bedroom/s *</label>
+                      <input
+                        id="form_bedroom"
+                        type="number"
+                        name="bedroom"
+                        class="form-control"
+                        placeholder="Please enter the number of bedroom *"
+                        required="required"
+                        data-error="Bedroom number is required."
+                        [(ngModel)]="dorm.bedroom"
+                        formControlName="bedroom"
+                      />
+                    </div>
+                    <div
+                      *ngIf="
+                        dormForm.controls['bedroom'].invalid &&
+                        (dormForm.controls['bedroom'].dirty ||
+                          dormForm.controls['bedroom'].touched)
+                      "
+                      class="alert alert-danger"
+                    >
+                      <div *ngIf="dormForm.controls['bedroom'].errors.required">
+                        Bedroom is required.
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="form_bathroom" class="text-secondary">Number of Bathroom/s *</label>
+                      <input
+                        id="form_bathroom"
+                        type="number"
+                        name="bathroom"
+                        class="form-control"
+                        placeholder="Please enter the number of bathroom *"
+                        required="required"
+                        data-error="Bathroom number is required."
+                        [(ngModel)]="dorm.bathroom"
+                        formControlName="bathroom"
+                      />
+                    </div>
+                    <div
+                      *ngIf="
+                        dormForm.controls['bathroom'].invalid &&
+                        (dormForm.controls['bathroom'].dirty ||
+                          dormForm.controls['bathroom'].touched)
+                      "
+                      class="alert alert-danger"
+                    >
+                      <div *ngIf="dormForm.controls['bathroom'].errors.required">
+                        Bathroom is required.
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="form_rent"
+                        >Contact Number</label
+                      >
+                      <input
+                        id="form_contact_number"
+                        type="text"
+                        name="contact_number"
+                        class="form-control"
+                        required="required"
+                        rows="4"
+                        data-error="Please enter the contact number for this dorm."
+                        formControlName="contact_number"
+                        [(ngModel)]="dorm.contact_number"
+                        placeholder="Please enter the contact number for this dorm"
+                        ngModel maxlength="13"
+                      />
+                      <!-- <option value="" selected disabled>
+                          --Select Your Issue--
+                        </option>
+                        <option>Request Invoice for order</option>
+                        <option>Request order status</option>
+                        <option>Haven't received cashback yet</option>
+                        <option>Other</option> -->
+                    </div>
+                    <div
+                      *ngIf="
+                        dormForm.controls['contact_number'].invalid &&
+                        (dormForm.controls['contact_number'].dirty ||
+                          dormForm.controls['contact_number'].touched)
+                      "
+                      class="alert alert-danger"
+                    >
+                      <div *ngIf="dormForm.controls['contact_number'].errors.required">
+                        Contact Number is required.
+                      </div>
+                      <div *ngIf="dormForm.controls['contact_number'].errors.maxlength">
+                        It must be not be over 13 characters.
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="form_rent"
+                        >Please specify the rent per month of the dorm *</label
+                      >
+                      <input
+                        id="form_rent"
+                        type="number"
+                        name="rent"
+                        class="form-control"
+                        required="required"
+                        rows="4"
+                        data-error="Please specify the rent of the dorm."
+                        formControlName="rent"
+                        [(ngModel)]="dorm.rent"
+                        placeholder="Please enter the rent per month of the dormitory"
+                      />
+                      <!-- <option value="" selected disabled>
+                          --Select Your Issue--
+                        </option>
+                        <option>Request Invoice for order</option>
+                        <option>Request order status</option>
+                        <option>Haven't received cashback yet</option>
+                        <option>Other</option> -->
+                    </div>
+                    <div
+                      *ngIf="
+                        dormForm.controls['rent'].invalid &&
+                        (dormForm.controls['rent'].dirty ||
+                          dormForm.controls['rent'].touched)
+                      "
+                      class="alert alert-danger"
+                    >
+                      <div *ngIf="dormForm.controls['rent'].errors.required">
+                        Rent is required.
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="form-group">
+                      <label for="form_message" class="text-secondary">Description *</label>
+                      <textarea
+                        id="form_description"
+                        name="description"
+                        class="form-control"
+                        placeholder="Write the dorm descriptions here."
+                        rows="4"
+                        required="required"
+                        data-error="Please, leave a description of the dorm."
+                        formControlName="description"
+                        [(ngModel)]="dorm.description"
+                        ngModel maxlength="200"
+                      ></textarea>
+                    </div>
+                    <div
+                      *ngIf="
+                        dormForm.controls['description'].invalid &&
+                        (dormForm.controls['description'].dirty ||
+                          dormForm.controls['description'].touched)
+                      "
+                      class="alert alert-danger"
+                    >
+                      <div *ngIf="dormForm.controls['description'].errors.required">
+                        Description is required.
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-md-12">
+                    <input
+                      type="submit"
+                      class="btn btn-success btn-send pt-2 btn-block"
+                      value="List Dorm"
+                      (click)="saveDorm()"
+                    />
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      <!-- /.8 -->
+    </div>
+    <!-- /.row-->
+  </div>
+</div>

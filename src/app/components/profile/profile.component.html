@@ -1,0 +1,210 @@
+<div class="container">
+  <div class="main-body">
+    <!-- Breadcrumb -->
+    <nav aria-label="breadcrumb" class="main-breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/dorms">Home</a></li>
+        <!-- <li class="breadcrumb-item"><a href="javascript:void(0)">User</a></li> -->
+        <li class="breadcrumb-item active" aria-current="page">User Profile</li>
+      </ol>
+    </nav>
+    <!-- /Breadcrumb -->
+
+    <div class="row gutters-sm">
+      <div class="col-md-4 mb-3">
+        <div class="card">
+          <div class="card-body">
+            <div class="d-flex flex-column align-items-center text-center">
+              <img
+                [src]="user.user_image"
+                alt="Click Here to upload your User Profile Image"
+                (click)="openUserImageDialog()"
+                class="rounded-circle img-hover user-image"
+                width="150"
+              />
+              <div class="mt-3">
+                <i *ngIf="user.verified" class="fa fa-check-circle-o" style="font-size:15px;color:#5687fb">Verified</i>
+                <i *ngIf="!user.verified" class="fa fa-times" style="font-size:15px;color:#94918c">Not Verified</i>
+                <h4>{{ user.username }} </h4>
+                
+                <p class="text-secondary mb-1">{{ user.address }}</p>
+       
+                <!-- <button class="btn btn-primary">Follow</button> -->
+                <!-- <button class="btn btn-outline-primary">Message</button> -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-8">
+        <div class="card mb-3">
+          <div class="card">
+            <div class="card-body">
+              <div class="row">
+                <div class="col-sm-3">
+                  <h4 class="mb-0">Full Name</h4>
+                </div>
+                <div class="col-sm-9 text-secondary">
+                  {{ user.first_name }} {{ user.last_name }}
+                </div>
+              </div>
+              <hr />
+              <div class="row">
+                <div class="col-sm-3">
+                  <h4 class="mb-0">Email</h4>
+                </div>
+                <div class="col-sm-9 text-secondary">
+                  {{ user.email }}
+                </div>
+              </div>
+              <hr />
+              <div class="row">
+                <div class="col-sm-3">
+                  <h4 class="mb-0">Mobile</h4>
+                </div>
+                <div class="col-sm-9 text-secondary">
+                  {{ user.mobile_number }}
+                </div>
+              </div>
+              <hr />
+              <div class="row">
+                <div class="col-sm-3">
+                  <h4 class="mb-0">Address</h4>
+                </div>
+                <div class="col-sm-9 text-secondary">
+                  {{ user.address }}
+                </div>
+              </div>
+              <hr />
+              <div class="row">
+                <div class="col-sm-12">
+                  <a
+                    class="btn btn-outline-info user-details-btn"
+                    target="__blank"
+                    (click)="openEditDialog()"
+                    >Edit Details</a
+                  >
+                  <a
+                    class="btn btn-outline-success user-details-btn"
+                    target="__blank"
+                    (click)="openValidIdDialog()"
+                    >Upload Valid ID</a
+                  >
+                  <a
+                    class="btn btn-outline-primary user-details-btn"
+                    target="__blank"
+                    (click)="openChangePassDialog()"
+                    >Change Password</a
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row gutters-sm">
+      <div class="col-md-4">
+        <mat-card>
+          <mat-card-header>
+            <h2>For Approval Visiting Schedules</h2>
+          </mat-card-header>
+          <mat-divider></mat-divider>
+          <mat-nav-list>
+            <a
+              mat-list-item
+              target="_blank"
+              *ngFor="let schedule of schedules; let i = index"
+              (click)="openScheduleApproveDialog(schedule)"
+            >
+              {{ schedule.schedule_date | date : "EEEE, MMMM d, y" }}
+            </a>
+            <a
+            mat-list-item
+            target="_blank"
+            *ngFor="let schedule of schedulesTenant; let i = index"
+            (click)="openScheduleApproveTenantDialog(schedule)"
+          >
+            {{ schedule.schedule_date | date : "EEEE, MMMM d, y" }}
+          </a>
+          </mat-nav-list>
+          <mat-divider></mat-divider>
+        </mat-card>
+
+        <br />
+        <mat-card>
+          <mat-card-header>
+            <h2>Visit Schedule Calendar</h2>
+          </mat-card-header>
+          <full-calendar
+            defaultView="dayGridMonth"
+            [options]="calendarOptions"
+            [events]="calendar_events"
+          ></full-calendar>
+        </mat-card>
+      </div>
+
+      <div class="col-md-8 mb-3" >
+        <h1>Your Dorm Posts</h1>
+        <div class="row align-items-start">
+          <div
+            class="card"
+            style="width: 20rem; margin:20px 25px 20px;"
+            *ngFor="let dorm of dorms; let i = index"
+          >
+            <swiper [config]="config">
+              <div class="swiper-wrapper" (click)="openImageZoomDialog(dorm.dorm_images)">
+                <div
+                  class="swiper-slide"
+                  *ngFor="let image of dorm.dorm_images"
+                >
+                  <img src="{{ image }}" alt="img 1" class="dorm_image" />
+                </div>
+              </div>
+
+              <!-- Add Pagination -->
+              <div class="swiper-pagination"></div>
+
+              <!-- Add Arrows -->
+              <div class="swiper-button-next"></div>
+              <div class="swiper-button-prev"></div>
+            </swiper>
+
+            <div class="card-body">
+              <h5 class="card-title">{{ dorm.title }}</h5>
+              <p class="card-text">{{ dorm.description }}</p>
+              <div class="text-center">
+                <button
+                  (click)="openDormImgUploadDialog(dorm, i)"
+                  class="btn btn-success dialog-button"
+                >
+                  Upload Dorm Images
+                </button>
+                <button
+                  (click)="openCertUploadDialog(dorm, i)"
+                  class="btn btn-info dialog-button"
+                >
+                  Upload Certificates
+                </button>
+                <button
+                  (click)="openEditDormDialog(dorm, i)"
+                  class="btn btn-secondary dialog-button"
+                >
+                  Edit Dorm Information
+                </button>
+                <button
+                  (click)="openDeleteDormDialog(dorm, i)"
+                  class="btn btn-danger dialog-button"
+                >
+                  Delete Dorm
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

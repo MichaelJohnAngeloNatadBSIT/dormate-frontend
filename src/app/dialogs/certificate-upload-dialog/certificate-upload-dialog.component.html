@@ -1,0 +1,188 @@
+<!-- business registration image -->
+<div class="file-upload">
+  <button
+    class="file-upload-btn"
+    type="button"
+    [disabled]="!selectedFiles"
+    (click)="uploadBusinessRegImage()"
+  >
+    Upload Business Permit
+  </button>
+  <div class="image-upload-wrap">
+    <input
+      class="file-upload-input"
+      type="file"
+      accept="image/*"
+      (change)="selectFileBusinessPermit($event)"
+    />
+    <div class="drag-text">
+      <h3>Drag and drop or Select Business Permit Here</h3>
+    </div>
+  </div>
+  <div class="file-upload-content" *ngIf="previewBusinessPermit">
+    <h4>Business Permit to be uploaded</h4>
+    <img class="file-upload-image" src="{{ previewBusinessPermit }}" alt="Business Permit Image" />
+    <!-- <div class="image-title-wrap">
+        <button type="button" onclick="removeUpload()" class="remove-image">Remove <span class="image-title">Uploaded Image</span></button>
+      </div> -->
+  </div>
+  <div class="file-upload-content" *ngIf="data.business_registration_image">
+    <h4>Uploaded Business Permit</h4>
+    <img
+      class="file-upload-image"
+      src="{{ data.business_registration_image }}"
+      alt="Business Permit Image"
+    />
+  </div>
+</div>
+
+<!-- barangay clearance image -->
+<div class="file-upload">
+  <button
+    class="file-upload-btn"
+    type="button"
+    [disabled]="!selectedFiles"
+    (click)="uploadBarangayCertImage()"
+  >
+    Upload Barangay Clearance
+  </button>
+  <div class="image-upload-wrap">
+    <input
+      class="file-upload-input"
+      type="file"
+      accept="image/*"
+      (change)="selectFileBarangayClearance($event)"
+    />
+    <div class="drag-text">
+      <h3>Drag and drop or Select Barangay Clearance Here</h3>
+    </div>
+  </div>
+  <div class="file-upload-content" *ngIf="previewBarangayClearance">
+    <h4>Barangay Clearance to be uploaded</h4>
+    <img class="file-upload-image" src="{{ previewBarangayClearance }}" alt="Barangay Clearance Image" />
+    <!-- <div class="image-title-wrap">
+        <button type="button" onclick="removeUpload()" class="remove-image">Remove <span class="image-title">Uploaded Image</span></button>
+      </div> -->
+  </div>
+  <div class="file-upload-content" *ngIf="data.barangay_clearance_image ">
+    <h4>Uploaded Barangay Clearance</h4>
+    <img
+      class="file-upload-image"
+      src="{{ data.barangay_clearance_image }}"
+      alt="Barangay Clearance Image"
+    />
+  </div>
+</div>
+
+<!-- BFP Permit image -->
+<div class="file-upload">
+  <button
+    class="file-upload-btn"
+    type="button"
+    [disabled]="!selectedFiles"
+    (click)="uploadBfpCertImage()"
+  >
+    Upload BFP Permit
+  </button>
+  <div class="image-upload-wrap">
+    <input
+      class="file-upload-input"
+      type="file"
+      accept="image/*"
+      (change)="selectFileBfpPermit($event)"
+    />
+    <div class="drag-text">
+      <h3>
+        Drag and drop a file or select Bureau of Fire Protection Permit Here
+      </h3>
+    </div>
+  </div>
+  <div class="file-upload-content" *ngIf="previewBfpPermit">
+    <h4>BFP Permit to be uploaded</h4>
+    <img class="file-upload-image" src="{{ previewBfpPermit }}" alt="BFP Permit Image" />
+    <!-- <div class="image-title-wrap">
+        <button type="button" onclick="removeUpload()" class="remove-image">Remove <span class="image-title">Uploaded Image</span></button>
+      </div> -->
+  </div>
+  <div class="file-upload-content" *ngIf="data.bfp_permit_image">
+    <h4>Uploaded BFP Permit</h4>
+    <img
+      class="file-upload-image"
+      src="{{ data.bfp_permit_image }}"
+      alt="BFP Permit Image"
+    />
+  </div>
+</div>
+
+<!-- Mayor Permit image -->
+<!-- <div class="file-upload">
+  <button
+    class="file-upload-btn"
+    type="button"
+    [disabled]="!selectedFiles"
+    (click)="uploadMayorPermitImage()"
+  >
+    Upload Mayor's Permit
+  </button>
+  <div class="image-upload-wrap">
+    <input
+      class="file-upload-input"
+      type="file"
+      accept="image/*"
+      (change)="selectFile($event)"
+    />
+    <div class="drag-text">
+      <h3>Drag and drop a file or select Mayor's Permit Here</h3>
+    </div>
+  </div>
+  <div class="file-upload-content" *ngIf="preview">
+    <h4>Mayor's Permit to be uploaded</h4>
+    <img class="file-upload-image" src="{{ preview }}" alt="Mayor's Permit Image" />
+  </div>
+  <div class="file-upload-content" *ngIf="data.mayor_permit_image">
+    <h4>Uploaded Mayor's Permit</h4>
+    <img
+      class="file-upload-image"
+      src="{{ data.mayor_permit_image }}"
+      alt="Mayor's Permit Image"
+    />
+  </div>
+</div> -->
+
+<!-- Sanitary Permit image -->
+<div class="file-upload">
+  <button
+    class="file-upload-btn"
+    type="button"
+    [disabled]="!selectedFiles"
+    (click)="uploadSanitaryPermitImage()"
+  >
+    Upload Sanitary Permit
+  </button>
+  <div class="image-upload-wrap">
+    <input
+      class="file-upload-input"
+      type="file"
+      accept="image/*"
+      (change)="selectFileSanitaryPermit($event)"
+    />
+    <div class="drag-text">
+      <h3>Drag and drop a file or select Sanitary Permit Here</h3>
+    </div>
+  </div>
+  <div class="file-upload-content" *ngIf="previewSanitaryPermit">
+    <h4>Sanitary Permit to be uploaded</h4>
+    <img class="file-upload-image" src="{{ previewSanitaryPermit }}" alt="Sanitary Permit Image" />
+    <!-- <div class="image-title-wrap">
+        <button type="button" onclick="removeUpload()" class="remove-image">Remove <span class="image-title">Uploaded Image</span></button>
+      </div> -->
+  </div>
+  <div class="file-upload-content" *ngIf="data.sanitary_permit_image">
+    <h4>Uploaded Satnitary Permit</h4>
+    <img
+      class="file-upload-image"
+      src="{{ data.sanitary_permit_image }}"
+      alt="Sanitary Permit Image"
+    />
+  </div>
+</div>

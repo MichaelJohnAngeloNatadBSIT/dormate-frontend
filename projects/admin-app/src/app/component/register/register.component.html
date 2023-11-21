@@ -1,0 +1,98 @@
+<body>
+    <div class="login-wrapper" fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="10px">
+      <mat-card class="box">
+        <mat-card-header>
+          <mat-card-title>Admin Registration</mat-card-title>
+        </mat-card-header>
+        <form class="example-form" [formGroup]="form" (ngSubmit)="onSubmit()">
+          <mat-card-content>
+            <mat-form-field class="example-full-width">
+              <input 
+              matInput placeholder="First Name"
+              type="text"
+              formControlName="first_name"
+              id="first_name"
+              >
+              <mat-error *ngIf="hasError('first_name', 'required')">First Name is required</mat-error>  
+              <mat-error *ngIf="hasError('first_name', 'maxlength')">Not more than 60 characters</mat-error> 
+            </mat-form-field>
+  
+            <mat-form-field class="example-full-width">
+              <input 
+              matInput placeholder="Last Name"
+              type="text"
+              formControlName="last_name"
+              id="last_name"
+              >
+              <mat-error *ngIf="hasError('last_name', 'required')">Last Name is required</mat-error>  
+              <mat-error *ngIf="hasError('last_name', 'maxlength')">Not more than 60 characters</mat-error> 
+            </mat-form-field>
+  
+            <!-- <mat-form-field class="example-full-width">
+              <input 
+              matInput placeholder="Address"
+              type="text"
+              formControlName="address"
+              id="address"
+              >
+              <mat-error *ngIf="hasError('address', 'required')">Address is required</mat-error>  
+              <mat-error *ngIf="hasError('address', 'maxlength')">Not more than 100 characters</mat-error> 
+            </mat-form-field> -->
+  
+            <mat-form-field class="example-full-width">
+              <input 
+              matInput placeholder="Mobile Number"
+              type="tel"
+              formControlName="mobile_number"
+              id="mobile_number"
+              >
+              <mat-error *ngIf="hasError('mobile_number', 'required')">Mobile Number is required</mat-error>  
+              <mat-error *ngIf="hasError('mobile_number', 'maxlength')">Not more than 12 characters</mat-error> 
+            </mat-form-field>
+  
+  
+            <mat-form-field class="example-full-width">
+              <input 
+              matInput placeholder="Username"
+              type="text"
+              formControlName="username"
+              id="username"
+              >
+              <mat-error *ngIf="hasError('username', 'required')">Username is required</mat-error>  
+              <mat-error *ngIf="hasError('username', 'maxlength')">Not more than 15 characters</mat-error> 
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+              <input 
+              matInput placeholder="Email"
+              type="email"
+              formControlName="email"
+              >
+              <mat-error *ngIf="hasError('email', 'required')">Email is Required</mat-error> 
+              <mat-error *ngIf="hasError('email', 'email')">Not a Valid Email</mat-error> 
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+              <input 
+              matInput placeholder="Password"
+              [type]="showPassword ? 'text' : 'password'" name="password"
+              formControlName = "password"
+              >
+              <mat-icon matSuffix (click)="togglePasswordVisibility()">
+                {{showPassword?'visibility_off':'visibility'}}
+              </mat-icon>
+              <mat-error *ngIf="hasError('password', 'required')">Password is Required</mat-error> 
+              <mat-error *ngIf="hasError('password', 'minlength')">Password is must be at least 8 characters</mat-error>
+            </mat-form-field>
+            <!-- <mat-form-field class="example-full-width">
+              <mat-label>Choose a role...</mat-label>
+              <mat-select>
+                <mat-option [value]="roles" *ngFor="let roles of Roles">{{roles}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field> -->
+          </mat-card-content>
+          <button mat-raised-button color="primary" class="btn-block" (click)="onSubmit()">Register</button>
+        </form>
+        <a mat-raised-button color="basic" class="btn-block" href="/login">Log In</a>
+      </mat-card>
+    </div>
+  </body>

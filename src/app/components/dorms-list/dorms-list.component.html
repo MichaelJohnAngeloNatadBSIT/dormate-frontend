@@ -1,0 +1,82 @@
+<div class="container">
+  <div class="list row">
+    <div class="col-md-8 search-bar">
+      <div class="input-group mb-3">
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Search dorm by Title or Address"
+          [(ngModel)]="title"
+        />
+        <div class="input-group-append">
+          <button
+            class="btn btn-outline-secondary button-icon"
+            type="button"
+            (click)="searchTitle()"
+          >
+            <mat-icon>search</mat-icon>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="w3-content" style="max-width: 1532px">
+    <!-- tagline -->
+    <div class="w3-container w3-margin-top" id="rooms">
+      <h3>Dorms</h3>
+      <p>Your Accommodation is our Mission</p>
+    </div>
+
+    <!-- dorms post -->
+    <div class="w3-row-padding w3-padding-16">
+      <div
+        class="w3-third w3-margin-bottom"
+        *ngFor="let dorm of dorms; let i = index"
+      >
+      
+      <div class="username">
+        <img [src]="dorm.user_image" class="user-logo" alt="user icon"> 
+        <a class="username_link" (click)="visitProfile(dorm.user_id)">{{ dorm.username }} </a>
+        <!-- <app-visit-profile [userId]="dorm.user_id"></app-visit-profile> -->
+      </div>
+
+
+        <!-- image slider -->
+        <swiper [config]="config">
+          <div class="swiper-wrapper" (click)="openImageZoomDialog(dorm.dorm_images)">
+            <div class="swiper-slide" *ngFor="let image of dorm.dorm_images">
+              <img src="{{ image }}" alt="img 1" class="dorm_image" />
+            </div>
+          </div>
+
+          <!-- Add Pagination -->
+          <div class="swiper-pagination"></div>
+
+          <!-- Add Arrows -->
+          <div class="swiper-button-next"></div>
+          <div class="swiper-button-prev"></div>
+        </swiper>
+
+        <div class="w3-container w3-white">
+          <p>{{ dorm.createdAt | date : "MMMM d, y"}}</p>
+          <h3>{{ dorm.title }}</h3>
+          <h5><i class="fa fa-map-marker" aria-hidden="true"></i> {{ dorm.address }}</h5>
+          <h5>Rent Starts at: <b>₱{{ dorm.rent }}</b></h5>
+          <p class="text-muted">{{ dorm.description }}</p>
+          <p class="w3-large">
+          </p>
+          <button
+            class="w3-button w3-block w3-indigo w3-margin-bottom"
+            (click)="openInfoSchedDialog(dorm)"
+          >
+            Schedule A Visit
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

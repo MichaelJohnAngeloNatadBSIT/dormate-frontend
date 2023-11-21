@@ -1,0 +1,188 @@
+<!-- <body> -->
+  <div class="container">
+
+
+  <div class="login-wrapper" fxLayout="row" fxLayoutGap="10px">
+    <div class="box">
+      <mat-card>
+        <mat-card-header>
+          <mat-card-title>
+            <div class="header-title">
+              <h3>User Details</h3>
+            </div>
+          </mat-card-title>
+        </mat-card-header>
+
+        <mat-card-content>
+          <form
+            class="example-form"
+            [formGroup]="form"
+            (ngSubmit)="updateUser()"
+          >
+            <img
+              mat-card-image
+              [src]="data.user_image"
+              alt="Photo of {{ data.user_image }}"
+              class="user_image"
+            />
+
+            <label for="first_name" class="labels-image">
+              <h4>First Name</h4>
+            </label>
+            <mat-form-field class="example-full-width">
+              <input
+                matInput
+                placeholder="First Name"
+                type="text"
+                formControlName="first_name"
+                id="first_name"
+                [(ngModel)]="data.first_name"
+              />
+              <mat-error *ngIf="hasError('first_name', 'required')"
+                >First Name is required</mat-error
+              >
+              <mat-error *ngIf="hasError('first_name', 'maxlength')"
+                >Not more than 60 characters</mat-error
+              >
+            </mat-form-field>
+
+            <label for="last_name" class="labels-image">
+              <h4>Last Name</h4>
+            </label>
+            <mat-form-field class="example-full-width">
+              <input
+                matInput
+                placeholder="Last Name"
+                type="text"
+                formControlName="last_name"
+                id="last_name"
+                [(ngModel)]="data.last_name"
+              />
+              <mat-error *ngIf="hasError('last_name', 'required')"
+                >Last Name is required</mat-error
+              >
+              <mat-error *ngIf="hasError('last_name', 'maxlength')"
+                >Not more than 60 characters</mat-error
+              >
+            </mat-form-field>
+
+            <label for="address" class="labels-image">
+              <h4>Address</h4>
+            </label>
+            <mat-form-field class="example-full-width">
+              <input
+                matInput
+                placeholder="Address"
+                type="text"
+                formControlName="address"
+                id="address"
+                [(ngModel)]="data.address"
+              />
+              <mat-error *ngIf="hasError('address', 'required')"
+                >Address is required</mat-error
+              >
+              <mat-error *ngIf="hasError('address', 'maxlength')"
+                >Not more than 100 characters</mat-error
+              >
+            </mat-form-field>
+
+            <label for="mobile_number" class="labels-image">
+              <h4>Mobile Number</h4>
+            </label>
+            <mat-form-field class="example-full-width">
+              <input
+                matInput
+                placeholder="Mobile Number"
+                type="tel"
+                formControlName="mobile_number"
+                id="mobile_number"
+                [(ngModel)]="data.mobile_number"
+              />
+              <mat-error *ngIf="hasError('mobile_number', 'required')"
+                >Mobile Number is required</mat-error
+              >
+              <mat-error *ngIf="hasError('mobile_number', 'maxlength')"
+                >Not more than 12 characters</mat-error
+              >
+            </mat-form-field>
+
+            <label for="username" class="labels-image">
+              <h4>User Name</h4>
+            </label>
+            <mat-form-field class="example-full-width">
+              <input
+                matInput
+                placeholder="Username"
+                type="text"
+                formControlName="username"
+                id="username"
+                [(ngModel)]="data.username"
+              />
+              <mat-error *ngIf="hasError('username', 'required')"
+                >Username is required</mat-error
+              >
+              <mat-error *ngIf="hasError('username', 'maxlength')"
+                >Not more than 15 characters</mat-error
+              >
+            </mat-form-field>
+            <!-- required
+                #username="ngModel"
+                [(ngModel)]="form.username"
+              #username="ngModel"
+                    [(ngModel)]="form.password"
+              #password="ngModel"
+                    [(ngModel)]="form.password"
+              #password="ngModel"
+            -->
+            <label for="email" class="labels-image">
+              <h4>Email</h4>
+            </label>
+            <mat-form-field class="example-full-width">
+              <input
+                matInput
+                placeholder="Email"
+                type="email"
+                formControlName="email"
+                [(ngModel)]="data.email"
+              />
+              <mat-error *ngIf="hasError('email', 'required')"
+                >Email is Required</mat-error
+              >
+              <mat-error *ngIf="hasError('email', 'email')"
+                >Not a Valid Email</mat-error
+              >
+            </mat-form-field>
+          </form>
+        </mat-card-content>
+        <button mat-raised-button color="primary" class="btn-block form-button">
+          Update User Details
+        </button>
+
+        <button
+          mat-raised-button
+          color="warn"
+          class="btn-block form-button"
+          (click)="userDeleteDialog(data._id)"
+        >
+          Delete User
+        </button>
+        <label for="user_valid_id_image" class="labels-image">
+          <h4>User Valid ID</h4>
+        </label>
+        <img
+          src="{{ data.valid_identification_image }}"
+          id="user_valid_id_image"
+          alt="User Valid ID Image"
+          class="dorm_image"
+        />
+        <button       
+          class="btn btn-success"
+          (click)="verifyUser()"
+        >
+          Verify User
+        </button>
+      </mat-card>
+    </div>
+  </div>
+</div>
+<!-- </body> -->

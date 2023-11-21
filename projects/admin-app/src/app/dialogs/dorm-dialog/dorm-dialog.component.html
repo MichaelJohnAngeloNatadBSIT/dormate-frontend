@@ -1,0 +1,141 @@
+
+  <mat-card>
+    <mat-card-header>
+      <h2>Dorm Information</h2>
+    </mat-card-header>
+  </mat-card>
+  <mat-card-content>
+    <div class="container">
+      <form  [formGroup]="dormForm" novalidate (ngSubmit)="updateDorm()">
+        <label for="title">Title</label>
+        <input
+          type="text"
+          id="title"
+          name="title"
+          placeholder="Dorm Title"
+          [(ngModel)]="data.title"
+          formControlName="title"
+        />
+
+        <label for="address">Adress</label>
+        <input
+          type="text"
+          id="address"
+          name="address"
+          placeholder="Dorm Adress"
+          [(ngModel)]="data.address"
+          formControlName="address"
+        />
+
+        <label for="address">Lessor</label>
+        <input
+          type="text"
+          id="lessor"
+          name="lessor"
+          placeholder="Dorm Lessor"
+          [(ngModel)]="data.lessor"
+          formControlName="lessor"
+        />
+
+        
+        <label for="bedroom">Bedroom</label>
+        <input
+          type="number"
+          id="bedroom"
+          name="bedroom"
+          placeholder="Dorm Bedroom"
+          [(ngModel)]="data.bedroom"
+          formControlName="bedroom"
+        />
+
+        <label for="bathroom">Bathroom</label>
+        <input
+          type="number"
+          id="bathroom"
+          name="bathroom"
+          placeholder="Dorm Bathroom"
+          [(ngModel)]="data.bathroom"
+          formControlName="bathroom"
+        />
+
+        <label for="rent">Rent</label>
+        <input
+          type="number"
+          id="rent"
+          name="rent"
+          placeholder="Dorm Rent"
+          [(ngModel)]="data.rent"
+          formControlName="rent"
+        />
+
+        <label for="description">Description</label>
+        <textarea
+          id="description"
+          name="description"
+          placeholder="Description of Dorm"
+          style="height: 150px"
+          [(ngModel)]="data.description"
+          formControlName="description"
+        ></textarea>
+        <div class="container">
+          <div class="buttons-action">
+            <button class="btn-block form-button update-button">Update Dorm Details</button>
+          </div>
+        </div>
+        
+        
+        <label for="dorm_images">Dorm Images</label>
+        <swiper [config]="config">
+          <div class="swiper-wrapper">
+            <div
+              class="swiper-slide"
+              *ngFor="let image of data.dorm_images"
+            >
+              <img src="{{ image }}" alt="img 1" class="dorm_image" />
+            </div>
+          </div>
+
+          <!-- Add Pagination -->
+          <div class="swiper-pagination"></div>
+
+          <!-- Add Arrows -->
+          <div class="swiper-button-next"></div>
+          <div class="swiper-button-prev"></div>
+        </swiper>
+
+        <label for="business_registration_image" class="labels-image">
+          <h4>Business Registration</h4>
+        </label>
+        <img src="{{ data.business_registration_image }}" id="business_registration_image" alt="business registration image" class="dorm_image" />
+        
+        <label for="barangay_clearance_image" class="labels-image">
+          <h4>Barangay Clearance</h4>
+        </label>
+        <img src="{{ data.barangay_clearance_image }}" id="barangay_clearance_image" alt="barangay clearance image" class="dorm_image" />
+
+        <label for="bfp_permit_image" class="labels-image">
+          <h4>BFP Permit</h4>
+        </label>
+        <img src="{{ data.bfp_permit_image }}" id="bfp_permit_image" alt="BFP Permit image" class="dorm_image" />
+        
+        <label for="sanitary_permit_image" class="labels-image">
+          <h4>Sanitary Permit</h4>
+        </label>
+        <img src="{{ data.sanitary_permit_image }}" id="sanitary_permit_image" alt="Sanitary Permit image" class="dorm_image" />
+
+        <!-- <input class="update-button" value="Update Dorm Information" (click)="updateDorm()"/> -->
+        <div class="container">
+          <div class="buttons_action">
+            <button mat-raised-button color="primary" class="btn-block form-button" (click)="publishDorm()" *ngIf="data.publish == false">Approve Publishing of Dorm</button>
+            <button mat-raised-button color="accent" class="btn-block form-button" (click)="unPublishDorm()" *ngIf="data.publish == true">Unpublish Dorm</button>  
+          </div>
+        </div>
+      </form>
+      <div class="container">
+        <div class="buttons_action">
+          <button mat-raised-button color="warn" class="btn-block form-button" (click)="dormDeleteDialog(data._id)">Delete Dorm Post</button>
+        </div>
+      </div>
+    </div>
+  </mat-card-content>
+

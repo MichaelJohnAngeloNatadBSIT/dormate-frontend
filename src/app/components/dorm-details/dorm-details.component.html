@@ -1,0 +1,94 @@
+<div *ngIf="viewMode; else editable">
+    <div *ngIf="currentDorm._id">
+      <h4>Dorm {{ currentDorm.title }}</h4>
+      <div>
+        <label><strong>Title:</strong></label> {{ currentDorm.title }}
+      </div>
+      <div>
+        <label><strong>Description:</strong></label>
+        {{ currentDorm.description }}
+      </div>
+      <div>
+        <label><strong>Status:</strong></label>
+        {{ currentDorm.for_rent? "For Rent" : "Pending" }}
+      </div>
+  
+      <a
+        class="badge badge-warning"
+        routerLink="/dorms/{{ currentDorm._id }}"
+      >
+        Edit
+      </a>
+    </div>
+  
+    <div *ngIf="!currentDorm">
+      <br />
+      <p>Please click on a Dorm...</p>
+    </div>
+  </div>
+  
+  <ng-template #editable>
+    <div *ngIf="currentDorm._id" class="edit-form">
+      <h4>Dorm</h4>
+      <form>
+        <div class="form-group">
+          <label for="title">Title</label>
+          <input
+            type="text"
+            class="form-control"
+            id="title"
+            [(ngModel)]="currentDorm.title"
+            name="title"
+          />
+        </div>
+        <div class="form-group">
+          <label for="description">Description</label>
+          <input
+            type="text"
+            class="form-control"
+            id="description"
+            [(ngModel)]="currentDorm.description"
+            name="description"
+          />
+        </div>
+  
+        <div class="form-group">
+          <label><strong>Status:</strong></label>
+          {{ currentDorm.published ? "Posted" : "For Approval" }}
+        </div>
+      </form>
+  
+      <button
+        class="badge badge-primary mr-2"
+        *ngIf="currentDorm.for_rent"
+        (click)="updateForRent(false)"
+      >
+        UnPublish
+      </button>
+      <button
+        *ngIf="!currentDorm.for_rent"
+        class="badge badge-primary mr-2"
+        (click)="updateForRent(true)"
+      >
+        Publish
+      </button>
+  
+      <button class="badge badge-danger mr-2" (click)="deleteDorm()">
+        Delete
+      </button>
+  
+      <button
+        type="submit"
+        class="badge badge-success mb-2"
+        (click)="updateDorm()"
+      >
+        Update
+      </button>
+      <p>{{ message }}</p>
+    </div>
+  
+    <div *ngIf="!currentDorm._id">
+      <br />
+      <p>Cannot access this Dorm...</p>
+    </div>
+  </ng-template>

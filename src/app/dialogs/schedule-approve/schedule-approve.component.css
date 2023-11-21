@@ -1,0 +1,11 @@
+.user-image{
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+
+.dorm_image{
+    width: 100%;
+    max-width: 700px;
+    height: 300px;
+}

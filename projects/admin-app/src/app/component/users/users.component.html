@@ -1,0 +1,30 @@
+<body>
+  <h1>Registered User</h1>
+        <table>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>First Name</th>
+              <th>Last Name</th>
+              <th>Email</th>
+              <th>Username</th>
+              <th>Created At</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr
+              class="users_tr"
+              *ngFor="let user of users; let i = index"
+              (click)="openUserDialog(user)"
+            >
+              <td name="Id">{{ user._id }}</td>
+              <td name="First Name">{{ user.first_name }}</td>
+              <td name="Last Name">{{ user.last_name }}</td>
+              <td name="Email">{{ user.email }}</td>
+              <td name="Username">{{ user.username }}</td>
+              <td name="CreatedAt">{{ user.createdAt }}</td>
+            </tr>
+          </tbody>
+        </table>
+
+</body>
