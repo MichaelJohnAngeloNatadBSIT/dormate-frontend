@@ -5,8 +5,8 @@ import { User } from 'src/app/interface/user';
 import { Dorm } from 'src/app/models/dorms.model';
 
 
-const API_URL = 'http://localhost:8080/api/admin/';
-
+// const API_URL = 'http://localhost:8080/api/admin/';
+const API_URL = 'http://192.168.1.178:8080/api/admin/';
 @Injectable({
   providedIn: 'root'
 })
