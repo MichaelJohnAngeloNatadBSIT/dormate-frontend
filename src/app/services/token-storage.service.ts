@@ -12,7 +12,7 @@ export class TokenStorageService {
   constructor() { }
 
   clean(): void {
-    window.localStorage.clear();
+    window.sessionStorage.removeItem(USER_KEY);
   }
 
   public saveUser(user: any): void {
