@@ -1,12 +1,15 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpRequest, HttpEvent } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 // const API_URL = 'http://localhost:8080/api/test/';
 // const USER_URL = 'http://localhost:8080/user/';
 
 const API_URL = 'http://192.168.1.178:8080/api/test/';
-const USER_URL = 'http://192.168.1.178:8080/user/';
+// const USER_URL = 'http://192.168.1.178:8080/api/user/';
+
+const USER_URL = environment.baseURL+'user';
 
 
 @Injectable({

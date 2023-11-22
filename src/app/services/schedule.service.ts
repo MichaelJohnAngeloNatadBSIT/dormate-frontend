@@ -2,9 +2,11 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpEvent, HttpRequest } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Schedule } from '../models/schedules.model';
+import { environment } from 'src/environments/environment';
 
 
-const baseUrl = 'http://192.168.1.178:8080/api/schedule';
+// const baseUrl = 'http://192.168.1.178:8080/api/schedule';
+const baseUrl = environment.baseURL+'schedule';
 
 @Injectable({
   providedIn: 'root'

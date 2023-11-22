@@ -2,9 +2,11 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpEvent, HttpRequest } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Dorm } from '../models/dorms.model';
+import { environment } from 'src/environments/environment';
 
 // const baseUrl = 'http://localhost:8080/api/dorm';
-const baseUrl = 'http://192.168.1.178:8080/api/dorm';
+// const baseUrl = 'http://192.168.1.178:8080/api/dorm';
+const baseUrl = environment.baseURL+'dorm';
 
 @Injectable({
   providedIn: 'root'
