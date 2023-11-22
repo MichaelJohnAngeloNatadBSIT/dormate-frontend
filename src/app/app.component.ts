@@ -71,11 +71,11 @@ export class AppComponent {
     // this.retrieveUser();
   }
 
-  
+  //find out why this not working 
   logout(): void {
+    this.tokenStorageService.clean();//temp solution
     this.authService.logout().subscribe({
       next: res => {
-        this.tokenStorageService.clean();
         this.router.navigate(['/login'])
                 .then(()=> {
                 window.location.reload();
