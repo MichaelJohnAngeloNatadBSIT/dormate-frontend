@@ -75,7 +75,6 @@ export class AppComponent {
   logout(): void {
     this.authService.logout().subscribe({
       next: res => {
-        console.log(res);
         this.tokenStorageService.clean();
         this.router.navigate(['/login'])
                 .then(()=> {

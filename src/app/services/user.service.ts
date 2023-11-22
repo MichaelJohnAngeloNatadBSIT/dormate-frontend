@@ -9,7 +9,7 @@ import { environment } from 'src/environments/environment';
 const API_URL = 'http://192.168.1.178:8080/api/test/';
 // const USER_URL = 'http://192.168.1.178:8080/api/user/';
 
-const USER_URL = environment.baseURL+'user';
+const USER_URL = environment.baseURL+'user/';
 
 
 @Injectable({
