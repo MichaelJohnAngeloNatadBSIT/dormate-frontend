@@ -5,6 +5,7 @@ import { DormService } from 'src/app/services/dorm.service';
 import { TokenStorageService } from 'src/app/services/token-storage.service';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-add-dorm',
@@ -14,6 +15,7 @@ import { Router } from '@angular/router';
 export class AddDormComponent {
   selectedFiles?: FileList;
   currentUser : User;
+  user: User;
   dormForm: FormGroup;
 
   dorm: Dorm = {
@@ -32,6 +34,7 @@ export class AddDormComponent {
   constructor(
     private dormService: DormService,
     private tokenService: TokenStorageService,
+    private userService: UserService,
     private fb : FormBuilder,
     private router: Router,
     ) { 
@@ -54,14 +57,16 @@ export class AddDormComponent {
 
   ngOnInit(): void {
     this.currentUser = this.tokenService.getUser();
+    this.user = this.userService.retrieveUserWithId(this.currentUser.id);
+
   }
 
   saveDorm(): void {
-    var lessorName = this.currentUser.first_name+' ' + this.currentUser.last_name;
+    var lessorName = this.user.first_name+' ' + this.user.last_name;
     const data = {
-      user_id: this.currentUser.id,
-      username: this.currentUser.username,
-      user_image: this.currentUser.user_image,
+      user_id: this.user.id,
+      username: this.user.username,
+      user_image: this.user.user_image,
       title: this.dormForm.get('title').value,
       description: this.dormForm.get('description').value,
       address: this.dormForm.get('address').value,
