@@ -4,8 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build:dormate": "ng build --project admin-app --prod",
-    "build:admin": "ng build --project admin-app --prod",
+    "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },
