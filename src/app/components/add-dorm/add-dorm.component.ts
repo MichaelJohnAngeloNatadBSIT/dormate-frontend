@@ -57,8 +57,12 @@ export class AddDormComponent {
 
   ngOnInit(): void {
     this.currentUser = this.tokenService.getUser();
-    this.user = this.userService.retrieveUserWithId(this.currentUser.id);
-
+    this.userService.retrieveUserWithId(this.currentUser.id).subscribe({
+      next: (data) => {
+        this.user = data;
+      },
+      error: (e) => console.error(e)
+    });
   }
 
   saveDorm(): void {
@@ -98,8 +102,6 @@ export class AddDormComponent {
       bedroom: 0,
       bathroom: 0,
       rent: 0,
-      
-
       for_rent: false
     };
   }
