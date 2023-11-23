@@ -3,9 +3,11 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { BehaviorSubject } from 'rxjs';
 import { Admin } from '../interface/admin';
+import { environment } from '../src/environments/environment';
 
 // const AUTH_API = 'http://localhost:8080/api/auth/';
-const AUTH_API = 'http://192.168.1.178:8080/api/admin/';
+// const AUTH_API = 'http://192.168.1.178:8080/api/admin/';
+const AUTH_API = environment.baseURL+'admin/';
 
 
 const httpOptions = {

@@ -3,10 +3,12 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { User } from 'src/app/interface/user';
 import { Dorm } from 'src/app/models/dorms.model';
+import { environment } from '../src/environments/environment';
 
 
 // const API_URL = 'http://localhost:8080/api/admin/';
-const API_URL = 'http://192.168.1.178:8080/api/admin/';
+// const API_URL = 'http://192.168.1.178:8080/api/admin/';
+const API_URL = environment.baseURL+'admin/';
 @Injectable({
   providedIn: 'root'
 })
