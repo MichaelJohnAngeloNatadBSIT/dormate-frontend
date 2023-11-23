@@ -102,7 +102,12 @@
             "assets": [
               "src/favicon.ico",
               "src/assets/dormate_logo.png",
-              "src/assets"
+              "src/assets",
+              {
+                "glob": "_redirects",
+                "input": "src",
+                "output": "/"
+              }
             ],
             "styles": [
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
@@ -137,7 +142,12 @@
             "assets": [
               "projects/admin-app/src/favicon.ico",
               "projects/admin-app/src/assets/dormate_logo.png",
-              "projects/admin-app/src/assets"
+              "projects/admin-app/src/assets",
+              {
+                "glob": "_redirects",
+                "input": "src",
+                "output": "/"
+              }
             ],
             "styles": [
               "projects/admin-app/src/styles.css",
@@ -201,7 +211,12 @@
             "assets": [
               "projects/admin-app/src/favicon.ico",
               "projects/admin-app/src/assets/dormate_logo.png",
-              "projects/admin-app/src/assets"
+              "projects/admin-app/src/assets",
+              {
+                "glob": "_redirects",
+                "input": "src",
+                "output": "/"
+              }
             ],
             "styles": [
               "projects/admin-app/src/styles.css",
