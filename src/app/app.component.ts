@@ -73,13 +73,11 @@ export class AppComponent {
 
   //find out why this not working 
   logout(): void {
-    this.tokenStorageService.clean();//temp solution
+
     this.authService.logout().subscribe({
       next: res => {
-        this.router.navigate(['/login'])
-                .then(()=> {
-                window.location.reload();
-              });
+        this.tokenStorageService.clean();
+        window.location.reload();
       },
       error: err => {
         console.log(err);
