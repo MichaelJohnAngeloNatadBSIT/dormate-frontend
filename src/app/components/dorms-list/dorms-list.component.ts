@@ -8,10 +8,12 @@ import { InfoScheduleDialogComponent } from 'src/app/dialogs/info-schedule-dialo
 import { MatDialog } from '@angular/material/dialog';
 import { ImageZoomComponent } from 'src/app/dialogs/image-zoom/image-zoom.component';
 import { Router } from '@angular/router';
+import { FADEINOUT } from './fade-in-fade-out.animation';
 
 @Component({
   selector: 'app-dorms-list',
   templateUrl: './dorms-list.component.html',
+  animations: [FADEINOUT],
   styleUrls: ['./dorms-list.component.css']
 })
 export class DormsListComponent implements OnInit{

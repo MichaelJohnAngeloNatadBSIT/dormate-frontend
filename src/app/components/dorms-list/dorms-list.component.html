@@ -35,6 +35,9 @@
       <div
         class="w3-third w3-margin-bottom"
         *ngFor="let dorm of dorms; let i = index"
+        [@listAnimation]="dorms.length"
+        (@listAnimation.start)="logAnimation($event)"
+        (@listAnimation.done)="logAnimation($event)"
       >
       
       <div class="username">
@@ -64,7 +67,8 @@
           <p>{{ dorm.createdAt | date : "MMMM d, y"}}</p>
           <h3>{{ dorm.title }}</h3>
           <h5><i class="fa fa-map-marker" aria-hidden="true"></i> {{ dorm.address }}</h5>
-          <h5>Rent Starts at: <b>₱{{ dorm.rent }}</b></h5>
+          <h4>Rent Starts at: <b>₱{{ dorm.rent }}</b></h4>
+          <p><i class="fa fa-mobile" aria-hidden="true"></i> {{ dorm.contact_number }}</p>
           <p class="text-muted">{{ dorm.description }}</p>
           <p class="w3-large">
           </p>

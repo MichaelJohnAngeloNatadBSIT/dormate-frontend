@@ -1,3 +1,9 @@
+body{
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
 .bg-nav{
   background-color: #ffffff;
   /* font-size: #483c36; */
@@ -40,6 +46,13 @@
 .nav-link:hover {
   box-shadow: inset 100px 0 0 0 #54b3d6;
   color: white;
+}
+
+footer {
+  clear: both;
+  position: relative;
+  height: 100px;
+  margin-top: -200px;
 }
 
  
