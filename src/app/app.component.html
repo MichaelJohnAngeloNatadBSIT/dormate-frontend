@@ -1,71 +1,84 @@
-<!-- Navigation Bar -->
-
-<nav class="navbar navbar-expand-md bg-nav navbar-dark">
-  <a href="#" class="navbar-brand text-icon">
-    <img
-      src="assets/dormate_logo.png"
-      alt="Logo"
-      style="width: 40px"
-      class="img-logo text-dark"
-    />
-    dormate
-  </a>
-  <button
-    class="navbar-toggler"
-    type="button"
-    data-toggle="collapse"
-    data-target="#collapsibleNavbar"
-    style="background-color: #5687fb"
-  >
-    <span class="navbar-toggler-icon"></span>
-  </button>
-
-  <div class="collapse navbar-collapse" id="collapsibleNavbar">
-    <ul class="navbar-nav">
-      <li class="nav-item">
-        <a href="dorms" class="nav-link text-dark">Dorms</a>
-      </li>
-
-      <li class="nav-item">
-        <a href="add" class="nav-link text-dark">List Dorm</a>
-      </li>
-
-      <li class="nav-item">
-        <a href="/profile" class="nav-link text-dark" *ngIf="isUserLoggedIn"
-          >Profile</a
+<body>
+  <div id="container">
+    <!-- Navigation Bar -->
+    <div class="header">
+      <nav class="navbar navbar-expand-md bg-nav navbar-dark">
+        <a href="#" class="navbar-brand text-icon">
+          <img
+            src="assets/dormate_logo.png"
+            alt="Logo"
+            style="width: 40px"
+            class="img-logo text-dark"
+          />
+          dormate
+        </a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#collapsibleNavbar"
+          style="background-color: #5687fb"
         >
-      </li>
-
-      <li class="nav-item">
-        <a href="/login" class="nav-link text-dark" *ngIf="!isUserLoggedIn"
-          >Log In</a
-        >
-      </li>
-
-      <li class="nav-item">
-        <a href="/register" class="nav-link text-dark" *ngIf="!isUserLoggedIn"
-          >Sign Up</a
-        >
-      </li>
-
-      <li class="nav-item">
-        <a
-          href
-          class="nav-link log-out float-right nav-font text-dark"
-          (click)="logout()"
-          *ngIf="isUserLoggedIn"
-          >Log Out</a
-        >
-      </li>
-    </ul>
+          <span class="navbar-toggler-icon"></span>
+        </button>
+  
+        <div class="collapse navbar-collapse" id="collapsibleNavbar">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a href="dorms" class="nav-link text-dark">Dorms</a>
+            </li>
+  
+            <li class="nav-item">
+              <a href="add" class="nav-link text-dark">List Dorm</a>
+            </li>
+  
+            <li class="nav-item">
+              <a href="/profile" class="nav-link text-dark" *ngIf="isUserLoggedIn"
+                >Profile</a
+              >
+            </li>
+  
+            <li class="nav-item">
+              <a href="/login" class="nav-link text-dark" *ngIf="!isUserLoggedIn"
+                >Log In</a
+              >
+            </li>
+  
+            <li class="nav-item">
+              <a
+                href="/register"
+                class="nav-link text-dark"
+                *ngIf="!isUserLoggedIn"
+                >Sign Up</a
+              >
+            </li>
+  
+            <li class="nav-item">
+              <a
+                href
+                class="nav-link log-out float-right nav-font text-dark"
+                (click)="logout()"
+                *ngIf="isUserLoggedIn"
+                >Log Out</a
+              >
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+  <!--Content Section-->
+    <div class="body">
+      <router-outlet></router-outlet>
+      <app-spinner></app-spinner>
+    </div>
+  
+    <div class="footer">
+      <footer id="sticky-footer" class="flex-shrink-0 py-4 text-white-50 mt-auto">
+        <div class="container text-center">
+          <small>Copyright 2023 &copy; dormate</small>
+        </div>
+      </footer>
+    </div>
   </div>
-</nav>
 
-<router-outlet></router-outlet>
-<app-spinner></app-spinner>
-
-<footer id="sticky-footer" class="flex-shrink-0 py-4 text-white-50 mt-auto" style="background-color: #2f3753;">
-  <div class="container text-center">
-    <small>Copyright 2023 &copy; dormate</small>
-  </div>
-</footer>
+</body>

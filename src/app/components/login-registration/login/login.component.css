@@ -2,7 +2,7 @@ html,
 body {
   height: 100%;
 }
-body {
+#container {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
   min-height: 100vh;
@@ -12,7 +12,6 @@ body {
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
-
 }
 .app-header {
   justify-content: space-between;
@@ -25,6 +24,7 @@ body {
 }
 .login-wrapper {
   height: 100%;
+  padding-top: 70px;
 }
 
 .box {

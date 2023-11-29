@@ -4,6 +4,26 @@ body{
   padding: 0;
 }
 
+#container {
+  min-height:100%;
+  position:relative;
+  width: 100%;
+}
+.header {
+  padding:10px;
+}
+.body {
+  padding:10px;
+  padding-bottom:60px;   /* Height of the footer */
+}
+.footer {
+  position:absolute;
+  bottom:0;
+  width:100%;
+  height:60px;   /* Height of the footer */
+  background:#6cf;
+}
+
 .bg-nav{
   background-color: #ffffff;
   /* font-size: #483c36; */
@@ -50,9 +70,13 @@ body{
 
 footer {
   clear: both;
-  position: relative;
-  height: 100px;
-  margin-top: -200px;
+  position: absolute;
+  height: 60px;
+  left: 0;
+  bottom: 0;
+  background-color: #2f3753;
+  width: 100%;
 }
+
 
  

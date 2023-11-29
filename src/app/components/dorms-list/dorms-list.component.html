@@ -34,14 +34,15 @@
     <div class="w3-row-padding w3-padding-16">
       <div
         class="w3-third w3-margin-bottom"
-        *ngFor="let dorm of dorms; let i = index"
+        *ngFor="let dorm of dorms; let i = index;"
         [@listAnimation]="dorms.length"
-        (@listAnimation.start)="logAnimation($event)"
-        (@listAnimation.done)="logAnimation($event)"
       >
+      <!-- [@listAnimation]="dorms.length"
+      (@listAnimation.start)="logAnimation($event)"
+      (@listAnimation.done)="logAnimation($event)" -->
       
       <div class="username">
-        <img [src]="dorm.user_image" class="user-logo" alt="user icon"> 
+        <img [src]="userImage" class="user-logo" alt="user icon"> 
         <a class="username_link" (click)="visitProfile(dorm.user_id)">{{ dorm.username }} </a>
         <!-- <app-visit-profile [userId]="dorm.user_id"></app-visit-profile> -->
       </div>

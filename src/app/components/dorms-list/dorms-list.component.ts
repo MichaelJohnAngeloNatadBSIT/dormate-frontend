@@ -9,6 +9,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { ImageZoomComponent } from 'src/app/dialogs/image-zoom/image-zoom.component';
 import { Router } from '@angular/router';
 import { FADEINOUT } from './fade-in-fade-out.animation';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-dorms-list',
@@ -18,16 +19,20 @@ import { FADEINOUT } from './fade-in-fade-out.animation';
 })
 export class DormsListComponent implements OnInit{
 
+  //just find user by user id in db to display image
+
   dorms?: Dorm[];
   currentDorm: Dorm = {};
   currentIndex = -1;
   title = '';
   currentUser: User;
   user : User;
+  userImage: any;
 
   constructor(
     private dormService: DormService, 
     private tokenService: TokenStorageService,
+    private userService: UserService,
     private dialog: MatDialog,
     private router: Router,
     ) { }
@@ -38,8 +43,14 @@ export class DormsListComponent implements OnInit{
     this.currentUser = this.tokenService.getUser();
   }
 
-
-
+  // getUserById(id:any){
+  //   this.userService.retrieveUserWithId(id).subscribe({
+  //     next: (data) => {
+  //       this.userImage = data;
+  //     },
+  //     error: (e) => console.error(e)
+  //   })
+  // }
     retrieveDorms(): void {
       this.dormService.getAllApproved()
         .subscribe({

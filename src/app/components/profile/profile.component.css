@@ -73,10 +73,12 @@ body{
 
 .dialog-button{
     margin: 5px 10px 5px;
+    width: 200px;
     
 }
 
 .user-details-btn{
     margin-right: 10px;
+    width: 200px;
 }
 
