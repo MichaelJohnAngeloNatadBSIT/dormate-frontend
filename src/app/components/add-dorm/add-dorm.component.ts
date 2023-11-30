@@ -44,7 +44,7 @@ export class AddDormComponent {
     createForm() {
       this.dormForm = this.fb.group({
          title: ['', [Validators.required, Validators.maxLength(40), Validators.minLength(5)]],
-         description: ['', [Validators.required, Validators.maxLength(100), Validators.minLength(5)]],
+         description: ['', [Validators.required, Validators.maxLength(150), Validators.minLength(5)]],
          address: ['', [Validators.required, Validators.maxLength(50), Validators.minLength(5)]],
          bedroom: ['', [Validators.required, Validators.maxLength(10), Validators.minLength(1)]],
          bathroom: ['', [Validators.required, Validators.maxLength(10), Validators.minLength(1)]],

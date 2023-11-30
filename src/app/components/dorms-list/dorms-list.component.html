@@ -42,7 +42,7 @@
       (@listAnimation.done)="logAnimation($event)" -->
       
       <div class="username">
-        <img [src]="userImage" class="user-logo" alt="user icon"> 
+        <img [src]="dorm.user_image" class="user-logo" alt="user icon"> 
         <a class="username_link" (click)="visitProfile(dorm.user_id)">{{ dorm.username }} </a>
         <!-- <app-visit-profile [userId]="dorm.user_id"></app-visit-profile> -->
       </div>
