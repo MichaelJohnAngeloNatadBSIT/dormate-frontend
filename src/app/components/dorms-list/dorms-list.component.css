@@ -48,6 +48,10 @@
   color: #0e4ad4;
 }
 
+.dorm-post-width{
+  width: 50%;
+}
+
 
 /* W3.CSS 4.15 December 2020 by Jan Egil and Borge Refsnes */
 html {
@@ -589,6 +593,7 @@ a {
 .w3-threequarter,
 .w3-quarter {
   float: left;
+  
   width: 100%;
 }
 .w3-col.s1 {
@@ -640,8 +645,9 @@ a {
   }
   .w3-col.m4,
   .w3-third {
-    width: 33.33333%;
+    width: 50%;
   }
+
   .w3-col.m5 {
     width: 41.66666%;
   }

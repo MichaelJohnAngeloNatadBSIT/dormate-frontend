@@ -11,6 +11,7 @@ import { BoardLandlordComponent } from './components/board-landlord/board-landlo
 import { AuthGuard } from './services/auth.guard';
 import { InfoScheduleDialogComponent } from './dialogs/info-schedule-dialog/info-schedule-dialog.component';
 import { VisitProfileComponent } from './components/visit-profile/visit-profile.component';
+import { AboutUsComponent } from './components/about-us/about-us.component';
 
 
 const routes: Routes = [
@@ -18,6 +19,7 @@ const routes: Routes = [
   { path: 'dorms', component: DormsListComponent },
   { path: 'dorms/:id', component: DormDetailsComponent },
   { path: 'add', component: AddDormComponent, canActivate: [AuthGuard] },
+  { path: 'about-us', component: AboutUsComponent },
   { path: 'login', component: LoginComponent },
   { path: 'info-schedule', component: InfoScheduleDialogComponent, canActivate: [AuthGuard] },
   { path: 'register', component: RegisterComponent },

@@ -44,6 +44,7 @@ import { ImageZoomComponent } from './dialogs/image-zoom/image-zoom.component';
 import { ScheduleApproveTenantComponent } from './dialogs/schedule-approve-tenant/schedule-approve-tenant.component';
 import { ValidIdDialogComponent } from './dialogs/valid-id-dialog/valid-id-dialog.component';
 import { VisitProfileComponent } from './components/visit-profile/visit-profile.component';
+import { AboutUsComponent } from './components/about-us/about-us.component';
 
 
 @NgModule({
@@ -74,6 +75,7 @@ import { VisitProfileComponent } from './components/visit-profile/visit-profile.
     ScheduleApproveTenantComponent,
     ValidIdDialogComponent,
     VisitProfileComponent,
+    AboutUsComponent,
   ],
   imports: [
     BrowserModule,

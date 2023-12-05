@@ -23,11 +23,11 @@
 </div>
 
 <div class="container">
-  <div class="w3-content" style="max-width: 1532px">
+  <div class="w3-content">
     <!-- tagline -->
-    <div class="w3-container w3-margin-top" id="rooms">
+    <div class="w3-margin-top" id="rooms">
       <h3>Dorms</h3>
-      <p>Your Accommodation is our Mission</p>
+      <h4>Your Accommodation is our Mission</h4>
     </div>
 
     <!-- dorms post -->
@@ -37,9 +37,6 @@
         *ngFor="let dorm of dorms; let i = index;"
         [@listAnimation]="dorms.length"
       >
-      <!-- [@listAnimation]="dorms.length"
-      (@listAnimation.start)="logAnimation($event)"
-      (@listAnimation.done)="logAnimation($event)" -->
       
       <div class="username">
         <img [src]="dorm.user_image" class="user-logo" alt="user icon"> 
