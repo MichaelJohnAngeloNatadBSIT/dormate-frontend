@@ -122,9 +122,16 @@
             </swiper>
 
             <div class="card-body">
+
               <p class="card-text">{{ dorm.createdAt | date : "MMMM d, y" }}</p>
               <h5 class="card-title">{{ dorm.title }}</h5>
               <p class="card-text">{{ dorm.description }}</p>
+              <button
+                (click)="openViewCertificatesDialog(dorm, i)"
+                class="btn btn-info dialog-button"
+              >
+                View Certificates
+              </button>
             </div>
           </div>
         </div>

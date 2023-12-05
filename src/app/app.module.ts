@@ -45,6 +45,7 @@ import { ScheduleApproveTenantComponent } from './dialogs/schedule-approve-tenan
 import { ValidIdDialogComponent } from './dialogs/valid-id-dialog/valid-id-dialog.component';
 import { VisitProfileComponent } from './components/visit-profile/visit-profile.component';
 import { AboutUsComponent } from './components/about-us/about-us.component';
+import { ViewCertificatesComponent } from './dialogs/view-certificates/view-certificates.component';
 
 
 @NgModule({
@@ -76,6 +77,7 @@ import { AboutUsComponent } from './components/about-us/about-us.component';
     ValidIdDialogComponent,
     VisitProfileComponent,
     AboutUsComponent,
+    ViewCertificatesComponent,
   ],
   imports: [
     BrowserModule,

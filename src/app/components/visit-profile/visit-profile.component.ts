@@ -10,6 +10,7 @@ import { Schedule } from 'src/app/models/schedules.model';
 import { EventInput } from '@fullcalendar/core';
 import { ImageZoomComponent } from 'src/app/dialogs/image-zoom/image-zoom.component';
 import { Router } from '@angular/router';
+import { ViewCertificatesComponent } from 'src/app/dialogs/view-certificates/view-certificates.component';
 
 @Component({
   selector: 'app-visit-profile',
@@ -70,6 +71,15 @@ export class VisitProfileComponent implements OnInit {
     }); 
   }
 
+  openViewCertificatesDialog(dorm: Dorm){
+    let dialogRef = this.dialog.open(ViewCertificatesComponent, { 
+      width: '900px', 
+      height: '80vh',
+      data: dorm
+    }); 
+
+  }
+
   config: SwiperOptions = {
     pagination: { 
       el: '.swiper-pagination', 
@@ -81,5 +91,7 @@ export class VisitProfileComponent implements OnInit {
     },
     spaceBetween: 30
   }; 
+
+
 
 }
