@@ -1,16 +1,16 @@
 import { TestBed } from '@angular/core/testing';
 
-import { EventInterceptorInterceptor } from './event-interceptor.interceptor';
+import { EventInterceptor } from './event-interceptor.interceptor';
 
 describe('EventInterceptorInterceptor', () => {
   beforeEach(() => TestBed.configureTestingModule({
     providers: [
-      EventInterceptorInterceptor
+      EventInterceptor
       ]
   }));
 
   it('should be created', () => {
-    const interceptor: EventInterceptorInterceptor = TestBed.inject(EventInterceptorInterceptor);
+    const interceptor: EventInterceptor = TestBed.inject(EventInterceptor);
     expect(interceptor).toBeTruthy();
   });
 });

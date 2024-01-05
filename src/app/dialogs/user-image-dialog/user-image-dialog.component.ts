@@ -69,8 +69,8 @@ export class UserImageDialogComponent implements OnInit {
             } else if (event instanceof HttpResponse) {
               this.message = event.body.message;
               this.fileInfos = this.userService.getFiles();
-              this.router.navigate(['/profile'])
-                .then(()=> {
+              this.router.navigateByUrl('/', {skipLocationChange: true}).then(() => {
+                this.router.navigate(['profile']);
               });
             }
           },

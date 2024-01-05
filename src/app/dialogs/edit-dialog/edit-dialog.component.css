@@ -96,6 +96,10 @@ body {
   padding: 0.8375em 0;
 }
 
+.close-button{
+  float: right;
+}
+
 /* mat-form-field{
   mat-error{
     display: none !important;

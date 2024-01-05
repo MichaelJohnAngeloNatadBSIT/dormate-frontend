@@ -46,6 +46,7 @@ import { ValidIdDialogComponent } from './dialogs/valid-id-dialog/valid-id-dialo
 import { VisitProfileComponent } from './components/visit-profile/visit-profile.component';
 import { AboutUsComponent } from './components/about-us/about-us.component';
 import { ViewCertificatesComponent } from './dialogs/view-certificates/view-certificates.component';
+import { PublishDialogComponent } from './dialogs/publish-dialog/publish-dialog.component';
 
 
 @NgModule({
@@ -78,6 +79,7 @@ import { ViewCertificatesComponent } from './dialogs/view-certificates/view-cert
     VisitProfileComponent,
     AboutUsComponent,
     ViewCertificatesComponent,
+    PublishDialogComponent,
   ],
   imports: [
     BrowserModule,

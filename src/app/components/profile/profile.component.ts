@@ -26,6 +26,7 @@ import { EventInput } from '@fullcalendar/core';
 import { ImageZoomComponent } from 'src/app/dialogs/image-zoom/image-zoom.component';
 import { ScheduleApproveTenantComponent } from 'src/app/dialogs/schedule-approve-tenant/schedule-approve-tenant.component';
 import { ValidIdDialogComponent } from 'src/app/dialogs/valid-id-dialog/valid-id-dialog.component';
+import { PublishDialogComponent } from 'src/app/dialogs/publish-dialog/publish-dialog.component';
 
 
 @Component({
@@ -237,6 +238,8 @@ export class ProfileComponent implements OnInit {
   
   openDeleteDormDialog(dorm: Dorm): void {
     let dialogRef = this.dialog.open(DeleteDormDialogComponent, { 
+      width: '400px', 
+      height: 'auto',
       data: dorm
     }); 
     dialogRef.afterClosed().subscribe(result => { 
@@ -270,6 +273,17 @@ export class ProfileComponent implements OnInit {
       height: '70vh',
       data: images
     }); 
+  }
+
+  openPublishDormDialog(dorm: Dorm): void{
+    let dialogRef = this.dialog.open(PublishDialogComponent, { 
+      width: '400px', 
+      height: 'auto',
+      data: dorm
+    }); 
+    dialogRef.afterClosed().subscribe(result => { 
+      this.retrieveForApprovalDorm();
+     }); 
   }
 
   config: SwiperOptions = {

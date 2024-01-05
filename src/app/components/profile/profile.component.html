@@ -23,12 +23,22 @@
                 width="150"
               />
               <div class="mt-3">
-                <i *ngIf="user.verified" class="fa fa-check-circle-o" style="font-size:15px;color:#5687fb">Verified</i>
-                <i *ngIf="!user.verified" class="fa fa-times" style="font-size:15px;color:#94918c">Not Verified</i>
-                <h4>{{ user.username }} </h4>
-                
+                <i
+                  *ngIf="user.verified"
+                  class="fa fa-check-circle-o"
+                  style="font-size: 15px; color: #5687fb"
+                  >Verified</i
+                >
+                <i
+                  *ngIf="!user.verified"
+                  class="fa fa-times"
+                  style="font-size: 15px; color: #94918c"
+                  >Not Verified</i
+                >
+                <h4>{{ user.username }}</h4>
+
                 <p class="text-secondary mb-1">{{ user.address }}</p>
-       
+
                 <!-- <button class="btn btn-primary">Follow</button> -->
                 <!-- <button class="btn btn-outline-primary">Message</button> -->
               </div>
@@ -122,13 +132,13 @@
               {{ schedule.schedule_date | date : "EEEE, MMMM d, y" }}
             </a>
             <a
-            mat-list-item
-            target="_blank"
-            *ngFor="let schedule of schedulesTenant; let i = index"
-            (click)="openScheduleApproveTenantDialog(schedule)"
-          >
-            {{ schedule.schedule_date | date : "EEEE, MMMM d, y" }}
-          </a>
+              mat-list-item
+              target="_blank"
+              *ngFor="let schedule of schedulesTenant; let i = index"
+              (click)="openScheduleApproveTenantDialog(schedule)"
+            >
+              {{ schedule.schedule_date | date : "EEEE, MMMM d, y" }}
+            </a>
           </mat-nav-list>
           <mat-divider></mat-divider>
         </mat-card>
@@ -146,16 +156,19 @@
         </mat-card>
       </div>
 
-      <div class="col-md-8 mb-3" >
+      <div class="col-md-8 mb-3">
         <h1>Your Dorm Posts</h1>
         <div class="row align-items-start">
           <div
             class="card"
-            style="width: 20rem; margin:20px 25px 20px;"
+            style="width: 20rem; margin: 20px 25px 20px"
             *ngFor="let dorm of dorms; let i = index"
           >
             <swiper [config]="config">
-              <div class="swiper-wrapper" (click)="openImageZoomDialog(dorm.dorm_images)">
+              <div
+                class="swiper-wrapper"
+                (click)="openImageZoomDialog(dorm.dorm_images)"
+              >
                 <div
                   class="swiper-slide"
                   *ngFor="let image of dorm.dorm_images"
@@ -193,6 +206,20 @@
                   class="btn btn-secondary dialog-button"
                 >
                   Edit Dorm Information
+                </button>
+                <button
+                  (click)="openPublishDormDialog(dorm, i)"
+                  class="btn btn-success dialog-button"
+                  *ngIf="dorm.publish == false"
+                >
+                  Publish Dorm
+                </button>
+                <button
+                  (click)="openPublishDormDialog(dorm, i)"
+                  class="btn btn-secondary dialog-button"
+                  *ngIf="dorm.publish == true"
+                >
+                  Unpublish Dorm
                 </button>
                 <button
                   (click)="openDeleteDormDialog(dorm, i)"
