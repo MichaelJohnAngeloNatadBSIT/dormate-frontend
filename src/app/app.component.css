@@ -4,7 +4,6 @@ body{
   padding: 0;
   font-family: 'Raleway';
 }
-
 #container {
   min-height:100%;
   position:relative;
@@ -79,16 +78,13 @@ footer {
   width: 100%;
 }
 
-
- 
-
 /**
  * index.scss
  * - Add any styles you want here!
  */
 
  header {
-  background: #54649c !important;
+  background: #ffffff !important;
   height: auto;
   padding: 0;
   margin: 0;
@@ -98,16 +94,20 @@ footer {
   position: relative;
   z-index: 999;
 }
-
+#dropdown-button{
+  color: rgb(255, 255, 255);
+}
 #mainMenu li > a {
   font-size: 20px;
   letter-spacing: 1px;
-  color: #fff;
+  color: rgb(0, 0, 0);
   font-weight: 400;
   position: relative;
   z-index: 1;
   text-decoration: none;
 }
+
+
 
 .main-header.fixed-nav #mainMenu li > a {
   color: #fff;
@@ -123,7 +123,7 @@ footer {
   content: "";
   width: calc(100% - 1px);
   height: 1px;
-  background: #fff;
+  background: rgb(0, 0, 0);
   bottom: -6px;
   left: 0;
 
@@ -192,35 +192,8 @@ footer {
   height: auto;
 }
 
-/* .dropdown {
-  opacity: 0;
-  position: absolute;
-  width: 500px;
-  z-index: 2;
-  background: black;
-  
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-  height: 3rem;
-  margin-top: 2rem;
-  padding: 0.5rem;
-  transform: translateX(-40%);
-  transition: opacity .15s ease-out;
-}
-
-.dropdown-item a {
-  width: 100%;
-  height: 100%;
-}
-
-.has-dropdown:focus-within .dropdown   {
-  opacity: 1;
-  pointer-events: auto;
-} */
-
 .dropdown {
-  background-color: #394368;
+  background-color: #ffffff;
   list-style: none;
   margin: 0;
   padding-left: 0;

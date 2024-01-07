@@ -12,10 +12,11 @@ import { AuthGuard } from './services/auth.guard';
 import { InfoScheduleDialogComponent } from './dialogs/info-schedule-dialog/info-schedule-dialog.component';
 import { VisitProfileComponent } from './components/visit-profile/visit-profile.component';
 import { AboutUsComponent } from './components/about-us/about-us.component';
+import { LandingPageComponent } from './components/landing-page/landing-page.component';
 
 
 const routes: Routes = [
-  { path: '', redirectTo: 'dorms', pathMatch: 'full'},
+  { path: '', redirectTo: 'landing-page', pathMatch: 'full'},
   { path: 'dorms', component: DormsListComponent },
   { path: 'dorms/:id', component: DormDetailsComponent },
   { path: 'add', component: AddDormComponent, canActivate: [AuthGuard] },
@@ -27,6 +28,7 @@ const routes: Routes = [
   { path: 'visit-profile', component: VisitProfileComponent, canActivate: [AuthGuard] },
   { path: 'user', component: BoardUserComponent },
   { path: 'landlord', component: BoardLandlordComponent },
+  { path: 'landing-page', component: LandingPageComponent },
 
 
 

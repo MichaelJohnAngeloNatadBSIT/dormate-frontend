@@ -110,6 +110,10 @@ export class DormsListComponent implements OnInit{
     }
 
     config: SwiperOptions = {
+      autoplay: {
+        delay: 3000,
+        disableOnInteraction: false,
+      },
       pagination: { 
         el: '.swiper-pagination', 
         clickable: true
