@@ -21,12 +21,11 @@ export class AppComponent {
   username?: string;
   dataRefresher: any;
 
+  public isMobileLayout = false;
+
   // currentUser: User;
   user : User;
   isUserLoggedIn: boolean;
-
-
-  
 
   constructor(
     public responsiveService:ResponsiveService, 
@@ -41,9 +40,9 @@ export class AppComponent {
   }
 
   ngOnInit(): void {
+    window.onresize = () => this.isMobileLayout = window.innerWidth <= 991;
+
     this.isLoggedIn = this.tokenStorageService.isLoggedIn();
-
-
     if (this.isLoggedIn) {
       const user = this.tokenStorageService.getUser();
       this.roles = user.roles;

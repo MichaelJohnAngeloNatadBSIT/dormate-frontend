@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container search-bar mx-auto">
   <div class="list row">
     <div class="col-md-8 search-bar">
       <div class="input-group mb-3">
@@ -21,64 +21,75 @@
     </div>
   </div>
 </div>
-
 <div class="container">
-  <div class="w3-content">
-    <!-- tagline -->
-    <div class="w3-margin-top" id="rooms">
-      <h3>Dorms</h3>
-      <h4>Your Accommodation is our Mission</h4>
-    </div>
-
-    <!-- dorms post -->
-    <div class="w3-row-padding w3-padding-16">
-      <div
-        class="w3-third w3-margin-bottom"
-        *ngFor="let dorm of dorms; let i = index;"
-        [@listAnimation]="dorms.length"
-      >
-      
-      <div class="username">
-        <img [src]="dorm.user_image" class="user-logo" alt="user icon"> 
-        <a class="username_link" (click)="visitProfile(dorm.user_id)">{{ dorm.username }} </a>
-        <!-- <app-visit-profile [userId]="dorm.user_id"></app-visit-profile> -->
-      </div>
-
-
-        <!-- image slider -->
-        <swiper [config]="config">
-          <div class="swiper-wrapper" (click)="openImageZoomDialog(dorm.dorm_images)">
-            <div class="swiper-slide" *ngFor="let image of dorm.dorm_images">
-              <img src="{{ image }}" alt="img 1" class="dorm_image" />
-            </div>
+  <section class="news pt-0">
+    <div class="container mt-md-5">
+      <div class="container-post">
+      <ul class="row d-lg-flex list-unstyled image-block justify-content-center px-lg-0 mx-lg-0">
+        <li class="col-lg-4 col-md-5 image-block full-width p-3" *ngFor="let dorm of dorms; let i = index;">
+          <div class="username">
+            <img [src]="dorm.user_image" class="user-logo" alt="user icon"> 
+            <a class="username_link" (click)="visitProfile(dorm.user_id)">{{ dorm.username }} </a>
+            <!-- <app-visit-profile [userId]="dorm.user_id"></app-visit-profile> -->
           </div>
-
-          <!-- Add Pagination -->
-          <div class="swiper-pagination"></div>
-
-          <!-- Add Arrows -->
-          <div class="swiper-button-next"></div>
-          <div class="swiper-button-prev"></div>
-        </swiper>
-
-        <div class="w3-container w3-white">
-          <p>{{ dorm.createdAt | date : "MMMM d, y"}}</p>
-          <h3>{{ dorm.title }}</h3>
-          <h5><i class="fa fa-map-marker" aria-hidden="true"></i> {{ dorm.address }}</h5>
-          <h4>Rent Starts at: <b>₱{{ dorm.rent }}</b></h4>
-          <p><i class="fa fa-mobile" aria-hidden="true"></i> {{ dorm.contact_number }}</p>
-          <p class="text-muted">{{ dorm.description }}</p>
-          <p class="w3-large">
-          </p>
-          <button
-            class="w3-button w3-block w3-indigo w3-margin-bottom"
+          <div class="image-block-inner">
+            <!-- <a class="mh-100" href="#">
+              <img src="https://raw.githubusercontent.com/solodev/recent-blog-posts/master/images/news-1.jpg" alt="LunarXP Wins Space Innovator of the Year Award" class="img-responsive w-100">
+            </a> -->
+            <div class="swiper-class">
+              <swiper [config]="config">
+                <div class="swiper-wrapper mh-100" (click)="openImageZoomDialog(dorm.dorm_images)">
+                  <div class="swiper-slide " *ngFor="let image of dorm.dorm_images">
+                    <img src="{{ image }}" alt="img 1" class="dorm_image img-responsive w-100" />
+                  </div>
+                </div>
+      
+                <!-- Add Pagination -->
+                <div class="swiper-pagination"></div>
+      
+                <!-- Add Arrows -->
+                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>
+              </swiper>
+            </div>
+            
+            <p>{{ dorm.createdAt | date : "MMMM d, y"}}</p>
+            <span class="hp-posts-cat">{{ dorm.title }}</span>
+            <h4 class="mt-3">{{ dorm.address }}</h4>
+            <p>Rent Starts at: <b>₱{{ dorm.rent }}</b></p>
+            <p><i class="fa fa-mobile" aria-hidden="true"></i> {{ dorm.contact_number }}</p>
+            <p class="text-muted">{{ dorm.description }}</p>
+  
+            <button
+            mat-raised-button color="primary"
+            class="schedule-button"
             (click)="openInfoSchedDialog(dorm)"
-          >
-            Schedule A Visit
-          </button>
-        </div>
-      </div>
+            >
+              Schedule A Visit
+            </button>
+  
+            <!-- <div class="w3-container w3-white">
+              <p>{{ dorm.createdAt | date : "MMMM d, y"}}</p>
+              <h3>{{ dorm.title }}</h3>
+              <h5><i class="fa fa-map-marker" aria-hidden="true"></i> {{ dorm.address }}</h5>
+              <h4>Rent Starts at: <b>₱{{ dorm.rent }}</b></h4>
+              <p><i class="fa fa-mobile" aria-hidden="true"></i> {{ dorm.contact_number }}</p>
+              <p class="text-muted">{{ dorm.description }}</p>
+              <p class="w3-large">
+              </p>
+              <button
+                class="w3-button w3-block w3-indigo w3-margin-bottom"
+                (click)="openInfoSchedDialog(dorm)"
+              >
+                Schedule A Visit
+              </button>
+            </div> -->
+          </div>
+          <!-- .image-block-inner -->
+        </li>
+      </ul>
     </div>
   </div>
+  </section>
 </div>
 

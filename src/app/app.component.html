@@ -1,16 +1,13 @@
 <body>
-  <div id="container">
-    <!-- Navigation Bar -->
-    <div class="header">
+  <!-- Navigation Bar -->
+  <!-- <div class="header">
       <nav class="navbar navbar-expand-md bg-nav navbar-dark">
         <a href="#" class="navbar-brand text-icon">
           <img
             src="assets/dormate_logo.png"
             alt="Logo"
-            style="width: 40px"
             class="img-logo text-dark"
           />
-          dormate
         </a>
         <button
           class="navbar-toggler"
@@ -69,20 +66,105 @@
           </ul>
         </div>
       </nav>
+    </div> -->
+
+  <header class="main-header">
+    <div class="container">
+      <nav class="navbar navbar-expand-lg main-nav px-0">
+        <a class="navbar-brand">
+          <img
+            src="assets/dormate_logo.png"
+            alt="dormate logo"
+            class="dormate-logo"
+          />
+        </a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#mainMenu"
+          aria-controls="mainMenu"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="icon-bar icon-bar-1"></span>
+          <span class="icon-bar icon-bar-2"></span>
+          <span class="icon-bar icon-bar-3"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="mainMenu">
+          <ul class="navbar-nav ml-auto text-uppercase f1">
+            <li>
+              <a href="#home">Home</a>
+            </li>
+            <li>
+              <a href="dorms">Dorms</a>
+            </li>
+            <li>
+              <a href="about-us">About Us</a>
+            </li>
+            <li>
+              <a class="dropbtn" *ngIf="isMobileLayout && !isUserLoggedIn" href="login">
+                <mat-icon class="white-icon" >account_circle</mat-icon>
+              </a>
+              <a class="dropbtn" *ngIf="isMobileLayout && isUserLoggedIn" href="profile">
+                <mat-icon class="white-icon" >account_circle</mat-icon>
+              </a>
+              <a class="dropbtn" *ngIf="!isMobileLayout">
+                <mat-icon class="white-icon" >account_circle</mat-icon>
+              </a>
+              <ul class="dropdown" *ngIf="!isMobileLayout">
+                <li *ngIf="isUserLoggedIn">
+                  <a href="/profile" *ngIf="isUserLoggedIn"
+                    >Profile</a
+                  >
+                </li>
+                <li *ngIf="isUserLoggedIn">
+                  <a href="add" *ngIf="isUserLoggedIn">List Dorm</a>
+                </li>
+                <li *ngIf="!isUserLoggedIn">
+                  <a href="/login" *ngIf="!isUserLoggedIn"
+                    >Log In</a
+                  >
+                </li>
+                <li *ngIf="!isUserLoggedIn">
+                  <a href="/register" *ngIf="!isUserLoggedIn"
+                    >Register</a
+                  >
+                </li>
+                <li *ngIf="isUserLoggedIn">
+                  <a
+                    *ngIf="isUserLoggedIn"
+                    (click)="logout()"
+                    >Log Out</a
+                  >
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </nav>
     </div>
+    <!-- /.container -->
+  </header>
+
   <!--Content Section-->
+
+  <div id="container">
     <div class="body">
       <router-outlet></router-outlet>
       <app-spinner></app-spinner>
     </div>
-  
+
     <div class="footer">
-      <footer id="sticky-footer" class="flex-shrink-0 py-4 text-white-50 mt-auto">
+      <footer
+        id="sticky-footer"
+        class="flex-shrink-0 py-4 text-white-50 mt-auto"
+      >
         <div class="container text-center">
           <small>Copyright 2023 &copy; dormate</small>
         </div>
       </footer>
     </div>
   </div>
-
 </body>

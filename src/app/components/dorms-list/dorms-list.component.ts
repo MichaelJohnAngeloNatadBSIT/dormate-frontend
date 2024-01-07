@@ -41,6 +41,7 @@ export class DormsListComponent implements OnInit{
   ngOnInit(): void {
     this.retrieveDorms();
     this.currentUser = this.tokenService.getUser();
+
   }
 
   // getUserById(id:any){
