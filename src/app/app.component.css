@@ -85,7 +85,7 @@ footer {
 
  header {
   background: #ffffff !important;
-  height: auto;
+  height: 70px;
   padding: 0;
   margin: 0;
 }
@@ -106,8 +106,6 @@ footer {
   z-index: 1;
   text-decoration: none;
 }
-
-
 
 .main-header.fixed-nav #mainMenu li > a {
   color: #fff;
@@ -275,10 +273,12 @@ ul li ul li {
     padding-left: 0;
     padding-right: 0;
     text-align: center;
+    background-color: #fff;
   }
 
   .main-header .navbar-nav {
     margin-top: 70px;
+    background-color: #fff;
   }
 
   .main-header .navbar-nav li .nav-link {
@@ -289,7 +289,7 @@ ul li ul li {
 
   /**/
   .main-header .navbar-toggler .icon-bar {
-    background-color: #fff;
+    background-color: rgb(0, 0, 0);
     margin: 0 auto 6px;
     border-radius: 0;
     width: 30px;
@@ -338,11 +338,11 @@ ul li ul li {
   }
 
   .main-header .navbar-toggler:hover .icon-bar {
-    background-color: #fff;
+    background-color: rgb(0, 0, 0);
   }
 
   .main-header .navbar-toggler:focus .icon-bar {
-    background-color: #fff;
+    background-color: rgb(0, 0, 0);
   }
 
   /*header ends*/

@@ -84,7 +84,7 @@ body {
   margin: 0;
   padding-top: 0;
 }
-.login-wrapper .mat-card {
+.login-wrapper {
   padding: 40px 70px 50px;
 }
 .login-wrapper .mat-stroked-button {
@@ -95,29 +95,11 @@ body {
 .login-wrapper .mat-form-field-appearance-legacy .mat-form-field-infix {
   padding: 0.8375em 0;
 }
-
+.description-label{
+  padding-top: 30px;
+}
 .close-button{
   float: right;
 }
-
-/* mat-form-field{
-  mat-error{
-    display: none !important;
-  }
-
-  mat-error:first-child{
-    display: block !important;
-  } */
-
-  /* mat-form-field mat-error {
-    display: none !important;
- }
-  mat-form-field mat-error:first-child {
-    display: block !important;
- } */
-
-
-
-
 
 

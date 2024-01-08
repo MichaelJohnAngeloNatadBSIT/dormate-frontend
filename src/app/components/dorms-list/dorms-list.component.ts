@@ -89,8 +89,7 @@ export class DormsListComponent implements OnInit{
     }
     else{
       let dialogRef = this.dialog.open(InfoScheduleDialogComponent, { 
-        width: '800px', 
-        height: '70vh',
+        width: '300px', 
         data: {user: this.currentUser, dorm: dorm}
       }); 
     }

@@ -1,147 +1,59 @@
-<!-- forget the map start doing the scheduling tommorow-->
-<!-- <div class="container">
+
+<!-- add time picker in this form -->
+<div class="container">
   <div class="row">
-    <div class="col col-md-8 offset-md-2">
-      <div class="row">
-        <div class="col pr-0">
+    <form class="" [formGroup]="form" (ngSubmit)="scheduleVisit()">
+      <div class="col">
+        <label for="description" class="description-label">
+          <p>Visit Description:</p>
+        </label>
+        <mat-form-field class="example-full-width">
+          <textarea
+            matInput
+            placeholder="You can state your time of visit and other requests here"
+            type="text"
+            formControlName="description"
+            id="description"
+            style="height: 50px;"
+          ></textarea>
+          <mat-error *ngIf="hasError('description', 'maxlength')"
+            >Not more than 100 characters</mat-error
+          >
+        </mat-form-field>
+      </div>
+      <div class="col">
+        <label for="schedule_date" class="labels-image">
+          <h4>Date of Visit:</h4>
+        </label>
+        <mat-form-field class="example-full-width">
+          <mat-label>Choose a date</mat-label>
           <input
-            type="search"
-            class="form-control"
-            [(ngModel)]="address"
-            (keydown.enter)="findAddress()"
-            placeholder="Enter an address here"
-            [disabled]="isWorking"
+            matInput
+            [matDatepicker]="picker"
+            formControlName="schedule_date"
+            id="schedule_date"
           />
-        </div>
-        <div class="col-auto ml-auto">
-          <button
-            class="btn btn-primary mr-1"
-            (click)="findAddress()"
-            [disabled]="isWorking || !address?.length"
-          >
-            <i class="bi bi-map mr-md-1"></i>
-            <span class="d-none d-md-inline-block">Find address</span>
-          </button>
-          <button
-            class="btn btn-primary"
-            (click)="getCurrentLocation()"
-            [disabled]="isWorking"
-          >
-            <i class="bi bi-geo mr-md-1"></i>
-            <span class="d-none d-md-inline-block">Find me</span>
-          </button>
-        </div>
+          <mat-hint>MM/DD/YYYY</mat-hint>
+          <mat-datepicker-toggle
+            matIconSuffix
+            [for]="picker"
+          ></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
       </div>
-
-      <hr />
-
-      <div class="row">
-        <div class="col-12 col-md-6 pr-md-0">
-          <div id="info" class="shadow-sm rounded border p-3 h-100">
-            <h5>Formatted Address</h5>
-            <p>
-              {{ formattedAddress?.length ? formattedAddress : "N/A" }}
-            </p>
-            <h5>Coordinates</h5>
-            <p class="mb-0">
-              Latitude: {{ locationCoords ? locationCoords?.lat() : "N/A"
-              }}<br />
-              Longitude: {{ locationCoords ? locationCoords?.lng() : "N/A" }}
-            </p>
-          </div>
-        </div>
-        <div class="col-12 col-md-6">
-          <div class="google_map_container shadow-sm rounded mt-3 mt-md-0">
-            <google-map
-              [zoom]="mapZoom"
-              [center]="mapCenter"
-              [options]="mapOptions"
-            >
-              <map-marker
-                #marker="mapMarker"
-                [position]="mapCenter"
-                [options]="markerOptions"
-                (mapClick)="openInfoWindow(marker)"
-                (mapDragend)="onMapDragEnd($event)"
-              >
-              </map-marker>
-              <map-info-window>{{ markerInfoContent }}</map-info-window>
-            </google-map>
-          </div>
-        </div>
+      <div class="col">
+        <button mat-raised-button color="primary" class="btn-block update-button">
+          Schedule A Visit
+        </button>
+        <button
+          mat-raised-button
+          color="secondary"
+          class="btn-block update-button"
+          [mat-dialog-close]="true"
+        >
+          Cancel
+        </button>
       </div>
-    </div>
+    </form>
   </div>
-</div> -->
-
-  <!-- <div class="container"> -->
-    <button class="close-button" mat-icon-button [mat-dialog-close]="true"> 
-      <mat-icon class="close-icon" color="warn">close</mat-icon>
-    </button>
-    <div
-      class="login-wrapper"
-      fxLayout="row"
-      fxLayoutAlign="center center"
-      fxLayoutGap="10px"
-    >
-      <div class="box">
-        <mat-card>
-          <mat-card-header>
-            <mat-card-title>Schedule Visit</mat-card-title>
-          </mat-card-header>
-          <mat-card-content>
-          <form
-            class="example-form"
-            [formGroup]="form"
-            (ngSubmit)="scheduleVisit()"
-          >
-            <mat-card-content>
-              <label for="first_name" class="labels-image">
-                <h4>Visit Description: </h4>
-              </label>
-              <mat-form-field class="example-full-width">
-                <textarea
-                  matInput
-                  placeholder="You can state your time of visit and other requests here"
-                  type="text"
-                  formControlName="description"
-                  id="description"
-                ></textarea>
-                <mat-error *ngIf="hasError('description', 'maxlength')"
-                  >Not more than 100 characters</mat-error
-                >
-              </mat-form-field>
-
-              <label for="schedule_date" class="labels-image">
-                <h4>Date of Visit:</h4>
-              </label>
-              <mat-form-field class="example-full-width">
-                <mat-label>Choose a date</mat-label>
-                <input
-                  matInput
-                  [matDatepicker]="picker"
-                  formControlName="schedule_date"
-                  id="schedule_date"
-                />
-                <mat-hint>MM/DD/YYYY</mat-hint>
-                <mat-datepicker-toggle
-                  matIconSuffix
-                  [for]="picker"
-                ></mat-datepicker-toggle>
-                <mat-datepicker #picker></mat-datepicker>
-              </mat-form-field>
-            </mat-card-content>
-            <button
-              mat-raised-button
-              color="primary"
-              class="btn-block update-button"
-            >
-              Schedule A Visit
-            </button>
-          </form>
-        </mat-card-content>
-        </mat-card>
-      </div>
-    </div>
-  <!-- </div> -->
-
+</div>
