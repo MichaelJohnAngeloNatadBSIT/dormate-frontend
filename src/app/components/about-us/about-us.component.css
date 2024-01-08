@@ -19,7 +19,6 @@ body {
     float: none;
     margin: 0 auto;
 }
-  
   .column {
     float: left;
     width: 33.3%;
@@ -61,7 +60,7 @@ body {
   }
   
   .about-section {
-    padding: 50px;
+    padding: 80px;
     text-align: center;
     background-color: #424e7a;
     color: white;
