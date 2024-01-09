@@ -22,6 +22,7 @@ export class EditDormInfoDialogComponent {
     lessor: '', 
     bedroom: 0,
     bathroom: 0,
+    vacancy: 0,
     rent: 0,
     for_rent: false,
     published: false,
@@ -43,6 +44,7 @@ export class EditDormInfoDialogComponent {
          address: ['', [Validators.required, Validators.maxLength(50), Validators.minLength(5)]],
          bedroom: ['', [Validators.required, Validators.maxLength(10), Validators.minLength(1)]],
          bathroom: ['', [Validators.required, Validators.maxLength(10), Validators.minLength(1)]],
+         vacancy: ['', [Validators.required, Validators.maxLength(10), Validators.minLength(1)]],
          rent: ['', [Validators.required, Validators.maxLength(100000), Validators.minLength(100)]],
 
       });

@@ -17,6 +17,7 @@ export class AddDormComponent {
   currentUser : User;
   user: User;
   dormForm: FormGroup;
+  defaultValue: 1;
 
   dorm: Dorm = {
     user_id: '',
@@ -24,8 +25,9 @@ export class AddDormComponent {
     description: '',
     address: '',
     lessor: '', 
-    bedroom: 0,
-    bathroom: 0,
+    bedroom: 1,
+    bathroom: 1,
+    vacancy: 1,
     rent: 0,
     for_rent: false,
     published: false,
@@ -46,8 +48,9 @@ export class AddDormComponent {
          title: ['', [Validators.required, Validators.maxLength(40), Validators.minLength(5)]],
          description: ['', [Validators.required, Validators.maxLength(150), Validators.minLength(5)]],
          address: ['', [Validators.required, Validators.maxLength(50), Validators.minLength(5)]],
-         bedroom: ['', [Validators.required, Validators.maxLength(10), Validators.minLength(1)]],
-         bathroom: ['', [Validators.required, Validators.maxLength(10), Validators.minLength(1)]],
+         bedroom: ['', [Validators.required, Validators.maxLength(10), Validators.minLength(1), Validators.pattern(/^[1-9]*$/)]],
+         bathroom: ['', [Validators.required, Validators.maxLength(10), Validators.minLength(1), Validators.pattern(/^[1-9]*$/)]],
+         vacancy: ['', [Validators.required, Validators.maxLength(10), Validators.minLength(1), Validators.pattern(/^[1-9]*$/)]],
          rent: ['', [Validators.required, Validators.maxLength(100000), Validators.minLength(100)]],
          contact_number : ['', [Validators.required, Validators.maxLength(13)]]
       });
@@ -77,6 +80,7 @@ export class AddDormComponent {
       lessor: lessorName,
       bedroom: this.dormForm.get('bedroom').value,
       bathroom: this.dormForm.get('bathroom').value,
+      vacancy: this.dormForm.get('vacancy').value,
       contact_number: this.dormForm.get('contact_number').value,
       rent: this.dormForm.get('rent').value,
     };

@@ -5,7 +5,7 @@
       <nav class="navbar navbar-expand-lg main-nav px-0">
         <a class="navbar-brand" href="landing-page">
           <img
-            src="assets/DM.png"
+            src="assets/DM2.png"
             alt="dormate logo"
             class="dormate-logo"
           />
@@ -35,15 +35,21 @@
             <li>
               <a href="about-us">About Us</a>
             </li>
-            <li>
+            <li *ngIf="isMobileLayout && !isUserLoggedIn">
+              <a href="/register">Register</a>
+            </li>
+            <li *ngIf="isMobileLayout && !isUserLoggedIn" >
+              <a href="/login">Log In</a>
+            </li>
+            <li *ngIf="!isMobileLayout">
               <a class="dropbtn" *ngIf="isMobileLayout && !isUserLoggedIn" href="login">
-                <mat-icon class="black-icon" >account_circle</mat-icon>
+                <mat-icon class="black-icon">account_circle</mat-icon>
               </a>
               <a class="dropbtn" *ngIf="isMobileLayout && isUserLoggedIn" href="profile">
                 <mat-icon class="black-icon" >account_circle</mat-icon>
               </a>
               <a class="dropbtn" *ngIf="!isMobileLayout">
-                <mat-icon class="black-icon" >account_circle</mat-icon>
+                <mat-icon class="black-icon">account_circle</mat-icon>
               </a>
               <ul class="dropdown" *ngIf="!isMobileLayout">
                 <li *ngIf="isUserLoggedIn">
@@ -74,6 +80,19 @@
                 </li>
               </ul>
             </li>
+            <li *ngIf="isMobileLayout && isUserLoggedIn">
+              <a href="profile">Profile</a>
+            </li>
+            <li *ngIf="isMobileLayout && isUserLoggedIn">
+              <a href="add">List Dorm</a>
+            </li>
+            <li *ngIf="isMobileLayout && isUserLoggedIn">
+              <a 
+
+                (click)="logout()"
+                >Log Out</a
+              >
+            </li>
           </ul>
         </div>
       </nav>
@@ -94,7 +113,7 @@
         class="flex-shrink-0 py-4 text-white-50 mt-auto"
       >
         <div class="container text-center">
-          <small>Copyright 2023 &copy; dormate</small>
+          <small>Copyright 2024 &copy; dormate</small>
         </div>
       </footer>
     </div>

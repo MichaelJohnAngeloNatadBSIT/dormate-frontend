@@ -82,7 +82,7 @@
                   </div>
                 </div>
                 <div class="row">
-                  <div class="col-md-6">
+                  <div class="col-md-4">
                     <div class="form-group">
                       <label for="form_bedroom" class="text-secondary">Number of Bedroom/s *</label>
                       <input
@@ -110,7 +110,7 @@
                       </div>
                     </div>
                   </div>
-                  <div class="col-md-6">
+                  <div class="col-md-4">
                     <div class="form-group">
                       <label for="form_bathroom" class="text-secondary">Number of Bathroom/s *</label>
                       <input
@@ -138,7 +138,36 @@
                       </div>
                     </div>
                   </div>
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <label for="form_bathroom" class="text-secondary">Number of Vacancy *</label>
+                      <input
+                        id="form_vacancy"
+                        type="number"
+                        name="vacancy"
+                        class="form-control"
+                        placeholder="Please enter the number of vacancy *"
+                        required="required"
+                        data-error="Vacancy number is required."
+                        [(ngModel)]="dorm.vacancy"
+                        formControlName="vacancy"
+                      />
+                    </div>
+                    <div
+                      *ngIf="
+                        dormForm.controls['vacancy'].invalid &&
+                        (dormForm.controls['vacancy'].dirty ||
+                          dormForm.controls['vacancy'].touched)
+                      "
+                      class="alert alert-danger"
+                    >
+                      <div *ngIf="dormForm.controls['vacancy'].errors.required">
+                        Vacancy is required.
+                      </div>
+                    </div>
+                  </div>
                 </div>
+
                 <div class="row">
                   <div class="col-md-6">
                     <div class="form-group">
@@ -158,13 +187,6 @@
                         placeholder="Please enter the contact number for this dorm"
                         ngModel maxlength="13"
                       />
-                      <!-- <option value="" selected disabled>
-                          --Select Your Issue--
-                        </option>
-                        <option>Request Invoice for order</option>
-                        <option>Request order status</option>
-                        <option>Haven't received cashback yet</option>
-                        <option>Other</option> -->
                     </div>
                     <div
                       *ngIf="

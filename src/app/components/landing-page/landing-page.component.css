@@ -42,3 +42,26 @@ body {
         display: none;
     }
 }
+
+.carousel-control-next-icon,
+.carousel-control-prev-icon {
+  width: 0.5vw;
+  height: 0.5vw;
+}
+
+.dm-logo{
+    width: 200px; height: 300px; margin-top: 50px; padding-left: 0;
+}
+
+.texts{
+    text-indent: 60px;
+}
+
+.image-2{
+    padding-right: 0;
+}
+
+.image-3{
+    padding-top: 10px; 
+    padding-left: 0;
+}

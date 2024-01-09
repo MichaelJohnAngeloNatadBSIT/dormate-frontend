@@ -7,6 +7,7 @@ export class Dorm {
     address?: string;
     bedroom?: any;
     bathroom?: any;
+    vacancy?: any;
     rent?: any;
     for_rent?: boolean;
     published?: boolean;
