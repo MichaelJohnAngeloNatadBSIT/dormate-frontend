@@ -59,15 +59,15 @@ export class ProfileComponent implements OnInit {
     this.currentUser = this.tokenService.getUser();
     this.retrieveUser();
     this.retrieveForApprovalDorm();
-    this.chatService.setupSocketConnection();
+    // this.chatService.setupSocketConnection();
     this.retrieveForApprovalScheduleLandlord();
     this.retrieveForApprovalScheduleTenant();
     this.retrieveForApprovalScheduleApprovedLandlord()
     this.retrieveForApprovalScheduleApprovedTenant()
   }
-  ngOnDestroy() {
-    this.chatService.disconnect();
-  }
+  // ngOnDestroy() {
+  //   this.chatService.disconnect();
+  // }
 
   calendarOptions: CalendarOptions = {
     plugins: [dayGridPlugin, timeGrigPlugin, interactionPlugin],
