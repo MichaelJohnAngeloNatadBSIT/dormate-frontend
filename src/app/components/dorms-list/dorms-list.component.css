@@ -5,16 +5,14 @@
   padding-right: 15px;
 }
 
-.container-post{
-  text-align: center;
-}
-
 .search-bar {
   width: 100%;
   text-align: center;
-  margin-top: 5%;
   margin-left: 20%;
   margin-right: 20%;
+  margin-bottom: 1rem;
+  margin-top: 5%;
+  padding-top: 30px;
 }
 .form-control {
   height: 50px;
@@ -22,168 +20,97 @@
   display: block;
 }
 
-.dorm_image{
-  width: 100%;
-  max-width: 500px;
-  height: 300px;
+.swiper-class{
+  margin: auto;
 }
 
+body {
+  font-family: 'Arial', sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background-color: #f8f9fa;
+}
+
+.card {
+  border: none;
+  border-radius: 8px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: transform 0.3s ease-in-out;
+  margin: 0 0 2rem 0;
+  height: auto;
+}
+
+.card:hover {
+  transform: scale(1.05);
+}
+
+.card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.card-body {
+  padding: 20px;
+}
+
+.card-title {
+  font-size: 1.5em;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.card-details {
+  color: #555;
+  margin-bottom: 15px;
+}
+
+.card-price {
+  color: #254396;
+  font-size: 1.5em;
+  font-weight: bold;
+}
+
+@media (max-width: 768px) {
+  .card {
+      max-width: 100%;
+  }
+}
+
+.image-container {
+  display: flex;
+  align-items: center;
+}
+
+.rounded-image-container {
+  max-width: 50px;
+  max-height: 50px;
+  border-radius: 50%;
+}
 .user-logo{
   max-width: 50px;
   max-height: 50px;
   border-radius: 50%;
   
 }
-.username{
-  display: flex;
-  align-items:initial;
-  justify-content:left;
-}
-.username p{
-  font-size: 15px;
-  padding: 25px 10px 0;
+
+.rounded-image-container img {
+  width: 100%;
+  height: auto;
+  display: block;
 }
 
-.username a{
-  font-size: 15px;
-  padding: 25px 10px 0;
+.text-container {
+  font-size: 18px; /* Adjust the font size as needed */
 }
 
-.username_link{
-  font-size: 15px;
-  padding: 25px 10px 0;
+.landlord-details{
+  margin-bottom: 2rem;
 }
 
 .username_link:hover{
-  cursor: pointer;
-  color: #0e4ad4;
-}
-
-.dorm-post-width{
-  width: 50%;
-}
-
-.schedule-button{
-    text-align: center;
-}
-
-.image-block {
-  margin-top: 24px;
-  display: flex;
-  flex-wrap: wrap;
-}
-
-.image-block-inner {
-  -webkit-box-shadow: 0px 3px 10px 1px rgba(204, 204, 204 0, 1);
-  -moz-box-shadow: 0px 3px 10px 1px rgba(204, 204, 204 0, 1);
-  box-shadow: 0px 3px 10px 1px rgba(204, 204, 204, 1);
-}
-
-.image-block li>.image-block-inner {
-  padding-bottom: 5px;
-  background-color: #fff;
-  height: auto;
-  width: 100%;
-}
-
-a {
-  color: #111;
-  text-decoration: none;
-}
-
-h2,
-h4 a {
-  text-transform: uppercase;
-}
-
-a:hover {
-  text-decoration: none;
-}
-
-.image-block li>.image-block-inner>a {
-  display: block;
-  overflow: hidden;
-}
-
-.image-block li>.image-block-inner>a img {
-  border: 1px solid #e1e1df;
-}
-
-.image-block li>.image-block-inner:hover {
-  background-color: #eee;
-}
-
-.hp-posts-cat {
-  margin-bottom: 13px;
-  margin-top: 35px;
-  text-transform: uppercase;
-  font-weight: 600;
-  font-size: 1rem;
-  letter-spacing: 0.1rem;
-  display: inline-block;
-}
-
-.news {
-  font-family: 'Oswald', sans-serif;
-}
-
-.news .image-block li>.image-block-inner h4,
-.hp-posts-cat,
-.news .image-block li>.image-block-inner p,
-.read-more {
-  padding: 0 28px;
-}
-
-.read-more {
-  display: block;
-  text-decoration: underline;
-  margin-top: 30px;
-  font-weight: 600;
-}
-
-.swiper-class{
-  margin: auto;
-}
-
-.tagline{
-  padding-top: 100px;
-}
-
-.search-bar{
-  padding-top: 40px;
-}
-/* Media Queries */
-
-@media (min-width: 992px) {
-  .col-md-5 {
-    width: 41.66667%;
-  }
-}
-
-@media (min-width: 768px) {
-  .image-block li.image-block1 {
-    padding-left: 26px;
-    padding-right: 14.5px;
-  }
-}
-
-@media (min-width: 1200px) {
-  .image-block li>.image-block-inner>a {
-    max-height: 245px;
-  }
-}
-
-@media (min-width: 992px) {
-
-  .pl-lg-0,
-  .px-lg-0 {
-    padding-left: 0;
-    padding-right: 0;
-  }
-
-  .ml-lg-0,
-  .mx-lg-0 {
-    margin-left: 0;
-    margin-right: 0;
-  }
+  cursor:pointer;
+  color: rgb(18, 23, 99);
 }
