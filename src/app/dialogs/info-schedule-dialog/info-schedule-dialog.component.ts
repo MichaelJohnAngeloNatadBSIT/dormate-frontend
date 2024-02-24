@@ -30,32 +30,50 @@ export class InfoScheduleDialogComponent implements OnInit{
   ngOnInit(): void {
     this.form = this.fb.group({
       description: ['', Validators.maxLength(100)],
-      schedule_date: ['', Validators.required],
+      schedule_date: [null, Validators.required],
     });
-    console.log(this.data.user.first_name+" "+this.data.user.last_name);
-    console.log(this.data.dorm.title);
   }
 
+  addTimezoneOffset(value: string): void {
+    // Get the local timezone offset in minutes
+    const offsetMinutes = new Date().getTimezoneOffset();
+  
+    // Convert the offset to the desired format (+/-HH:mm)
+    const offsetHours = Math.abs(offsetMinutes / 60);
+    const offsetSign = offsetMinutes >= 0 ? '-' : '+';
+    const offset = `${offsetSign}${offsetHours.toString().padStart(2, '0')}:00`;
+  
+    // Append the timezone offset to the datetime value
+    const datetimeWithOffset = value + offset;
+    console.log(value);
+  
+    // Update the form control value with the datetime and timezone offset
+    this.form.get('schedule_date').setValue(datetimeWithOffset);
+  }
+  
+
   scheduleVisit(){
-    const data = {
-      dorm_id: this.data.dorm._id,
-      tenant_id: this.data.user.id,
-      landlord_id: this.data.dorm.user_id,
-      user_full_name: this.data.user.first_name+ " " +this.data.user.last_name,
-      dorm_title: this.data.dorm.title,
-      description: this.form.get('description').value,
-      schedule_date: this.form.get('schedule_date').value,
-    };
-    this.scheduleService.createSchedule(data)
-    .subscribe({
-      next: (res) => {
-        console.log(res);
-        // this.submitted = true;
-        this.dialog.closeAll();
-        this.router.navigate(['/profile'])
-      },
-      error: (e) => console.error(e)
-    });
+    this.addTimezoneOffset(this.form.get('schedule_date').value);
+    if (this.form.valid) {
+      const data = {
+        dorm_id: this.data.dorm._id,
+        tenant_id: this.data.user.id,
+        landlord_id: this.data.dorm.user_id,
+        user_full_name: this.data.user.first_name+ " " +this.data.user.last_name,
+        dorm_title: this.data.dorm.title,
+        description: this.form.get('description').value,
+        schedule_date: this.form.get('schedule_date').value,
+      };
+      console.log(data);
+      this.scheduleService.createSchedule(data)
+      .subscribe({
+        next: (res) => {
+          this.dialog.closeAll();
+          this.router.navigate(['/profile'])
+        },
+        error: (e) => console.error(e)
+      });
+    }
   }
 
   public hasError = (controlName: string, errorName: string) =>{
