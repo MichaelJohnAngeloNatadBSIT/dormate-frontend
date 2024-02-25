@@ -129,7 +129,7 @@
               *ngFor="let schedule of schedules; let i = index"
               (click)="openScheduleApproveDialog(schedule)"
             >
-              {{ schedule.createdAt  | date:'MMM d, y, h:mm:ss a'  }}
+              {{ schedule.schedule_date  | date:'MMM d, y, h:mm:ss a'  }}
             </a>
             <a
               mat-list-item

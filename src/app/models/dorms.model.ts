@@ -13,4 +13,5 @@ export class Dorm {
     published?: boolean;
     dorm_images?: any;
     contact_number?: any;
+    visit_counter?: any;
 }

@@ -190,6 +190,7 @@ export class ProfileComponent implements OnInit {
       this.retrieveUser();
      }); 
   }
+  
   openValidIdDialog(){
     let dialogRef = this.dialog.open(ValidIdDialogComponent, { 
       width: '900px', 

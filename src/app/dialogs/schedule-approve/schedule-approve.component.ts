@@ -15,7 +15,6 @@ import { SwiperOptions } from 'swiper';
 export class ScheduleApproveComponent implements OnInit {
   dorm: Dorm;
   user: User;
-
   constructor(
     public dialogRef: MatDialogRef<ScheduleApproveComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
@@ -35,7 +34,7 @@ export class ScheduleApproveComponent implements OnInit {
         .subscribe({
           next: (data) => {
             this.dorm = data;
-            console.log(this.dorm.dorm_images)
+            console.log()
           },
           error: (e) => console.error(e)
         });
@@ -49,17 +48,34 @@ export class ScheduleApproveComponent implements OnInit {
           },
           error: (e) => console.error(e)
         });
+      
+        // this.dormService.update(this.data.dorm_id).subscribe({
+        //   next: (data) => {
+        //   },
+        //   error: (e) => console.error(e)
+        // });
     }
 
     approveUserSchedule(schedule_id:any){
+
+      //const incrementValue = this.dorm.visit_counter || 1;
+
       const data = {
-        approve_visit : true
+        dorm_id : this.dorm._id,
+        approve_visit : true,
+        visit_counter : this.dorm.visit_counter
       };
+
+      // var visit_conter = {
+      //   visit_counter : incrementValue
+      // }
+
       this.scheduleService.updateSchedule(schedule_id, data).subscribe({
         next: (res) => {
         },
         error: (e) => console.error(e)
       });
+
     }
 
     config: SwiperOptions = {
