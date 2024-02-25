@@ -54,8 +54,10 @@
             <i class="fa fa-bath" aria-hidden="true"></i> bathrooms
           </p>
           <p class="card-details font-weight-bold">
-            {{ dorm.vacancy }}
-            <i class="fa fa-home" aria-hidden="true"></i> vacancy
+            {{ dorm.vacancy  || 0}}
+            <i class="fa fa-home" aria-hidden="true"></i> vacancy |
+            {{ dorm.visit_counter || 0 }}
+            <i class="fa fa-user"></i> user visits
           </p>
           <p class="card-details text-justify">{{ dorm.description }}</p>
           <p class="card-price">rent starts at ₱{{ dorm.rent }}</p>
