@@ -1,6 +1,7 @@
 export class Dorm {
     _id?: any;
     user_id?: string;
+    username?: string;
     title?: string;
     description?: string;
     lessor?: string;

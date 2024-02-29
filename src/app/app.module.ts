@@ -48,6 +48,7 @@ import { AboutUsComponent } from './components/about-us/about-us.component';
 import { ViewCertificatesComponent } from './dialogs/view-certificates/view-certificates.component';
 import { PublishDialogComponent } from './dialogs/publish-dialog/publish-dialog.component';
 import { LandingPageComponent } from './components/landing-page/landing-page.component';
+import { DormComponent } from './components/dorm/dorm.component';
 
 
 @NgModule({
@@ -82,6 +83,7 @@ import { LandingPageComponent } from './components/landing-page/landing-page.com
     ViewCertificatesComponent,
     PublishDialogComponent,
     LandingPageComponent,
+    DormComponent,
   ],
   imports: [
     BrowserModule,

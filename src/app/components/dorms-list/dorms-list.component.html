@@ -43,7 +43,7 @@
           </swiper>
         </div>
 
-        <div class="card-body">
+        <div class="card-body" (click)="goToDormDetail(dorm._id)">
           <h5 class="card-title">{{ dorm.title }}</h5>
           <p class="card-details">{{ dorm.createdAt | date : "MMMM d, y" }}</p>
           <p class="card-details">{{ dorm.address }}</p>

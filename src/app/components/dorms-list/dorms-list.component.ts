@@ -15,10 +15,9 @@ import { UserService } from 'src/app/services/user.service';
   selector: 'app-dorms-list',
   templateUrl: './dorms-list.component.html',
   animations: [FADEINOUT],
-  styleUrls: ['./dorms-list.component.css']
+  styleUrls: ['./dorms-list.component.css'],
 })
-export class DormsListComponent implements OnInit{
-
+export class DormsListComponent implements OnInit {
   //just find user by user id in db to display image
 
   dorms?: Dorm[];
@@ -26,22 +25,21 @@ export class DormsListComponent implements OnInit{
   currentIndex = -1;
   title = '';
   currentUser: User;
-  user : User;
+  user: User;
   userImage: any;
+  dorm: Dorm;
 
   constructor(
-    private dormService: DormService, 
+    private dormService: DormService,
     private tokenService: TokenStorageService,
     private userService: UserService,
     private dialog: MatDialog,
-    private router: Router,
-    ) { }
-  
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.retrieveDorms();
     this.currentUser = this.tokenService.getUser();
-
   }
 
   // getUserById(id:any){
@@ -52,79 +50,75 @@ export class DormsListComponent implements OnInit{
   //     error: (e) => console.error(e)
   //   })
   // }
-    retrieveDorms(): void {
-      this.dormService.getAllApproved()
-        .subscribe({
-          next: (data) => {
-            this.dorms = data;
-          },
-          error: (e) => console.error(e)
-        });
-    }
+  retrieveDorms(): void {
+    this.dormService.getAllApproved().subscribe({
+      next: (data) => {
+        this.dorms = data;
+      },
+      error: (e) => console.error(e),
+    });
+  }
 
-    // refreshList(): void {
-    //   this.retrieveDorms();
-    //   this.currentDorm = {};
-    //   this.currentIndex = -1;
-    // }
+  // refreshList(): void {
+  //   this.retrieveDorms();
+  //   this.currentDorm = {};
+  //   this.currentIndex = -1;
+  // }
 
+  searchTitle(): void {
+    this.currentDorm = {};
+    this.currentIndex = -1;
 
-    searchTitle(): void {
-      this.currentDorm = {};
-      this.currentIndex = -1;
-  
-      this.dormService.findByTitle(this.title)
-        .subscribe({
-          next: (data) => {
-            this.dorms = data;
-          },
-          error: (e) => console.error(e)
-        });
-    }
+    this.dormService.findByTitle(this.title).subscribe({
+      next: (data) => {
+        this.dorms = data;
+      },
+      error: (e) => console.error(e),
+    });
+  }
 
-    openInfoSchedDialog(dorm: Dorm){
-      var isAuthenticated = this.tokenService.isLoggedIn();
-      if (!isAuthenticated) { 
-        this.router.navigate(['/login']); 
-    }
-    else{
-      let dialogRef = this.dialog.open(InfoScheduleDialogComponent, { 
+  openInfoSchedDialog(dorm: Dorm) {
+    var isAuthenticated = this.tokenService.isLoggedIn();
+    if (!isAuthenticated) {
+      this.router.navigate(['/login']);
+    } else {
+      let dialogRef = this.dialog.open(InfoScheduleDialogComponent, {
         width: '600px',
-        height: '400px', 
-        data: {user: this.currentUser, dorm: dorm}
-      }); 
+        height: '400px',
+        data: { user: this.currentUser, dorm: dorm },
+      });
     }
+  }
 
-    }
+  openImageZoomDialog(images: any) {
+    let dialogRef = this.dialog.open(ImageZoomComponent, {
+      width: '900px',
+      height: '70vh',
+      data: images,
+    });
+  }
 
-    openImageZoomDialog(images: any){
-      let dialogRef = this.dialog.open(ImageZoomComponent, { 
-        width: '900px', 
-        height: '70vh',
-        data: images
-      }); 
-    }
+  visitProfile(user_id: any) {
+    this.router.navigate(['visit-profile'], { state: { user_id: user_id } });
+  }
 
-    visitProfile(user_id: any){
-      this.router.navigate(['visit-profile'], {state: {user_id: user_id}})
-    }
+  goToDormDetail(dormId: string) {
+    this.router.navigate(['dorm-detail', dormId]);
+  }
 
-    config: SwiperOptions = {
-      autoplay: {
-        delay: 3000,
-        disableOnInteraction: false,
-      },
-      pagination: { 
-        el: '.swiper-pagination', 
-        clickable: true
-      },
-      navigation: {
-        nextEl: '.swiper-button-next',
-        prevEl: '.swiper-button-prev'
-      },
-      spaceBetween: 30
-    }; 
+  config: SwiperOptions = {
+    autoplay: {
+      delay: 3000,
+      disableOnInteraction: false,
+    },
+    pagination: {
+      el: '.swiper-pagination',
+      clickable: true,
+    },
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev',
+    },
+    spaceBetween: 30,
+  };
 }
-
-
-

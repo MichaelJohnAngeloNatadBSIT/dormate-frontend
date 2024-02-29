@@ -1,0 +1,172 @@
+<!-- <body> -->
+  <div class="w3-container">
+    <!-- !PAGE CONTENT! -->
+    <div class="w3-main w3-white">
+      <!-- Push down content on small screens -->
+      <div class="w3-hide-large" style="margin-top: 90px"></div>
+
+      <!-- Slideshow Header -->
+      <div class="w3-container" id="apartment">
+        <swiper [config]="config">
+          <div
+            class="swiper-wrapper mh-75"
+            (click)="openImageZoomDialog(dorm.dorm_images)"
+          >
+            <div class="swiper-slide" *ngFor="let image of dorm.dorm_images">
+              <img
+                src="{{ image }}"
+                alt="img 1"
+                class="dorm_image img-responsive w-100"
+              />
+            </div>
+          </div>
+        </swiper>
+        <h2 class="w3-text-blue">{{ dorm.title }}</h2>
+      </div>
+
+
+      <div class="w3-container">
+        <h4><strong>The space</strong></h4>
+        <div class="w3-row w3-large">
+          <div class="w3-col s6">
+            <p><i class="fa fa-fw fa-male"></i> Vacancy: {{ dorm.vacancy || 0 }}</p>
+            <p><i class="fa fa-fw fa-bath"></i> Bathrooms: {{ dorm.bathroom }}</p>
+            <p><i class="fa fa-fw fa-bed"></i> Bedrooms: {{ dorm.bedroom }}</p>
+          </div>
+            <div class="w3-col s6">
+  
+            </div>
+        </div>
+        <div class="w3-row w3-large">
+          <p><i class="fa fa-map-marker" style="width: 30px"></i>{{ dorm.address }}<br /></p>
+          <p><i class="fa fa-phone" style="width: 30px"></i>{{ dorm.contact_number }}<br /></p>
+          <p><i class="fa fa-user" style="width: 30px"> </i>{{ dorm.username }}<br /></p>
+        </div>
+        <hr />
+
+        <!-- <h4><strong>Amenities</strong></h4>
+        <div class="w3-row w3-large">
+          <div class="w3-col s6">
+            <p><i class="fa fa-fw fa-shower"></i> Shower</p>
+            <p><i class="fa fa-fw fa-wifi"></i> WiFi</p>
+            <p><i class="fa fa-fw fa-tv"></i> TV</p>
+          </div>
+          <div class="w3-col s6">
+            <p><i class="fa fa-fw fa-cutlery"></i> Kitchen</p>
+            <p><i class="fa fa-fw fa-thermometer"></i> Heating</p>
+            <p><i class="fa fa-fw fa-wheelchair"></i> Accessible</p>
+          </div>
+        </div> -->
+        <hr />
+
+        <!-- <h4><strong>Extra Info</strong></h4>
+        <p>
+          {{ dorm.description }}
+        </p>
+        <p>
+          We accept: <i class="fa fa-credit-card w3-large"></i>
+          <i class="fa fa-cc-mastercard w3-large"></i>
+          <i class="fa fa-cc-amex w3-large"></i>
+          <i class="fa fa-cc-cc-visa w3-large"></i
+          ><i class="fa fa-cc-paypal w3-large"></i>
+        </p>
+        <hr /> -->
+
+        <h4><strong>Rules and Description</strong></h4>
+        <p>
+          {{ dorm.description }}
+        </p>
+        <p>
+          Schedule A Visit to this Dorm now
+        </p>
+        <p>
+          <button
+            class="w3-button w3-green w3-third"
+            type="button"
+            class="btn btn-primary btn-lg btn-block"
+            (click)="openInfoSchedDialog(dorm)"
+          >
+          Schedule A Visit
+          </button>
+        </p>
+      </div>
+      <hr />
+
+      <!-- Contact -->
+      <!-- <div class="w3-container" id="contact">
+        <h2>Contact</h2>
+        <i class="fa fa-map-marker" style="width: 30px"></i>{{ dorm.address }}<br />
+        <i class="fa fa-phone" style="width: 30px"></i>{{ dorm.contact_number }}<br />
+        <i class="fa fa-user" style="width: 30px"> </i>{{ dorm.username }}<br />
+        <p>Questions? Go ahead, ask them:</p>
+        <form action="/action_page.php" target="_blank">
+          <p>
+            <input
+              class="w3-input w3-border"
+              type="text"
+              placeholder="Name"
+              required
+              name="Name"
+            />
+          </p>
+          <p>
+            <input
+              class="w3-input w3-border"
+              type="text"
+              placeholder="Email"
+              required
+              name="Email"
+            />
+          </p>
+          <p>
+            <input
+              class="w3-input w3-border"
+              type="text"
+              placeholder="Message"
+              required
+              name="Message"
+            />
+          </p>
+          <button type="submit" class="w3-button w3-green w3-third">
+            Send a Message
+          </button>
+        </form> 
+      </div>-->
+
+
+
+      <!-- End page content -->
+    </div>
+
+    <!-- Subscribe Modal -->
+    <div id="subscribe" class="w3-modal">
+      <div class="w3-modal-content w3-animate-zoom w3-padding-large">
+        <div class="w3-container w3-white w3-center">
+          <i
+            onclick="document.getElementById('subscribe').style.display='none'"
+            class="fa fa-remove w3-button w3-xlarge w3-right w3-transparent"
+          ></i>
+          <h2 class="w3-wide">SUBSCRIBE</h2>
+          <p>
+            Join our mailing list to receive updates on available dates and
+            special offers.
+          </p>
+          <p>
+            <input
+              class="w3-input w3-border"
+              type="text"
+              placeholder="Enter e-mail"
+            />
+          </p>
+          <button
+            type="button"
+            class="w3-button w3-padding-large w3-green w3-margin-bottom"
+            onclick="document.getElementById('subscribe').style.display='none'"
+          >
+            Subscribe
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+<!-- </body> -->
