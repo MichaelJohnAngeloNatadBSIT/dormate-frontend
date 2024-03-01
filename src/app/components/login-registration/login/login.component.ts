@@ -76,6 +76,9 @@ export class LoginComponent implements OnInit {
     return this.form.controls[controlName].hasError(errorName);
     }
 
+  registerPage(){
+    this.router.navigate(['/register']);
+  }
 
   
 }

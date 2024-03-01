@@ -9,14 +9,14 @@
     <div class="w3-container" id="apartment">
       <swiper [config]="config">
         <div
-          class="swiper-wrapper mh-75"
+          class="swiper-wrapper"
           (click)="openImageZoomDialog(dorm.dorm_images)"
         >
           <div class="swiper-slide" *ngFor="let image of dorm.dorm_images">
             <img
               src="{{ image }}"
-              alt="img 1"
-              class="dorm_image img-responsive w-100"
+              alt="img 1" 
+              class="dorm_image img-responsive"
             />
           </div>
         </div>

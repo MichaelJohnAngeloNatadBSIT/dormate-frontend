@@ -84,7 +84,8 @@ body {
 
 .image-container {
   display: flex;
-  align-items: center;
+  align-items: left;
+  margin: auto;
 }
 
 .rounded-image-container {
@@ -92,17 +93,14 @@ body {
   max-height: 50px;
   border-radius: 50%;
 }
-.user-logo{
-  max-width: 50px;
-  max-height: 50px;
-  border-radius: 50%;
-  
-}
 
 .rounded-image-container img {
-  width: 100%;
-  height: auto;
   display: block;
+  max-width: 50px;
+  width: 40px;
+  max-height: 50px;
+  height: 40px;
+  border-radius: 50%;
 }
 
 .text-container {

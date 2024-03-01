@@ -1616,3 +1616,9 @@ a {
 .w3-hover-border-pale-blue:hover {
   border-color: #e7ffff !important;
 }
+
+.dorm_image{
+  max-width: 100%;
+  width: 1500px;
+  height: 800px;
+}

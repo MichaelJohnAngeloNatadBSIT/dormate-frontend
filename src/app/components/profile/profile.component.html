@@ -187,7 +187,7 @@
 
             <div class="card-body">
               <h5 class="card-title">{{ dorm.title }}</h5>
-              <p class="card-text">{{ dorm.description }}</p>
+              <p class="card-text">{{ dorm.publish ? "Dorm listing is Published" : "Upload Dorm Certificates and Images to approve publishing of your dorm listing" }}</p>
               <div class="text-center">
                 <button
                   (click)="openDormImgUploadDialog(dorm, i)"
@@ -207,13 +207,13 @@
                 >
                   Edit Dorm Information
                 </button>
-                <button
+                <!-- <button
                   (click)="openPublishDormDialog(dorm, i)"
                   class="btn btn-success dialog-button"
                   *ngIf="dorm.publish == false"
                 >
                   Publish Dorm
-                </button>
+                </button> -->
                 <button
                   (click)="openPublishDormDialog(dorm, i)"
                   class="btn btn-secondary dialog-button"
