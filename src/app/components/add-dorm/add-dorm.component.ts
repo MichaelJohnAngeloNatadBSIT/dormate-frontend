@@ -6,6 +6,8 @@ import { TokenStorageService } from 'src/app/services/token-storage.service';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UserService } from 'src/app/services/user.service';
+import { MatDialog } from '@angular/material/dialog';
+import { DormImagesUploadDialogComponent } from 'src/app/dialogs/dorm-images-upload-dialog/dorm-images-upload-dialog.component';
 
 @Component({
   selector: 'app-add-dorm',
@@ -39,6 +41,7 @@ export class AddDormComponent {
     private userService: UserService,
     private fb : FormBuilder,
     private router: Router,
+    private dialog: MatDialog,
     ) { 
       this.createForm();
     }
@@ -90,10 +93,23 @@ export class AddDormComponent {
         next: (res) => {
           console.log(res);
           this.submitted = true;
-          this.router.navigate(['/profile'])
+          //this.router.navigate(['/profile'])
+          this.openDormImgUploadDialog(res.data);
         },
         error: (e) => console.error(e)
       });
+  }
+
+  
+  openDormImgUploadDialog(dorm: Dorm): void {
+    let dialogRef = this.dialog.open(DormImagesUploadDialogComponent, { 
+      width: '900px', 
+      height: '80vh',
+      data: dorm
+    }); 
+    dialogRef.afterClosed().subscribe(result => { 
+      this.router.navigate(['/profile']);
+     }); 
   }
 
   newDorm(): void {
