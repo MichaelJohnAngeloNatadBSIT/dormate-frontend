@@ -64,7 +64,9 @@ export class RegisterComponent implements OnInit {
         ]),
         mobile_number: new FormControl('', [
           Validators.required,
-          Validators.maxLength(12),
+          Validators.pattern("^[0-9]*$"),
+          Validators.minLength(10),
+          Validators.maxLength(10)
         ]),
       },
       { validators: ConfirmPasswordValidator('password', 'confirm_password') }

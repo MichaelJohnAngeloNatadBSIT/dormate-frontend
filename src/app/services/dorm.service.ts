@@ -13,6 +13,7 @@ const baseUrl = environment.baseURL+'dorm';
 })
 
 export class DormService {
+  i = true;
   
 
   constructor(private http: HttpClient) { }
@@ -54,7 +55,8 @@ export class DormService {
   }
 
   findByTitle(title: any): Observable<Dorm[]> {
-    return this.http.get<Dorm[]>(`${baseUrl}?title=${title}`);
+    const url = `${baseUrl}?title=${title}`;
+    return this.http.get<Dorm[]>(url);
   }
 
   addDormImages(id:any, file: FileList): Observable<HttpEvent<any>>{

@@ -55,7 +55,7 @@ export class AddDormComponent {
          bathroom: ['', [Validators.required, Validators.maxLength(10), Validators.minLength(1), Validators.pattern(/^[1-9]*$/)]],
          vacancy: ['', [Validators.required, Validators.maxLength(10), Validators.minLength(1), Validators.pattern(/^[1-9]*$/)]],
          rent: ['', [Validators.required, Validators.maxLength(100000), Validators.minLength(100)]],
-         contact_number : ['', [Validators.required, Validators.maxLength(13)]]
+         contact_number : ['', [ Validators.required, Validators.pattern("^[0-9]*$"), Validators.minLength(10), Validators.maxLength(10)]]
       });
     }
 
