@@ -16,8 +16,14 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatNativeDateModule} from '@angular/material/core';
 import { MatListModule } from '@angular/material/list';
 import { MatDividerModule } from '@angular/material/divider';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatRadioModule } from '@angular/material/radio';
 
 @NgModule({
+  imports: [
+    MatAutocompleteModule,
+    MatRadioModule
+  ],
   exports: [
     MatToolbarModule,
     MatCardModule,
@@ -38,9 +44,8 @@ import { MatDividerModule } from '@angular/material/divider';
     MatNativeDateModule,
     MatDividerModule,
     MatListModule,
-
-    
-
+    MatAutocompleteModule, 
+    MatRadioModule,
   ]
 })
 export class AngularMaterialModule {}

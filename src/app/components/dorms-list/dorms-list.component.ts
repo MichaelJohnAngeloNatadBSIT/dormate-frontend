@@ -10,6 +10,19 @@ import { ImageZoomComponent } from 'src/app/dialogs/image-zoom/image-zoom.compon
 import { Router } from '@angular/router';
 import { FADEINOUT } from './fade-in-fade-out.animation';
 import { UserService } from 'src/app/services/user.service';
+import { map, startWith } from 'rxjs/operators';
+import { FormControl, FormGroup } from '@angular/forms';
+
+import { Observable } from 'rxjs';
+
+export class Barangay {
+  constructor(public name: string) {}
+}
+
+export class PriceRange {
+  constructor(public name: string, public minValue: number, public maxValue: number) {}
+}
+
 
 @Component({
   selector: 'app-dorms-list',
@@ -18,7 +31,46 @@ import { UserService } from 'src/app/services/user.service';
   styleUrls: ['./dorms-list.component.css'],
 })
 export class DormsListComponent implements OnInit {
-  //just find user by user id in db to display image
+
+  // length: number;
+
+  barangayCtrl = new FormControl();
+  filteredBarangay: Observable<Barangay[]>;
+
+  barangay_list: Barangay[] = [
+    { name: 'Asinan' },
+    { name: 'Banicain' },
+    { name: 'Barreto' },
+    { name: 'East Bajac-bajac' },
+    { name: 'East Tapinac' },
+    { name: 'Gordon Heights' },
+    { name: 'Kalaklan' },
+    { name: 'Mabayuan' },
+    { name: 'New Cabalan' },
+    { name: 'New Kababae' },
+    { name: 'New Kalalake' },
+    { name: 'Old Cabalan' },
+    { name: 'Pag-asa' },
+    { name: 'Santa Rita' },
+    { name: 'West Bajac-bajac' },
+    { name: 'West Tapinac' },
+  ];
+
+    // Define FormControl for price range
+    priceRangeCtrl =  new FormControl();
+    filteredPriceRange: Observable<PriceRange[]>; 
+    priceRange_list: PriceRange[] = [
+      { name: '₱500-₱1000', minValue: 500, maxValue: 1000},
+      { name: '₱1001-₱1500', minValue: 1001, maxValue: 1500},
+      { name: '₱1501-₱2000', minValue: 1501, maxValue: 2000},
+      { name: '₱2001-₱2500', minValue: 2001, maxValue: 2500},
+      { name: '₱2501-₱3000', minValue: 2501, maxValue: 3000},
+    ];
+
+  selectedStatus:  number;  
+  eventEditForm: FormGroup;
+  public toggleForm:boolean;
+  searchType: string = 'barangay'; // Default search type
 
   dorms?: Dorm[];
   currentDorm: Dorm = {};
@@ -35,21 +87,50 @@ export class DormsListComponent implements OnInit {
     private userService: UserService,
     private dialog: MatDialog,
     private router: Router
-  ) {}
+  ) {
+    //this.barangayCtrl = new FormControl();
+    this.filteredBarangay = this.barangayCtrl.valueChanges.pipe(
+      startWith(''),
+      map((barangay) =>
+        barangay ? this.filterBarangay(barangay) : this.barangay_list.slice()
+      )
+    );
+
+    this.filteredPriceRange = this.priceRangeCtrl.valueChanges.pipe(
+      startWith(''),
+      map((price) =>
+        price ? this.filterPriceRange(price) : this.priceRange_list.slice()
+      )
+    );
+  }
 
   ngOnInit(): void {
     this.retrieveDorms();
     this.currentUser = this.tokenService.getUser();
+    
+    this.eventEditForm = new FormGroup({          
+      'completed': new FormControl()
+      });      
+    this.selectedStatus = 2;
   }
 
-  // getUserById(id:any){
-  //   this.userService.retrieveUserWithId(id).subscribe({
-  //     next: (data) => {
-  //       this.userImage = data;
-  //     },
-  //     error: (e) => console.error(e)
-  //   })
-  // }
+  filterBarangay(name: string): Barangay[] {
+    let arr = this.barangay_list.filter(
+      (barangay) => barangay.name.toLowerCase().indexOf(name.toLowerCase()) === 0
+    );
+    return arr.length ? arr : [{ name: 'No Item found' }];
+  }
+  filterPriceRange(name: string): PriceRange[] {
+    let arr = this.priceRange_list.filter(
+      (price) => price.name.toLowerCase().indexOf(name.toLowerCase()) === 0
+    );
+    return arr.length ? arr : [{ name: 'No Item found', minValue: 0, maxValue: 0 }];
+  }
+
+  toggleSearchType() {
+    this.searchType = this.searchType === 'barangay' ? 'priceRange' : 'barangay';
+  }
+
   retrieveDorms(): void {
     this.dormService.getAllApproved().subscribe({
       next: (data) => {
@@ -58,12 +139,6 @@ export class DormsListComponent implements OnInit {
       error: (e) => console.error(e),
     });
   }
-
-  // refreshList(): void {
-  //   this.retrieveDorms();
-  //   this.currentDorm = {};
-  //   this.currentIndex = -1;
-  // }
 
   searchTitle(): void {
     this.currentDorm = {};

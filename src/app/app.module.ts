@@ -49,6 +49,7 @@ import { ViewCertificatesComponent } from './dialogs/view-certificates/view-cert
 import { PublishDialogComponent } from './dialogs/publish-dialog/publish-dialog.component';
 import { LandingPageComponent } from './components/landing-page/landing-page.component';
 import { DormComponent } from './components/dorm/dorm.component';
+import { MatAutocomplete } from '@angular/material/autocomplete';
 
 
 @NgModule({

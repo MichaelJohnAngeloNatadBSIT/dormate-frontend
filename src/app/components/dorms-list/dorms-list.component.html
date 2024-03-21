@@ -1,14 +1,40 @@
+<!-- todo make a array for price range and fix the icons when show location use gps icon -->
 <div class="container search-bar mx-auto">
   <div class="list row">
     <div class="col-md-8 search-bar">
       <div class="input-group mb-3">
+        <button
+        class="btn btn-outline-secondary button-icon"
+        type="button"
+        (click)="toggleSearchType()"
+      >
+        <mat-icon>{{ searchType === 'barangay' ? 'location_on' : 'attach_money'}}</mat-icon>
+      </button>
         <input
           type="text"
           class="form-control"
           placeholder="Search dorm by Title or Address"
           [(ngModel)]="title"
+          [matAutocomplete]="auto"
+          [formControl]="searchType === 'barangay' ? barangayCtrl : priceRangeCtrl"
         />
+        <mat-autocomplete #auto="matAutocomplete">
+          <ng-container *ngIf="searchType === 'barangay'">
+            <mat-option *ngFor="let barangay of filteredBarangay | async" [value]="barangay.name">
+              <span>{{ barangay.name }}</span>
+            </mat-option>
+          </ng-container>
+          <ng-container *ngIf="searchType === 'priceRange'">
+            <mat-option *ngFor="let price of filteredPriceRange | async" [value]="price.maxValue">
+              <span>{{ price.name }}</span>
+            </mat-option>
+          </ng-container>
+          <ng-template #priceRangeOptions>
+            <!-- Put price range options here if needed -->
+          </ng-template>
+        </mat-autocomplete>
         <div class="input-group-append">
+
           <button
             class="btn btn-outline-secondary button-icon"
             type="button"
@@ -21,6 +47,8 @@
     </div>
   </div>
 </div>
+
+ 
 
 <div class="container listing-card">
   <div class="row" *ngIf="dorms.length > 0; else noDormsPlaceholder">
@@ -54,7 +82,7 @@
             <i class="fa fa-bath" aria-hidden="true"></i> bathrooms
           </p>
           <p class="card-details font-weight-bold">
-            {{ dorm.vacancy  || 0}}
+            {{ dorm.vacancy || 0 }}
             <i class="fa fa-home" aria-hidden="true"></i> vacancy |
             {{ dorm.visit_counter || 0 }}
             <i class="fa fa-user"></i> user visits
@@ -98,12 +126,12 @@
       </div>
     </div>
   </div>
-  <div class="row">
+  <div class="row" class="mb-5">
     <ng-template #noDormsPlaceholder>
-      <div class="col-lg-12 text-center">
-          <img src="assets/404.png" height="100px" width="100px">
-          <h3>No Dorm listing in this location yet</h3>
-          <p>Let's <a href="dorms">see other listings</a></p>
+      <div class="col-lg-12 text-center mb-5">
+        <img src="assets/404.png" height="300px" width="300px"/>
+        <h3>No Dorm listing in this location yet</h3>
+        <p>Let's <a href="dorms">see other listings</a></p>
       </div>
     </ng-template>
   </div>
