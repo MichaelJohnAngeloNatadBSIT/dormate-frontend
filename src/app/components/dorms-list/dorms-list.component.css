@@ -129,3 +129,17 @@ body {
   color: rgb(18, 23, 99);
 }
 
+::ng-deep .mat-form-field-infix {
+  padding: 4px 0; /* Adjust padding as needed */
+}
+
+::ng-deep .mat-select {
+  font-size: 15px; /* Adjust font size as needed */
+  min-height: auto; /* Adjust height as needed */
+}
+
+::ng-deep .mat-option {
+  font-size: 12px; /* Adjust font size as needed */
+  min-height: auto; /* Adjust height as needed */
+}
+

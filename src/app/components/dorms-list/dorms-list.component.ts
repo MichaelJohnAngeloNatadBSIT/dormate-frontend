@@ -31,8 +31,16 @@ export class PriceRange {
   styleUrls: ['./dorms-list.component.css'],
 })
 export class DormsListComponent implements OnInit {
-
-  // length: number;
+  rent: any = [
+    {
+      value: "Low to High",
+   },
+    {
+      value: "High to Low",
+    },
+  ];
+  selectedRentSort: string = "Low to High";
+  selectedRentControl = new FormControl(this.selectedRentSort);
 
   barangayCtrl = new FormControl();
   filteredBarangay: Observable<Barangay[]>;
@@ -56,17 +64,6 @@ export class DormsListComponent implements OnInit {
     { name: 'West Tapinac' },
   ];
 
-    // Define FormControl for price range
-    priceRangeCtrl =  new FormControl();
-    filteredPriceRange: Observable<PriceRange[]>; 
-    priceRange_list: PriceRange[] = [
-      { name: '₱500-₱1000', minValue: 500, maxValue: 1000},
-      { name: '₱1001-₱1500', minValue: 1001, maxValue: 1500},
-      { name: '₱1501-₱2000', minValue: 1501, maxValue: 2000},
-      { name: '₱2001-₱2500', minValue: 2001, maxValue: 2500},
-      { name: '₱2501-₱3000', minValue: 2501, maxValue: 3000},
-    ];
-
   selectedStatus:  number;  
   eventEditForm: FormGroup;
   public toggleForm:boolean;
@@ -88,7 +85,6 @@ export class DormsListComponent implements OnInit {
     private dialog: MatDialog,
     private router: Router
   ) {
-    //this.barangayCtrl = new FormControl();
     this.filteredBarangay = this.barangayCtrl.valueChanges.pipe(
       startWith(''),
       map((barangay) =>
@@ -96,12 +92,6 @@ export class DormsListComponent implements OnInit {
       )
     );
 
-    this.filteredPriceRange = this.priceRangeCtrl.valueChanges.pipe(
-      startWith(''),
-      map((price) =>
-        price ? this.filterPriceRange(price) : this.priceRange_list.slice()
-      )
-    );
   }
 
   ngOnInit(): void {
@@ -120,19 +110,13 @@ export class DormsListComponent implements OnInit {
     );
     return arr.length ? arr : [{ name: 'No Item found' }];
   }
-  filterPriceRange(name: string): PriceRange[] {
-    let arr = this.priceRange_list.filter(
-      (price) => price.name.toLowerCase().indexOf(name.toLowerCase()) === 0
-    );
-    return arr.length ? arr : [{ name: 'No Item found', minValue: 0, maxValue: 0 }];
-  }
 
   toggleSearchType() {
     this.searchType = this.searchType === 'barangay' ? 'priceRange' : 'barangay';
   }
 
   retrieveDorms(): void {
-    this.dormService.getAllApproved().subscribe({
+    this.dormService.findByTitleWithRentLowToHigh(this.title).subscribe({
       next: (data) => {
         this.dorms = data;
       },
@@ -144,12 +128,31 @@ export class DormsListComponent implements OnInit {
     this.currentDorm = {};
     this.currentIndex = -1;
 
-    this.dormService.findByTitle(this.title).subscribe({
+    this.dormService.findByTitleWithRentLowToHigh(this.title).subscribe({
       next: (data) => {
         this.dorms = data;
       },
       error: (e) => console.error(e),
     });
+  }
+
+  onRentSortChange() {
+    if (this.selectedRentSort === 'Low to High') {
+      this.dormService.findByTitleWithRentLowToHigh(this.title).subscribe({
+        next: (data) => {
+          this.dorms = data;
+        },
+        error: (e) => console.error(e),
+      });
+
+    } else if (this.selectedRentSort === 'High to Low') {
+      this.dormService.findByTitleWithRentHighToLow(this.title).subscribe({
+        next: (data) => {
+          this.dorms = data;
+        },
+        error: (e) => console.error(e),
+      });
+    }
   }
 
   openInfoSchedDialog(dorm: Dorm) {

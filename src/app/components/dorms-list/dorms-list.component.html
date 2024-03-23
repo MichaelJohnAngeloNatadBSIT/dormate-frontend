@@ -1,40 +1,26 @@
-<!-- todo make a array for price range and fix the icons when show location use gps icon -->
 <div class="container search-bar mx-auto">
   <div class="list row">
     <div class="col-md-8 search-bar">
       <div class="input-group mb-3">
-        <button
-        class="btn btn-outline-secondary button-icon"
-        type="button"
-        (click)="toggleSearchType()"
-      >
-        <mat-icon>{{ searchType === 'barangay' ? 'location_on' : 'attach_money'}}</mat-icon>
-      </button>
         <input
           type="text"
           class="form-control"
           placeholder="Search dorm by Title or Address"
           [(ngModel)]="title"
           [matAutocomplete]="auto"
-          [formControl]="searchType === 'barangay' ? barangayCtrl : priceRangeCtrl"
+          [formControl]="barangayCtrl"
         />
         <mat-autocomplete #auto="matAutocomplete">
           <ng-container *ngIf="searchType === 'barangay'">
-            <mat-option *ngFor="let barangay of filteredBarangay | async" [value]="barangay.name">
+            <mat-option
+              *ngFor="let barangay of filteredBarangay | async"
+              [value]="barangay.name"
+            >
               <span>{{ barangay.name }}</span>
             </mat-option>
           </ng-container>
-          <ng-container *ngIf="searchType === 'priceRange'">
-            <mat-option *ngFor="let price of filteredPriceRange | async" [value]="price.maxValue">
-              <span>{{ price.name }}</span>
-            </mat-option>
-          </ng-container>
-          <ng-template #priceRangeOptions>
-            <!-- Put price range options here if needed -->
-          </ng-template>
         </mat-autocomplete>
         <div class="input-group-append">
-
           <button
             class="btn btn-outline-secondary button-icon"
             type="button"
@@ -48,7 +34,16 @@
   </div>
 </div>
 
- 
+<div class="container mx-auto mb-3">
+  <div class="row list row">
+      <mat-form-field appearance="outline" style="width: 200px;">
+        <mat-select name="rentString" [(value)]="selectedRentSort" (selectionChange)="onRentSortChange()" placeholder="Rent">
+          <mat-option [value]="'Low to High'">Rent: Low to High</mat-option>
+          <mat-option [value]="'High to Low'">Rent: High to Low</mat-option>
+        </mat-select>
+      </mat-form-field>
+  </div>
+</div>
 
 <div class="container listing-card">
   <div class="row" *ngIf="dorms.length > 0; else noDormsPlaceholder">
@@ -129,7 +124,7 @@
   <div class="row" class="mb-5">
     <ng-template #noDormsPlaceholder>
       <div class="col-lg-12 text-center mb-5">
-        <img src="assets/404.png" height="300px" width="300px"/>
+        <img src="assets/404.png" height="300px" width="300px" />
         <h3>No Dorm listing in this location yet</h3>
         <p>Let's <a href="dorms">see other listings</a></p>
       </div>

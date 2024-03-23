@@ -58,6 +58,15 @@ export class DormService {
     const url = `${baseUrl}?title=${title}`;
     return this.http.get<Dorm[]>(url);
   }
+  findByTitleWithRentHighToLow(title: any): Observable<Dorm[]> {
+    const url = `${baseUrl}/rent_high?title=${title}`;
+    return this.http.get<Dorm[]>(url);
+  }
+
+  findByTitleWithRentLowToHigh(title: any): Observable<Dorm[]> {
+    const url = `${baseUrl}/rent_low?title=${title}`;
+    return this.http.get<Dorm[]>(url);
+  }
 
   addDormImages(id:any, file: FileList): Observable<HttpEvent<any>>{
     const formData: FormData = new FormData();
