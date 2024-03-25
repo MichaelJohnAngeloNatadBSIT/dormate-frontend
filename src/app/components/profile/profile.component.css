@@ -82,3 +82,10 @@ body{
     width: 200px;
 }
 
+.clickable-item {
+  cursor: pointer;
+}
+
+.clickable-item:hover {
+  background-color: #879dec;; /* Change to the desired hover background color */
+}

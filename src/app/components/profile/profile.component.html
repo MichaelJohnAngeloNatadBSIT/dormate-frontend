@@ -128,6 +128,7 @@
               target="_blank"
               *ngFor="let schedule of schedules; let i = index"
               (click)="openScheduleApproveDialog(schedule)"
+              class="clickable-item"
             >
               {{ schedule.schedule_date  | date:'MMM d, y, h:mm:ss a'  }}
             </a>
@@ -136,12 +137,14 @@
               target="_blank"
               *ngFor="let schedule of schedulesTenant; let i = index"
               (click)="openScheduleApproveTenantDialog(schedule)"
+              class="clickable-item"
             >
               {{ schedule.schedule_date | date:'MMM d, y, h:mm:ss a' }}
             </a>
           </mat-nav-list>
           <mat-divider></mat-divider>
         </mat-card>
+        
 
         <br />
         <mat-card>

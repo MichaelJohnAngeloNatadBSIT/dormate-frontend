@@ -50,6 +50,7 @@ import { PublishDialogComponent } from './dialogs/publish-dialog/publish-dialog.
 import { LandingPageComponent } from './components/landing-page/landing-page.component';
 import { DormComponent } from './components/dorm/dorm.component';
 import { MatAutocomplete } from '@angular/material/autocomplete';
+import { RoundTimeTo30MinsDirectiveDirective } from './directives/round-time-to30-mins-directive.directive';
 
 
 @NgModule({
@@ -85,6 +86,7 @@ import { MatAutocomplete } from '@angular/material/autocomplete';
     PublishDialogComponent,
     LandingPageComponent,
     DormComponent,
+    RoundTimeTo30MinsDirectiveDirective
   ],
   imports: [
     BrowserModule,
