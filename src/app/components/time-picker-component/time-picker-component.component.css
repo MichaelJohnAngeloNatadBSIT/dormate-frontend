@@ -1,0 +1,21 @@
+.minimalist-select {
+    appearance: none;
+    border: 1px solid #ccc;
+    padding: 0.5em;
+    font-size: 1em;
+    border-radius: 4px;
+    background-color: white;
+    cursor: pointer;
+    transition: color 1s;
+  }
+  
+  .minimalist-select option {
+    color: #333;
+  }
+  
+  .minimalist-select:hover{
+    cursor: pointer;
+    background-color: #95acff;
+    color: #333;
+    transition: color 1s;
+  }

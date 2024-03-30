@@ -8,8 +8,11 @@ import { Router } from '@angular/router';
 import { UserService } from 'src/app/services/user.service';
 import { MatDialog } from '@angular/material/dialog';
 import { DormImagesUploadDialogComponent } from 'src/app/dialogs/dorm-images-upload-dialog/dorm-images-upload-dialog.component';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { ViewEncapsulation } from '@angular/core';
 
 @Component({
+  encapsulation: ViewEncapsulation.None,
   selector: 'app-add-dorm',
   templateUrl: './add-dorm.component.html',
   styleUrls: ['./add-dorm.component.css']
@@ -42,6 +45,7 @@ export class AddDormComponent {
     private fb : FormBuilder,
     private router: Router,
     private dialog: MatDialog,
+    private snackBar: MatSnackBar
     ) { 
       this.createForm();
     }
@@ -66,13 +70,15 @@ export class AddDormComponent {
     this.userService.retrieveUserWithId(this.currentUser.id).subscribe({
       next: (data) => {
         this.user = data;
+        console.log(this.user);
       },
       error: (e) => console.error(e)
     });
   }
 
   saveDorm(): void {
-    var lessorName = this.user.first_name+' ' + this.user.last_name;
+    if(this.user.verified != false){
+      var lessorName = this.user.first_name+' ' + this.user.last_name;
     const data = {
       user_id: this.user.id,
       username: this.user.username,
@@ -91,16 +97,28 @@ export class AddDormComponent {
     this.dormService.create(data)
       .subscribe({
         next: (res) => {
-          console.log(res);
           this.submitted = true;
-          //this.router.navigate(['/profile'])
           this.openDormImgUploadDialog(res.data);
         },
         error: (e) => console.error(e)
       });
+    }
+    else{
+      this.showSnackbarTopPosition('Please Make Your account Verified by Uploading a Valid ID','Ok', '10000')
+      this.router.navigate(['/profile']);
+
+    }
   }
 
-  
+  showSnackbarTopPosition(content, action, duration) {
+    this.snackBar.open(content, action, {
+      duration: duration,
+      verticalPosition: "top", // Allowed values are  'top' | 'bottom'
+      horizontalPosition: "center", // Allowed values are 'start' | 'center' | 'end' | 'left' | 'right'
+      panelClass: ['custom-style']
+    });
+  }
+
   openDormImgUploadDialog(dorm: Dorm): void {
     let dialogRef = this.dialog.open(DormImagesUploadDialogComponent, { 
       width: '900px', 

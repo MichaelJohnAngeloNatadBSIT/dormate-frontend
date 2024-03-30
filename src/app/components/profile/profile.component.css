@@ -87,5 +87,11 @@ body{
 }
 
 .clickable-item:hover {
-  background-color: #879dec;; /* Change to the desired hover background color */
+  background-color: #879dec;
+  cursor: pointer;
+}
+
+.list-header{
+    font-size: 1rem;
+    font-weight: bold;
 }

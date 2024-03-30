@@ -1,0 +1,6 @@
+<select (change)="selectTime($event.target.value)" class="minimalist-select">
+  <option value="">Select Time</option>
+  <option *ngFor="let option of timeOptions" [value]="option">
+    {{ option }}
+  </option>
+</select>

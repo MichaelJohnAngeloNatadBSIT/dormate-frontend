@@ -31,29 +31,30 @@ export class InfoScheduleDialogComponent implements OnInit{
     this.form = this.fb.group({
       description: ['', Validators.maxLength(100)],
       schedule_date: [null, Validators.required],
+      schedule_time: [null, Validators.required]
     });
   }
 
-  addTimezoneOffset(value: string): void {
-    // Get the local timezone offset in minutes
-    const offsetMinutes = new Date().getTimezoneOffset();
+  // addTimezoneOffset(value: string): void {
+  //   // Get the local timezone offset in minutes
+  //   const offsetMinutes = new Date().getTimezoneOffset();
   
-    // Convert the offset to the desired format (+/-HH:mm)
-    const offsetHours = Math.abs(offsetMinutes / 60);
-    const offsetSign = offsetMinutes >= 0 ? '-' : '+';
-    const offset = `${offsetSign}${offsetHours.toString().padStart(2, '0')}:00`;
+  //   // Convert the offset to the desired format (+/-HH:mm)
+  //   const offsetHours = Math.abs(offsetMinutes / 60);
+  //   const offsetSign = offsetMinutes >= 0 ? '-' : '+';
+  //   const offset = `${offsetSign}${offsetHours.toString().padStart(2, '0')}:00`;
   
-    // Append the timezone offset to the datetime value
-    const datetimeWithOffset = value + offset;
-    console.log(value);
+  //   // Append the timezone offset to the datetime value
+  //   const datetimeWithOffset = value + offset;
+  //   console.log(value);
   
-    // Update the form control value with the datetime and timezone offset
-    this.form.get('schedule_date').setValue(datetimeWithOffset);
-  }
+  //   // Update the form control value with the datetime and timezone offset
+  //   this.form.get('schedule_date').setValue(datetimeWithOffset);
+  // }
   
 
   scheduleVisit(){
-    this.addTimezoneOffset(this.form.get('schedule_date').value);
+    //this.addTimezoneOffset(this.form.get('schedule_date').value);
     if (this.form.valid) {
       const data = {
         dorm_id: this.data.dorm._id,
@@ -63,6 +64,7 @@ export class InfoScheduleDialogComponent implements OnInit{
         dorm_title: this.data.dorm.title,
         description: this.form.get('description').value,
         schedule_date: this.form.get('schedule_date').value,
+        schedule_time : this.form.get('schedule_time').value
       };
       console.log(data);
       this.scheduleService.createSchedule(data)
@@ -256,4 +258,9 @@ export class InfoScheduleDialogComponent implements OnInit{
       });
   }
 
+  onTimeSelected(time: string) {
+    // Handle the selected time
+    this.form.get('schedule_time').setValue(time);
+    console.log("Selected Time:", time);
+  }
 }

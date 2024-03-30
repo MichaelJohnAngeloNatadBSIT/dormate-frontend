@@ -82,6 +82,20 @@
             {{ dorm.visit_counter || 0 }}
             <i class="fa fa-user"></i> user visits
           </p>
+          <p class="card-details font-weight-bold">
+            <i
+                  *ngIf="dorm.for_rent"
+                  class="fa fa-check-circle-o"
+                  style="font-size: 15px; color: #5cb85c"
+                  >For Rent</i
+                >
+                <i
+                  *ngIf="!dorm.for_rent"
+                  class="fa fa-times"
+                  style="font-size: 15px; color: #94918c"
+                  >Not For Rent</i
+                >
+          </p>
           <p class="card-details text-justify">{{ dorm.description }}</p>
           <p class="card-price">rent starts at ₱{{ dorm.rent }}</p>
         </div>

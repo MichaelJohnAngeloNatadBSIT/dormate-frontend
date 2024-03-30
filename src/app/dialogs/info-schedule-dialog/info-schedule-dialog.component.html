@@ -3,14 +3,14 @@
     <p class="card-title">Schedule A Visit</p>
     <div class="form-group">
       <form [formGroup]="form" (ngSubmit)="scheduleVisit()">
-        <label for="datetimePicker">Event Date and Time:</label>
-        <input
-          type="datetime-local"
-          formControlName="schedule_date"
-          id="schedule_date"
-          appRoundTimeTo30MinsDirective
-        />
+        <label for="datePicker">Visit Date:</label>
+        <input type="date" formControlName="schedule_date" id="schedule_date" />
 
+        <label for="timPicker">Visit Time:</label>
+        <app-time-picker-component
+          formControlName="schedule_time"
+          (timeSelected)="onTimeSelected($event)"
+        ></app-time-picker-component>
 
         <label for="description" class="description-label">
           Visit Description:
@@ -28,13 +28,13 @@
         <button
           mat-raised-button
           color="primary"
-
           class="btn-block update-button"
           type="submit"
-          onclick="scheduleVisit()"
+          [disabled]="!form.valid"
         >
           Schedule A Visit
         </button>
+
         <button
           mat-raised-button
           color="secondary"

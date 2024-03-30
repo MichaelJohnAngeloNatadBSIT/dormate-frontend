@@ -18,6 +18,7 @@ import { MatListModule } from '@angular/material/list';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatRadioModule } from '@angular/material/radio';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 @NgModule({
   imports: [
@@ -46,6 +47,7 @@ import { MatRadioModule } from '@angular/material/radio';
     MatListModule,
     MatAutocompleteModule, 
     MatRadioModule,
+    MatSnackBarModule,
   ]
 })
 export class AngularMaterialModule {}

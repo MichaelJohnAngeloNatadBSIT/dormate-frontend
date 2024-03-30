@@ -34,3 +34,11 @@ label {
   margin-left: 10px;
   margin-right: 10px;
 }
+
+/* add-dorm.component.css */
+.custom-style {
+  /* Add your custom styles here */
+  background-color: #333;
+  color: #fff;
+  /* Add any other styles you want to apply */
+}

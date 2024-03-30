@@ -51,6 +51,7 @@ import { LandingPageComponent } from './components/landing-page/landing-page.com
 import { DormComponent } from './components/dorm/dorm.component';
 import { MatAutocomplete } from '@angular/material/autocomplete';
 import { RoundTimeTo30MinsDirectiveDirective } from './directives/round-time-to30-mins-directive.directive';
+import { TimePickerComponentComponent } from './components/time-picker-component/time-picker-component.component';
 
 
 @NgModule({
@@ -86,7 +87,8 @@ import { RoundTimeTo30MinsDirectiveDirective } from './directives/round-time-to3
     PublishDialogComponent,
     LandingPageComponent,
     DormComponent,
-    RoundTimeTo30MinsDirectiveDirective
+    RoundTimeTo30MinsDirectiveDirective,
+    TimePickerComponentComponent
   ],
   imports: [
     BrowserModule,

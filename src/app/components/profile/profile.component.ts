@@ -114,6 +114,7 @@ export class ProfileComponent implements OnInit {
       .subscribe({
         next: (data) => {
           this.schedules = data;
+          console.log(this.schedules);
         },
         error: (e) => console.error(e)
       });
