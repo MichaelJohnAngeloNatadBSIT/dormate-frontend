@@ -35,6 +35,9 @@ export class InfoScheduleDialogComponent implements OnInit{
     this.minDate = `${year}-${month}-${day}`;
   }
 
+  closeDialog(): void {
+    this.dialogRef.close();
+  }
   ngOnInit(): void {
     this.form = this.fb.group({
       description: ['', Validators.maxLength(100)],
