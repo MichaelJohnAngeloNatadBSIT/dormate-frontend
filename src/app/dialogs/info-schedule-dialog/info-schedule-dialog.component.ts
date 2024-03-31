@@ -15,7 +15,8 @@ import { Router } from '@angular/router';
   styleUrls: ['./info-schedule-dialog.component.css']
 })
 export class InfoScheduleDialogComponent implements OnInit{
-  form: any ;
+  form: any;
+  minDate: string;
   constructor(
     public dialogRef: MatDialogRef<InfoScheduleDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
@@ -25,7 +26,14 @@ export class InfoScheduleDialogComponent implements OnInit{
     private router: Router,
     private fb: FormBuilder,
     private dialog: MatDialog
-  ) {}
+  ) {
+    // Set minimum date to today
+    const today = new Date();
+    const year = today.getFullYear();
+    const month = ('0' + (today.getMonth() + 1)).slice(-2);
+    const day = ('0' + today.getDate()).slice(-2);
+    this.minDate = `${year}-${month}-${day}`;
+  }
 
   ngOnInit(): void {
     this.form = this.fb.group({

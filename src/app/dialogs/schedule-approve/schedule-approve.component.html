@@ -1,8 +1,10 @@
 <div class="container">
-  <button class="close-button" mat-icon-button [mat-dialog-close]="true"> 
-    <mat-icon class="close-icon" color="warn">close</mat-icon>
-  </button>
-  <div class="card text-center">
+  <div class="close-button-container">
+    <button class="close-button" mat-icon-button [mat-dialog-close]="true"> 
+      <mat-icon class="close-icon" color="warn">close</mat-icon>
+    </button>
+  </div>
+  <div class="content-container text-center">
     <h2>Dorm Information</h2>
     <div class="dorm-images">
       <swiper [config]="config">
@@ -20,52 +22,47 @@
         <div class="swiper-button-prev"></div>
       </swiper>
     </div>
-    <div class="card-body">
-      <h4 class="card-title">
+    <div class="dorm-info">
+      <h4>
         Post Title: <b>{{ dorm.title }}</b>
       </h4>
       <p>
         Address: <b>{{ dorm.address }}</b>
       </p>
     </div>
-  </div>
-
-  <!-- <div class="row text-center"> -->
-    <div class="col-md-12 text-center">
-      <h1>User Information</h1>
-      <img
-        class="card-img-top center-block rounded-circle img-fluid user-image"
-        [src]="user.user_image"
-        alt="User image"
-      />
-      <div class="card-body">
-        <h4 class="card-title">
-          Full Name: <b>{{ user.first_name }} {{ user.last_name }}</b>
-        </h4>
-        <p>
-          Email: <b>{{ user.email }}</b>
-        </p>
-        <p>
-          Address: <b>{{ user.address }}</b>
-        </p>
-        <p>
-          Mobile Number: <b>{{ user.mobile_number }}</b>
-        </p>
-        <p>
-          Verified User: 
-            <b>
-              <i *ngIf="user.verified" class="fa fa-check-circle-o" style="font-size:15px;color:#5687fb">Verified</i>
-              <i *ngIf="!user.verified" class="fa fa-times" style="font-size:15px;color:#94918c">Not Verified</i>
-            </b>
-        </p>
-        <button
-          type="button"
-          class="btn btn-success btn-block"
-          (click)="approveUserSchedule(data._id)"
-        >
-          Approve Visit Schedule
-        </button>
-      </div>
-    <!-- </div> -->
+    <h1>User Information</h1>
+    <img
+      class="user-image"
+      [src]="user.user_image"
+      alt="User image"
+    />
+    <div class="user-info">
+      <h4>
+        Full Name: <b>{{ user.first_name }} {{ user.last_name }}</b>
+      </h4>
+      <p>
+        Email: <b>{{ user.email }}</b>
+      </p>
+      <p>
+        Address: <b>{{ user.address }}</b>
+      </p>
+      <p>
+        Mobile Number: <b>{{ user.mobile_number }}</b>
+      </p>
+      <p>
+        Verified User: 
+          <b>
+            <i *ngIf="user.verified" class="fa fa-check-circle-o" style="font-size:15px;color:#5687fb">Verified</i>
+            <i *ngIf="!user.verified" class="fa fa-times" style="font-size:15px;color:#94918c">Not Verified</i>
+          </b>
+      </p>
+      <button
+        type="button"
+        class="btn btn-success btn-block"
+        (click)="approveUserSchedule(data._id)"
+      >
+        Approve Visit Schedule
+      </button>
+    </div>
   </div>
 </div>

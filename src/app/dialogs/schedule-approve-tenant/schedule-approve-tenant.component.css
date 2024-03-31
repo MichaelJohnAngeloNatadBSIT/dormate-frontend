@@ -1,10 +1,37 @@
+.container {
+    position: relative;
+    padding: 20px;
+  }
+  
+  .close-button-container {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+  }
+  
+  .content-container {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  
+  .user-image {
+    width: 100px; /* Adjust size as needed */
+    height: 100px; /* Adjust size as needed */
+    border-radius: 50%; /* Make it round */
+    margin-bottom: 20px;
+  }
+  
+  .user-info {
+    text-align: left;
+  }
+  
+  .user-info p {
+    margin-bottom: 5px;
+  }
 
-.dorm_image{
+  .dorm_image{
     width: 100%;
     max-width: 700px;
     height: 300px;
 }
-
-.close-button{
-    float: right;
-}
+  

@@ -4,7 +4,8 @@
     <div class="form-group">
       <form [formGroup]="form" (ngSubmit)="scheduleVisit()">
         <label for="datePicker">Visit Date:</label>
-        <input type="date" formControlName="schedule_date" id="schedule_date" />
+        <input type="date" formControlName="schedule_date" id="schedule_date" [attr.min]="minDate" />
+
 
         <label for="timPicker">Visit Time:</label>
         <app-time-picker-component
