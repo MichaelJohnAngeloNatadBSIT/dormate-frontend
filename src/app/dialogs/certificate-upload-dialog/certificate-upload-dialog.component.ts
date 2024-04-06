@@ -13,10 +13,32 @@ import { Dorm } from 'src/app/models/dorms.model';
 })
 export class CertificateUploadDialogComponent {
   selectedFiles?: FileList;
-  previewBusinessPermit = '';
-  previewBarangayClearance = '';
-  previewBfpPermit = '';
-  previewSanitaryPermit = '';
+  // previewBusinessPermit = '';
+  // previewBarangayClearance = '';
+  // previewBfpPermit = '';
+  // previewSanitaryPermit = '';
+
+  // Assuming this is part of your component class
+
+  // Define variables to hold file preview data
+  previewBusinessPermit: any;
+  previewBusinessPermitType: string;
+  businessPermitPDF;
+
+  previewBarangayClearance: any;
+  previewBarangayClearanceType: string;
+  barangayClearancePDF;
+
+  previewBfpPermit: any;
+  previewBfpPermitType: string;
+  bfpPermitPDF;
+
+  previewSanitaryPermit: any;
+  previewSanitaryPermitClearanceType: string;
+  sanitaryPermitPDF;
+
+
+  businessPermitFileType;
   // previewMayorPermit = '';
   progress = 0;
   message = '';
@@ -31,9 +53,31 @@ export class CertificateUploadDialogComponent {
     private dormService: DormService
   ) {}
 
+  // Function to get file type from file name
+  getFileType(fileName: string): string {
+    const fileType = fileName.split('.').pop(); // Get the extension
+    return fileType.toLowerCase(); // Return lowercase file extension
+  }
 
+   // Method to check if the file is an image (supports jpg, jpeg, png)
+   isImageFile(filename: string): boolean {
+    const extension = this.getFileExtension(filename);
+    return extension === 'jpg' || extension === 'jpeg' || extension === 'png';
+  }
+
+  // Method to check if the file is a PDF
+  isPDFFile(filename: string): boolean {
+    const extension = this.getFileExtension(filename);
+    return extension === 'pdf';
+  }
+
+  // Helper method to extract file extension
+  private getFileExtension(filename: string): string {
+    return filename.split('.').pop()?.toLowerCase() || '';
+  }
+
+  // Your selectFileBusinessPermit function
   selectFileBusinessPermit(event: any): void {
-
     this.selectedFiles = event.target.files;
 
     if (this.selectedFiles && this.selectedFiles[0]) {
@@ -43,6 +87,11 @@ export class CertificateUploadDialogComponent {
 
         reader.onload = (e: any) => {
           this.previewBusinessPermit = e.target.result;
+          // Determine file type
+          this.previewBusinessPermitType = this.getFileType(
+            this.selectedFiles[i].name
+          );
+          this.businessPermitPDF = this.selectedFiles[i].name;
         };
 
         reader.readAsDataURL(this.selectedFiles[i]);
@@ -51,7 +100,6 @@ export class CertificateUploadDialogComponent {
   }
 
   selectFileBarangayClearance(event: any): void {
-
     this.selectedFiles = event.target.files;
 
     if (this.selectedFiles && this.selectedFiles[0]) {
@@ -61,6 +109,11 @@ export class CertificateUploadDialogComponent {
 
         reader.onload = (e: any) => {
           this.previewBarangayClearance = e.target.result;
+          // Determine file type
+          this.previewBarangayClearanceType = this.getFileType(
+            this.selectedFiles[i].name
+          );
+          this.barangayClearancePDF = this.selectedFiles[i].name;
         };
 
         reader.readAsDataURL(this.selectedFiles[i]);
@@ -69,7 +122,6 @@ export class CertificateUploadDialogComponent {
   }
 
   selectFileBfpPermit(event: any): void {
-
     this.selectedFiles = event.target.files;
 
     if (this.selectedFiles && this.selectedFiles[0]) {
@@ -79,6 +131,11 @@ export class CertificateUploadDialogComponent {
 
         reader.onload = (e: any) => {
           this.previewBfpPermit = e.target.result;
+          // Determine file type
+          this.previewBfpPermitType = this.getFileType(
+            this.selectedFiles[i].name
+          );
+          this.bfpPermitPDF = this.selectedFiles[i].name;
         };
 
         reader.readAsDataURL(this.selectedFiles[i]);
@@ -108,7 +165,6 @@ export class CertificateUploadDialogComponent {
   // }
 
   selectFileSanitaryPermit(event: any): void {
-
     this.selectedFiles = event.target.files;
 
     if (this.selectedFiles && this.selectedFiles[0]) {
@@ -118,6 +174,11 @@ export class CertificateUploadDialogComponent {
 
         reader.onload = (e: any) => {
           this.previewSanitaryPermit = e.target.result;
+          // Determine file type
+          this.previewSanitaryPermitClearanceType = this.getFileType(
+            this.selectedFiles[i].name
+          );
+          this.sanitaryPermitPDF = this.selectedFiles[i].name;
         };
 
         reader.readAsDataURL(this.selectedFiles[i]);
