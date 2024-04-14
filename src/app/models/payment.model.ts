@@ -1,4 +1,4 @@
-export class Dorm {
+export class Payment {
     _id?: any;
     user_id?: string;
     username?: string;
@@ -15,8 +15,4 @@ export class Dorm {
     dorm_images?: any;
     contact_number?: any;
     visit_counter?: any;
-    payment_id?: any;
-    payment_checkout_url?: any;
-    payment_reference_number?: any;
-    payment_status?: any;
 }

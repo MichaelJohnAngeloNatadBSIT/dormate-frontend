@@ -211,7 +211,7 @@
 
             <div class="card-body">
               <h5 class="card-title">{{ dorm.title }}</h5>
-              <p class="card-text">{{ dorm.publish ? "Dorm listing is Published" : "Upload Dorm Certificates and Images to approve publishing of your dorm listing" }}</p>
+              <p class="card-text">{{ dorm.publish ? "Dorm listing is Published" : "Upload Dorm Certificates, Images and pay our Posting Fee to approve publishing of your dorm listing" }}</p>
               <div class="text-center">
                 <button
                   (click)="openDormImgUploadDialog(dorm, i)"
@@ -224,6 +224,12 @@
                   class="btn btn-info dialog-button"
                 >
                   Upload Certificates
+                </button>
+                <button
+                  (click)="openPaymentDialog(dorm, i)"
+                  class="btn btn-info dialog-button"
+                >
+                  Pay Posting Fee
                 </button>
                 <button
                   (click)="openEditDormDialog(dorm, i)"

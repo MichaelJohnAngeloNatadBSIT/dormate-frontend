@@ -53,6 +53,7 @@ import { MatAutocomplete } from '@angular/material/autocomplete';
 import { RoundTimeTo30MinsDirectiveDirective } from './directives/round-time-to30-mins-directive.directive';
 import { TimePickerComponentComponent } from './components/time-picker-component/time-picker-component.component';
 import { PdfViewerModule } from 'ng2-pdf-viewer';
+import { PaymentDialogComponent } from './dialogs/payment-dialog/payment-dialog.component';
 
 
 @NgModule({
@@ -89,7 +90,8 @@ import { PdfViewerModule } from 'ng2-pdf-viewer';
     LandingPageComponent,
     DormComponent,
     RoundTimeTo30MinsDirectiveDirective,
-    TimePickerComponentComponent
+    TimePickerComponentComponent,
+    PaymentDialogComponent
   ],
   imports: [
     BrowserModule,

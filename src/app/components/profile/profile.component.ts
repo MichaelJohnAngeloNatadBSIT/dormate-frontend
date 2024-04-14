@@ -27,6 +27,7 @@ import { ImageZoomComponent } from 'src/app/dialogs/image-zoom/image-zoom.compon
 import { ScheduleApproveTenantComponent } from 'src/app/dialogs/schedule-approve-tenant/schedule-approve-tenant.component';
 import { ValidIdDialogComponent } from 'src/app/dialogs/valid-id-dialog/valid-id-dialog.component';
 import { PublishDialogComponent } from 'src/app/dialogs/publish-dialog/publish-dialog.component';
+import { PaymentDialogComponent } from 'src/app/dialogs/payment-dialog/payment-dialog.component';
 
 
 @Component({
@@ -214,6 +215,16 @@ export class ProfileComponent implements OnInit {
       this.retrieveForApprovalDorm();
     }); 
 
+  }
+  
+  openPaymentDialog(dorm: Dorm): void {
+    let dialogRef = this.dialog.open(PaymentDialogComponent, { 
+      data: dorm
+    }); 
+
+    dialogRef.afterClosed().subscribe(result => { 
+      this.retrieveForApprovalDorm();
+    }); 
   }
 
   openDormImgUploadDialog(dorm: Dorm): void {
