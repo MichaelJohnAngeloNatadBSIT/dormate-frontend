@@ -5,6 +5,7 @@ import { Dorm } from 'src/app/models/dorms.model';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { DormService } from 'src/app/services/dorm.service';
+import { Payment } from 'src/app/models/payment.model';
 
 @Component({
   selector: 'app-payment-dialog',
@@ -16,8 +17,11 @@ export class PaymentDialogComponent {
 userInfo : any;
 dormResp: any;
 dorm: Dorm;
+payment: Payment;
 paymentDorm: Dorm;
 checkOutUrl: any;
+payment_status: string;
+reference_number: any;
   constructor(
     public dialogRef: MatDialogRef<PaymentDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
@@ -47,11 +51,26 @@ checkOutUrl: any;
         next: (data) => {
           this.paymentDorm = data;
           this.checkOutUrl = this.paymentDorm.payment_checkout_url;
-
+          this.reference_number = this.paymentDorm.payment_reference_number;
+          this.retrievePaymentStatus(this.reference_number);
+          
         },
         error: (e) => console.error(e)
       });
   }
+
+  retrievePaymentStatus(reference_number: any) {
+    this.paymentService.getPayment(reference_number).subscribe(
+      (resp: any) => {
+        this.payment = resp.data.data.attributes;
+        this.payment_status = this.payment.status; // Set payment_status based on payment.status
+      },
+      (error) => {
+        console.error("Error fetching payment details:", error);
+      }
+    );
+  }
+  
 
   paymentPortal() {
     this.paymentService.createPayment(this.userInfo).subscribe((resp) => {

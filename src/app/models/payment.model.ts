@@ -1,18 +1,11 @@
 export class Payment {
-    _id?: any;
-    user_id?: string;
-    username?: string;
-    title?: string;
-    description?: string;
-    lessor?: string;
-    address?: string;
-    bedroom?: any;
-    bathroom?: any;
-    vacancy?: any;
-    rent?: any;
-    for_rent?: boolean;
-    published?: boolean;
-    dorm_images?: any;
-    contact_number?: any;
-    visit_counter?: any;
+    amount?: number;
+    archived?: boolean;
+    checkout_url?: any;
+    created_at?: string;
+    currency?: string;
+    fee?: number;
+    livemode?: boolean;
+    reference_number?: string;
+    status?: any;
 }

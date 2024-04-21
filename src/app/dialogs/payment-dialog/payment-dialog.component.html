@@ -26,12 +26,15 @@
 
   <div class="d-flex justify-content-between px-3 pt-4 pb-3">
     <div><span class="back" (click)="closeDialog()">Go back</span></div>
-    <button type="button" class="btn btn-primary button" (click)="paymentPortal()" *ngIf="!checkOutUrl">
+    <button type="button" class="btn btn-primary button" (click)="paymentPortal()" *ngIf="payment_status == 'unpaid'">
       Create Payment
     </button>
-    <button type="button" class="btn btn-primary button" (click)="paymentPortal()" *ngIf="checkOutUrl">
-      Pay Amount
+    <button type="button" class="btn btn-primary button" (click)="paymentPortal()" [disabled]="payment_status == 'paid'" *ngIf="payment_status == 'paid'">
+      Already Paid
     </button>
+    <!-- <button type="button" class="btn btn-primary button" (click)="paymentPortal()" *ngIf="checkOutUrl">
+      Pay Amount
+    </button> -->
   </div>
   
 </div>

@@ -12,4 +12,8 @@ export class PaymentService {
   createPayment(data: any){
     return this.http.post(`${baseUrl}/create-payment`, data);
   }
+
+  getPayment(data: any){
+    return this.http.get(`${baseUrl}/get-payment/${data}`);
+  }
 }
