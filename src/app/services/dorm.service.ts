@@ -13,8 +13,7 @@ const baseUrl = environment.baseURL+'dorm';
 })
 
 export class DormService {
-  i = true;
-  
+  // i = true;
 
   constructor(private http: HttpClient) { }
 

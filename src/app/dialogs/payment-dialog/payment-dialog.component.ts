@@ -2,8 +2,6 @@ import { Component, Inject  } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { PaymentService } from 'src/app/services/payment.service';
 import { Dorm } from 'src/app/models/dorms.model';
-import { Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
 import { DormService } from 'src/app/services/dorm.service';
 import { Payment } from 'src/app/models/payment.model';
 

@@ -70,7 +70,6 @@ export class AddDormComponent {
     this.userService.retrieveUserWithId(this.currentUser.id).subscribe({
       next: (data) => {
         this.user = data;
-        console.log(this.user);
       },
       error: (e) => console.error(e)
     });

@@ -28,6 +28,7 @@ import { ScheduleApproveTenantComponent } from 'src/app/dialogs/schedule-approve
 import { ValidIdDialogComponent } from 'src/app/dialogs/valid-id-dialog/valid-id-dialog.component';
 import { PublishDialogComponent } from 'src/app/dialogs/publish-dialog/publish-dialog.component';
 import { PaymentDialogComponent } from 'src/app/dialogs/payment-dialog/payment-dialog.component';
+import { Route, Router } from '@angular/router';
 
 
 @Component({
@@ -51,7 +52,8 @@ export class ProfileComponent implements OnInit {
     private dialog: MatDialog,
     private dormService: DormService,
     private chatService: ChatService,
-    private scheduleService: ScheduleService
+    private scheduleService: ScheduleService,
+    private router: Router
     ) {
 
     }
@@ -63,8 +65,8 @@ export class ProfileComponent implements OnInit {
     // this.chatService.setupSocketConnection();
     this.retrieveForApprovalScheduleLandlord();
     this.retrieveForApprovalScheduleTenant();
-    this.retrieveForApprovalScheduleApprovedLandlord()
-    this.retrieveForApprovalScheduleApprovedTenant()
+    this.retrieveForApprovalScheduleApprovedLandlord();
+    this.retrieveForApprovalScheduleApprovedTenant();
   }
   // ngOnDestroy() {
   //   this.chatService.disconnect();
@@ -100,6 +102,10 @@ export class ProfileComponent implements OnInit {
     });
   }
 
+  goToDormDetail(dormId: string) {
+    this.router.navigate(['dorm-detail-landlord', dormId]);
+  }
+
   retrieveForApprovalDorm(): void {
     this.dormService.getForApproval(this.currentUser.id)
       .subscribe({
@@ -115,7 +121,6 @@ export class ProfileComponent implements OnInit {
       .subscribe({
         next: (data) => {
           this.schedules = data;
-          console.log(this.schedules);
         },
         error: (e) => console.error(e)
       });
@@ -310,7 +315,4 @@ export class ProfileComponent implements OnInit {
     },
     spaceBetween: 30
   }; 
-
-
-
 }

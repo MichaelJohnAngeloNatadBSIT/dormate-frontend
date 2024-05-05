@@ -46,7 +46,7 @@
 </div>
 
 <div class="container listing-card">
-  <div class="row" *ngIf="dorms.length > 0; else noDormsPlaceholder">
+  <div class="row" *ngIf="dorms?.length > 0; else noDormsPlaceholder">
     <div class="col-lg-4 col-md-6" *ngFor="let dorm of dorms; let i = index">
       <div class="card">
         <div class="swiper-class">

@@ -54,6 +54,7 @@ import { RoundTimeTo30MinsDirectiveDirective } from './directives/round-time-to3
 import { TimePickerComponentComponent } from './components/time-picker-component/time-picker-component.component';
 import { PdfViewerModule } from 'ng2-pdf-viewer';
 import { PaymentDialogComponent } from './dialogs/payment-dialog/payment-dialog.component';
+import { DormDetailsLandlordComponent } from './components/dorm-details-landlord/dorm-details-landlord.component';
 
 
 @NgModule({
@@ -91,7 +92,8 @@ import { PaymentDialogComponent } from './dialogs/payment-dialog/payment-dialog.
     DormComponent,
     RoundTimeTo30MinsDirectiveDirective,
     TimePickerComponentComponent,
-    PaymentDialogComponent
+    PaymentDialogComponent,
+    DormDetailsLandlordComponent
   ],
   imports: [
     BrowserModule,

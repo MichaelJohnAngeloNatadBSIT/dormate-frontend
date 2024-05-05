@@ -1,0 +1,204 @@
+<!-- <body>   todo make dorm buttons edit,delete etc, add the new feature add room in this component -->
+
+  <div class="w3-container">
+    <!-- !PAGE CONTENT! -->
+    <div class="w3-main w3-white">
+      <!-- Push down content on small screens -->
+      <div class="w3-hide-large" style="margin-top: 150px"></div>
+  
+      <!-- Slideshow Header -->
+      <div class="w3-container" id="apartment">
+        <swiper [config]="config">
+          <div
+            class="swiper-wrapper"
+            (click)="openImageZoomDialog(dorm.dorm_images)"
+          >
+          <div class="swiper-slide d-flex justify-content-center" *ngFor="let image of dorm.dorm_images">
+            <img src="{{ image }}" alt="img 1" class="dorm_image img-responsive" />
+          </div>
+          
+          </div>
+        </swiper>
+        <h2 class="w3-text-blue">
+          {{ dorm.title }}
+          <i
+            *ngIf="dorm.published"
+            class="fa fa-check-circle-o"
+            style="font-size: 15px; color: #5687fb"
+            >Posted</i
+          >
+          <i
+            *ngIf="!dorm.published"
+            class="fa fa-times"
+            style="font-size: 15px; color: #94918c"
+            >Not Yet Posted</i
+          >
+        </h2>
+      </div>
+  
+      <div class="w3-container">
+        <div class="text-center mt-3">
+          <p class="card-text">{{ dorm.published ? "Dorm listing is Published" : "Upload Dorm Certificates, Images and pay our Posting Fee to approve publishing of your dorm listing" }}</p>
+          <button
+            (click)="openDormImgUploadDialog(dorm)"
+            class="btn btn-success dialog-button mr-2"
+          >
+            Upload Dorm Images
+          </button>
+          <button
+            (click)="openCertUploadDialog(dorm)"
+            class="btn btn-info dialog-button mr-2"
+          >
+            Upload Certificates
+          </button>
+          <button
+            (click)="openPaymentDialog(dorm)"
+            class="btn btn-info dialog-button mr-2"
+          >
+            Pay Posting Fee
+          </button>
+          <button
+            (click)="openEditDormDialog(dorm)"
+            class="btn btn-secondary dialog-button mr-2"
+          >
+            Add or Edit Dorm Information
+          </button>
+          <button
+            (click)="openPublishDormDialog(dorm)"
+            class="btn btn-success dialog-button mr-2"
+            *ngIf="dorm.published == false"
+          >
+            List Dorm As For Rent
+          </button>
+          <button
+            (click)="openPublishDormDialog(dorm)"
+            class="btn btn-secondary dialog-button mr-2"
+            *ngIf="dorm.published == true"
+          >
+            Unlist Dorm As For Rent
+          </button>
+          <button
+            (click)="openDeleteDormDialog(dorm)"
+            class="btn btn-danger dialog-button"
+          >
+            Delete Dorm
+          </button>
+        </div>
+        <h4><strong>The space</strong></h4>
+        <div class="w3-row w3-large">
+          <div class="w3-col s6">
+            <p>
+              <i class="fa fa-fw fa-male"></i> Vacancy: {{ dorm.vacancy || 0 }}
+            </p>
+            <p><i class="fa fa-fw fa-bath"></i> Bathrooms: {{ dorm.bathroom }}</p>
+            <p><i class="fa fa-fw fa-bed"></i> Bedrooms: {{ dorm.bedroom }}</p>
+          </div>
+          <div class="w3-col s6">
+            <p>
+              <i class="fa fa-map-marker" style="width: 30px"></i>{{ dorm.address
+              }}<br />
+            </p>
+            <p>
+              <i class="fa fa-phone" style="width: 30px"></i
+              >{{ dorm.contact_number }}<br />
+            </p>
+            <p>
+              <i class="fa fa-user" style="width: 30px"> </i>{{ dorm.username
+              }}<br />
+            </p>
+          </div>
+        </div>
+        <hr />
+  
+        <!-- <h4><strong>Amenities</strong></h4>
+          <div class="w3-row w3-large">
+            <div class="w3-col s6">
+              <p><i class="fa fa-fw fa-shower"></i> Shower</p>
+              <p><i class="fa fa-fw fa-wifi"></i> WiFi</p>
+              <p><i class="fa fa-fw fa-tv"></i> TV</p>
+            </div>
+            <div class="w3-col s6">
+              <p><i class="fa fa-fw fa-cutlery"></i> Kitchen</p>
+              <p><i class="fa fa-fw fa-thermometer"></i> Heating</p>
+              <p><i class="fa fa-fw fa-wheelchair"></i> Accessible</p>
+            </div>
+          </div> 
+          <hr /> -->
+  
+        <!-- <h4><strong>Extra Info</strong></h4>
+          <p>
+            {{ dorm.description }}
+          </p>
+          <p>
+            We accept: <i class="fa fa-credit-card w3-large"></i>
+            <i class="fa fa-cc-mastercard w3-large"></i>
+            <i class="fa fa-cc-amex w3-large"></i>
+            <i class="fa fa-cc-cc-visa w3-large"></i
+            ><i class="fa fa-cc-paypal w3-large"></i>
+          </p>
+          <hr /> -->
+  
+        <h4><strong>Rules and Description</strong></h4>
+        <p>
+          {{ dorm.description }}
+        </p>
+        <p>Schedule A Visit to this Dorm now</p>
+        <p>
+          <!-- <button
+            class="w3-button w3-green w3-third"
+            type="button"
+            class="btn btn-primary btn-lg btn-block"
+            (click)="openInfoSchedDialog(dorm)"
+          >
+            Schedule A Visit
+          </button> -->
+
+      </div>
+      <hr />
+  
+      <!-- Contact -->
+      <!-- <div class="w3-container" id="contact">
+          <h2>Contact</h2>
+          <i class="fa fa-map-marker" style="width: 30px"></i>{{ dorm.address }}<br />
+          <i class="fa fa-phone" style="width: 30px"></i>{{ dorm.contact_number }}<br />
+          <i class="fa fa-user" style="width: 30px"> </i>{{ dorm.username }}<br />
+          <p>Questions? Go ahead, ask them:</p>
+          <form action="/action_page.php" target="_blank">
+            <p>
+              <input
+                class="w3-input w3-border"
+                type="text"
+                placeholder="Name"
+                required
+                name="Name"
+              />
+            </p>
+            <p>
+              <input
+                class="w3-input w3-border"
+                type="text"
+                placeholder="Email"
+                required
+                name="Email"
+              />
+            </p>
+            <p>
+              <input
+                class="w3-input w3-border"
+                type="text"
+                placeholder="Message"
+                required
+                name="Message"
+              />
+            </p>
+            <button type="submit" class="w3-button w3-green w3-third">
+              Send a Message
+            </button>
+          </form> 
+        </div>-->
+  
+      <!-- End page content -->
+    </div>
+  </div>
+  <!-- </body> -->
+  

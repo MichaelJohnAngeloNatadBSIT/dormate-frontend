@@ -16,7 +16,7 @@
           <div class="card-body">
             <div class="d-flex flex-column align-items-center text-center">
               <img
-                [src]="user.user_image"
+                [src]="user?.user_image"
                 alt="Click Here to upload your User Profile Image"
                 (click)="openUserImageDialog()"
                 class="rounded-circle img-hover user-image"
@@ -24,20 +24,20 @@
               />
               <div class="mt-3">
                 <i
-                  *ngIf="user.verified"
+                  *ngIf="user?.verified"
                   class="fa fa-check-circle-o"
                   style="font-size: 15px; color: #5687fb"
                   >Verified</i
                 >
                 <i
-                  *ngIf="!user.verified"
+                  *ngIf="!user?.verified"
                   class="fa fa-times"
                   style="font-size: 15px; color: #94918c"
                   >Not Verified</i
                 >
-                <h4>{{ user.username }}</h4>
+                <h4>{{ user?.username }}</h4>
 
-                <p class="text-secondary mb-1">{{ user.address }}</p>
+                <p class="text-secondary mb-1">{{ user?.address }}</p>
 
                 <!-- <button class="btn btn-primary">Follow</button> -->
                 <!-- <button class="btn btn-outline-primary">Message</button> -->
@@ -56,7 +56,7 @@
                   <h4 class="mb-0">Full Name</h4>
                 </div>
                 <div class="col-sm-9 text-secondary">
-                  {{ user.first_name }} {{ user.last_name }}
+                  {{ user?.first_name }} {{ user?.last_name }}
                 </div>
               </div>
               <hr />
@@ -65,7 +65,7 @@
                   <h4 class="mb-0">Email</h4>
                 </div>
                 <div class="col-sm-9 text-secondary">
-                  {{ user.email }}
+                  {{ user?.email }}
                 </div>
               </div>
               <hr />
@@ -74,7 +74,7 @@
                   <h4 class="mb-0">Mobile</h4>
                 </div>
                 <div class="col-sm-9 text-secondary">
-                  {{ user.mobile_number }}
+                  {{ user?.mobile_number }}
                 </div>
               </div>
               <hr />
@@ -83,7 +83,7 @@
                   <h4 class="mb-0">Address</h4>
                 </div>
                 <div class="col-sm-9 text-secondary">
-                  {{ user.address }}
+                  {{ user?.address }}
                 </div>
               </div>
               <hr />
@@ -184,9 +184,10 @@
         <hr>
         <div class="row align-items-start">
           <div
-            class="card"
+            class="card-dorm"
             style="width: 20rem; margin: 20px 25px 20px"
             *ngFor="let dorm of dorms; let i = index"
+            (click)="goToDormDetail(dorm._id)"
           >
             <swiper [config]="config">
               <div
@@ -212,7 +213,7 @@
             <div class="card-body">
               <h5 class="card-title">{{ dorm.title }}</h5>
               <p class="card-text">{{ dorm.publish ? "Dorm listing is Published" : "Upload Dorm Certificates, Images and pay our Posting Fee to approve publishing of your dorm listing" }}</p>
-              <div class="text-center">
+              <!-- <div class="text-center">
                 <button
                   (click)="openDormImgUploadDialog(dorm, i)"
                   class="btn btn-success dialog-button"
@@ -257,7 +258,7 @@
                 >
                   Delete Dorm
                 </button>
-              </div>
+              </div> -->
             </div>
           </div>
         </div>

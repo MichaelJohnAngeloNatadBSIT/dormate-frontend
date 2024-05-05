@@ -14,6 +14,7 @@ import { VisitProfileComponent } from './components/visit-profile/visit-profile.
 import { AboutUsComponent } from './components/about-us/about-us.component';
 import { LandingPageComponent } from './components/landing-page/landing-page.component';
 import { DormComponent } from './components/dorm/dorm.component';
+import { DormDetailsLandlordComponent } from './components/dorm-details-landlord/dorm-details-landlord.component';
 
 
 const routes: Routes = [
@@ -30,7 +31,8 @@ const routes: Routes = [
   { path: 'user', component: BoardUserComponent },
   { path: 'landlord', component: BoardLandlordComponent },
   { path: 'landing-page', component: LandingPageComponent },
-  { path: 'dorm-detail/:id', component: DormComponent }
+  { path: 'dorm-detail/:id', component: DormComponent },
+  { path: 'dorm-detail-landlord/:id', component: DormDetailsLandlordComponent }
 
 
 
