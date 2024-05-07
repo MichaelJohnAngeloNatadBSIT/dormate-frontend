@@ -21,24 +21,21 @@
         </swiper>
         <h2 class="w3-text-blue">
           {{ dorm?.title }}
-          <i
-            *ngIf="dorm?.published"
-            class="fa fa-check-circle-o"
-            style="font-size: 15px; color: #5687fb"
-            >Posted</i
-          >
-          <i
-            *ngIf="!dorm?.published"
-            class="fa fa-times"
-            style="font-size: 15px; color: #94918c"
-            >Not Yet Posted</i
-          >
+          <i *ngIf="dorm?.published" class="icon fa fa-check-circle-o">Posted</i>
+          <i *ngIf="!dorm?.published" class="icon fa fa-times">Not Yet Posted</i>
+          <i *ngIf="dorm?.payment_status == 'paid'" class="icon fa fa-check-circle-o">Already Paid</i>
+          <i *ngIf="dorm?.payment_status == 'unpaid'" class="icon fa fa-times">Post not yet Paid</i>
         </h2>
-      </div>
+        
   
       <div class="w3-container">
         <div class="text-center mt-3">
           <p class="card-text">{{ dorm?.published ? "Dorm listing is Published" : "Upload Dorm Certificates, Images and pay our Posting Fee to approve publishing of your dorm listing" }}</p>
+          <p class="card-text">
+            <span *ngIf="dorm?.payment_status == 'paid'">Dorm listing is Already Paid</span>
+            <span *ngIf="dorm?.payment_status == 'unpaid'">Please Pay our Dorm Posting Fee</span>
+          </p>
+          
           <div class="button-container">
             <button
               (click)="openDormImgUploadDialog(dorm)"
@@ -94,7 +91,7 @@
               <i class="fa fa-fw fa-male"></i> Vacancy: {{ dorm?.vacancy || 0 }}
             </p>
             <p><i class="fa fa-fw fa-bath"></i> Bathrooms: {{ dorm?.bathroom }}</p>
-            <p><i class="fa fa-fw fa-bed"></i> Bedrooms: {{ dorm?.bedroom }}</p>
+            <p><i class="fa fa-fw fa-bed"></i> Rooms: {{ dorm?.bedroom }}</p>
           </div>
           <div class="w3-col w3-half">
             <p>

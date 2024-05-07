@@ -1640,3 +1640,14 @@ a {
 .button-container .btn {
   margin: 0.5rem;
 }
+
+.icon {
+  font-size: 15px;
+  color: #5687fb;
+  margin-left: 5px; /* Adjust this value for your desired spacing */
+}
+
+.fa-times {
+  color: #94918c;
+}
+

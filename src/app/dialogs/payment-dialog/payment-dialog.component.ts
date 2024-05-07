@@ -62,6 +62,18 @@ reference_number: any;
       (resp: any) => {
         this.payment = resp.data.data.attributes;
         this.payment_status = this.payment.status; // Set payment_status based on payment.status
+        const dormData = { payment_status: this.payment_status };
+        if(this.payment_status === 'paid'){
+          this.dormService.update(this.data._id, dormData).subscribe(
+            (response: any) => {
+              console.log(response);
+            },
+            (error: any) => {
+              console.log(error);
+            }
+          );
+        }
+        
       },
       (error) => {
         console.error("Error fetching payment details:", error);
@@ -72,7 +84,6 @@ reference_number: any;
 
   paymentPortal() {
     this.paymentService.createPayment(this.userInfo).subscribe((resp) => {
-      console.log(resp);
       this.dormResp = resp;
       this.dorm = this.dormResp.data;
       //this.checkOutUrl = this.dorm.payment_checkout_url;

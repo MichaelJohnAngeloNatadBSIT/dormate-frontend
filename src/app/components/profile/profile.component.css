@@ -113,3 +113,14 @@ body{
     font-size: 1rem;
     font-weight: bold;
 }
+
+.user-details-btn {
+    width: 100%; /* Ensures buttons take full width on small screens */
+    margin-bottom: 10px; /* Adds some space between buttons */
+}
+
+@media (min-width: 768px) {
+    .user-details-btn {
+        width: auto; /* Reverts to default button width on medium and larger screens */
+    }
+}
