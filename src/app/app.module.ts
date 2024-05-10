@@ -55,6 +55,8 @@ import { TimePickerComponentComponent } from './components/time-picker-component
 import { PdfViewerModule } from 'ng2-pdf-viewer';
 import { PaymentDialogComponent } from './dialogs/payment-dialog/payment-dialog.component';
 import { DormDetailsLandlordComponent } from './components/dorm-details-landlord/dorm-details-landlord.component';
+import { AcceptAsTenantDialogComponent } from './dialogs/accept-as-tenant-dialog/accept-as-tenant-dialog.component';
+import { EvictAsTenantDialogComponent } from './dialogs/evict-as-tenant-dialog/evict-as-tenant-dialog.component';
 
 
 @NgModule({
@@ -93,7 +95,9 @@ import { DormDetailsLandlordComponent } from './components/dorm-details-landlord
     RoundTimeTo30MinsDirectiveDirective,
     TimePickerComponentComponent,
     PaymentDialogComponent,
-    DormDetailsLandlordComponent
+    DormDetailsLandlordComponent,
+    AcceptAsTenantDialogComponent,
+    EvictAsTenantDialogComponent
   ],
   imports: [
     BrowserModule,

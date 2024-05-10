@@ -39,11 +39,14 @@ export class InfoScheduleDialogComponent implements OnInit{
     this.dialogRef.close();
   }
   ngOnInit(): void {
+    console.log(this.data);
     this.form = this.fb.group({
       description: ['', Validators.maxLength(100)],
       schedule_date: [null, Validators.required],
       schedule_time: [null, Validators.required]
     });
+
+
   }
 
   // addTimezoneOffset(value: string): void {
@@ -69,9 +72,12 @@ export class InfoScheduleDialogComponent implements OnInit{
     if (this.form.valid) {
       const data = {
         dorm_id: this.data.dorm._id,
-        tenant_id: this.data.user.id,
         landlord_id: this.data.dorm.user_id,
-        user_full_name: this.data.user.first_name+ " " +this.data.user.last_name,
+        tenant_user_id: this.data.user.id,
+        tenant_username: this.data.user.username,
+        tenant_full_name: this.data.user.first_name+ " " +this.data.user.last_name,
+        tenant_contact_number: this.data.user.mobile_number,
+        tenant_address: this.data.user.address,
         dorm_title: this.data.dorm.title,
         description: this.form.get('description').value,
         schedule_date: this.form.get('schedule_date').value,

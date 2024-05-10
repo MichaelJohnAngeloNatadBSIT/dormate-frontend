@@ -24,7 +24,7 @@ export class ScheduleApproveComponent implements OnInit {
     private dialog: MatDialog
   ){}
     ngOnInit(): void {
-        // console.log(this.data);
+        console.log(this.data);
         this.retrieveDorm();
         this.retrieveUser();
     }
@@ -41,7 +41,7 @@ export class ScheduleApproveComponent implements OnInit {
     }
 
     retrieveUser(): void {
-      this.userService.retrieveUserWithId(this.data.tenant_id)
+      this.userService.retrieveUserWithId(this.data.tenant_user_id)
         .subscribe({
           next: (data) => {
               this.user = data;

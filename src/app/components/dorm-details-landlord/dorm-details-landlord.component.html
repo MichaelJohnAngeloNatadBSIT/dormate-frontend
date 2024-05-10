@@ -1,41 +1,60 @@
-<!-- <body>   todo make dorm buttons edit,delete etc, add the new feature add room in this component -->
+<div class="w3-container">
+  <!-- !PAGE CONTENT! -->
+  <div class="w3-main w3-white">
+    <!-- Push down content on small screens -->
+    <div class="w3-hide-large" style="margin-top: 150px"></div>
 
-  <div class="w3-container">
-    <!-- !PAGE CONTENT! -->
-    <div class="w3-main w3-white">
-      <!-- Push down content on small screens -->
-      <div class="w3-hide-large" style="margin-top: 150px"></div>
-  
-      <!-- Slideshow Header -->
-      <div class="w3-container" id="apartment">
-        <swiper [config]="config">
+    <!-- Slideshow Header -->
+    <div class="w3-container" id="apartment">
+      <swiper [config]="config">
+        <div
+          class="swiper-wrapper"
+          (click)="openImageZoomDialog(dorm.dorm_images)"
+        >
           <div
-            class="swiper-wrapper"
-            (click)="openImageZoomDialog(dorm.dorm_images)"
+            class="swiper-slide d-flex justify-content-center"
+            *ngFor="let image of dorm?.dorm_images"
           >
-          <div class="swiper-slide d-flex justify-content-center" *ngFor="let image of dorm?.dorm_images">
-            <img src="{{ image }}" alt="img 1" class="dorm_image img-responsive" />
+            <img
+              src="{{ image }}"
+              alt="img 1"
+              class="dorm_image img-responsive"
+            />
           </div>
-          
-          </div>
-        </swiper>
-        <h2 class="w3-text-blue">
-          {{ dorm?.title }}
-          <i *ngIf="dorm?.published" class="icon fa fa-check-circle-o">Posted</i>
-          <i *ngIf="!dorm?.published" class="icon fa fa-times">Not Yet Posted</i>
-          <i *ngIf="dorm?.payment_status == 'paid'" class="icon fa fa-check-circle-o">Already Paid</i>
-          <i *ngIf="dorm?.payment_status == 'unpaid'" class="icon fa fa-times">Post not yet Paid</i>
-        </h2>
-        
-  
+        </div>
+      </swiper>
+      <h2 class="w3-text-blue">
+        {{ dorm?.title }}
+        <i *ngIf="dorm?.published" class="icon fa fa-check-circle-o">Posted</i>
+        <i *ngIf="!dorm?.published" class="icon fa fa-times">Not Yet Posted</i>
+        <i
+          *ngIf="dorm?.payment_status == 'paid'"
+          class="icon fa fa-check-circle-o"
+          >Posting Fee is Already Paid</i
+        >
+        <i *ngIf="dorm?.payment_status == 'unpaid'" class="icon fa fa-times"
+          >Posting Fee is not yet Paid</i
+        >
+      </h2>
+
       <div class="w3-container">
         <div class="text-center mt-3">
-          <p class="card-text">{{ dorm?.published ? "Dorm listing is Published" : "Upload Dorm Certificates, Images and pay our Posting Fee to approve publishing of your dorm listing" }}</p>
           <p class="card-text">
-            <span *ngIf="dorm?.payment_status == 'paid'">Dorm listing is Already Paid</span>
-            <span *ngIf="dorm?.payment_status == 'unpaid'">Please Pay our Dorm Posting Fee</span>
+            {{
+              dorm?.published
+                ? "Dorm listing is Published"
+                : "Upload Dorm Certificates, Images and pay our Posting Fee to approve publishing of your dorm listing"
+            }}
           </p>
-          
+          <p class="card-text">
+            <span *ngIf="dorm?.payment_status == 'paid'"
+              >Dorm listing is Already Paid</span
+            >
+            <span *ngIf="dorm?.payment_status == 'unpaid'"
+              >Please Pay our Dorm Posting Fee</span
+            >
+          </p>
+
           <div class="button-container">
             <button
               (click)="openDormImgUploadDialog(dorm)"
@@ -83,35 +102,100 @@
             </button>
           </div>
         </div>
-        
+
         <h4><strong>Dorm Information</strong></h4>
         <div class="w3-row w3-large">
           <div class="w3-col w3-half">
             <p>
               <i class="fa fa-fw fa-male"></i> Vacancy: {{ dorm?.vacancy || 0 }}
             </p>
-            <p><i class="fa fa-fw fa-bath"></i> Bathrooms: {{ dorm?.bathroom }}</p>
+            <p>
+              <i class="fa fa-fw fa-bath"></i> Bathrooms: {{ dorm?.bathroom }}
+            </p>
             <p><i class="fa fa-fw fa-bed"></i> Rooms: {{ dorm?.bedroom }}</p>
           </div>
           <div class="w3-col w3-half">
             <p>
-              <i class="fa fa-map-marker" style="width: 30px"></i>{{ dorm?.address }}<br />
+              <i class="fa fa-map-marker" style="width: 30px"></i
+              >{{ dorm?.address }}<br />
             </p>
             <p>
-              <i class="fa fa-phone" style="width: 30px"></i>{{ dorm?.contact_number }}<br />
+              <i class="fa fa-phone" style="width: 30px"></i
+              >{{ dorm?.contact_number }}<br />
             </p>
             <p>
-              <i class="fa fa-user" style="width: 30px"> </i>{{ dorm?.username }}<br />
+              <i class="fa fa-user" style="width: 30px"> </i>{{ dorm?.username
+              }}<br />
             </p>
           </div>
         </div>
-        
+
         <h4><strong>Rules and Description</strong></h4>
         <p>
           {{ dorm?.description }}
         </p>
       </div>
+      <!-- app.component.html -->
+      <hr />
+      <h4><strong>Dorm Visitors and Tenants</strong></h4>
+      <div class="table-responsive">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Visitor Full Name</th>
+              <th>Approve Visit</th>
+              <th>Accept Visitor As Tenant</th>
+              <th>Remove As Tenant</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let tenantVisit of schedulesLandlord">
+              <td>{{ tenantVisit.tenant_full_name }} (Visitor)</td>
+              <td>
+                <div class="d-flex">
+                  <button
+                    class="btn btn-sm btn-primary mr-1"
+                    (click)="openScheduleApproveDialog(tenantVisit)"
+                  >
+                    Accept Dorm Visit
+                  </button>
+                </div>
+              </td>
+              <td>
+              </td>
+              <td></td>
+            </tr>
+
+            <tr *ngFor="let tenantVisitApproved of schedulesLandlordApproved">
+              <td>{{ tenantVisitApproved.tenant_full_name }} (Visitor)</td>
+              <td></td>
+              <td>
+                <div class="d-flex" *ngIf="tenantVisitApproved.approve_visit">
+                  <button class="btn btn-sm btn-success" (click)="openAcceptTenantDialog(tenantVisitApproved)">
+                    Accept As Tenant
+                  </button>
+                </div>
+              </td>
+              <td></td>
+            </tr>
+
+            <tr *ngFor="let tenant of tenants">
+              <td>{{ tenant.tenant_full_name }} (Tenant)</td>
+              <td></td>
+
+              <td></td>
+
+              <td>
+                <div class="d-flex">
+                  <button class="btn btn-sm btn-danger">
+                    Remove As Tenant
+                  </button>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
-  <!-- </body> -->
-  
+</div>

@@ -151,4 +151,8 @@ export class DormService {
 
     return this.http.request(req);
   }
+
+  addTenant(id: any, tenantData: any[]): Observable <any>{
+    return this.http.put(`${baseUrl}/add_tenant/${id}`, tenantData);
+  }
 }

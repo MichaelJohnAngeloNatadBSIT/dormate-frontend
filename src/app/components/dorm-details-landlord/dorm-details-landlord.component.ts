@@ -20,32 +20,50 @@ import { DormImagesUploadDialogComponent } from 'src/app/dialogs/dorm-images-upl
 import { EditDormInfoDialogComponent } from 'src/app/dialogs/edit-dorm-info-dialog/edit-dorm-info-dialog.component';
 import { DeleteDormDialogComponent } from 'src/app/dialogs/delete-dorm-dialog/delete-dorm-dialog.component';
 import { PublishDialogComponent } from 'src/app/dialogs/publish-dialog/publish-dialog.component';
+import { ScheduleApproveComponent } from 'src/app/dialogs/schedule-approve/schedule-approve.component';
+import { AcceptAsTenantDialogComponent } from 'src/app/dialogs/accept-as-tenant-dialog/accept-as-tenant-dialog.component';
+
+interface Tenant {
+  tenant_username?: string;
+  tenant_user_id?: string;
+  tenant_full_name?: string;
+  tenant_contact_number?: string;
+  tenant_address?: string;
+  verified?: boolean;
+  approve_tenant?: boolean;
+}
 
 @Component({
   selector: 'app-dorm-details-landlord',
   templateUrl: './dorm-details-landlord.component.html',
   styleUrls: ['./dorm-details-landlord.component.css'],
 })
+
+
 export class DormDetailsLandlordComponent implements OnInit {
   dorm_id: string;
   dorm: Dorm;
   currentUser: User;
   user : User;
   dorms?: Dorm[];
-  schedules?: Schedule[];
+  tenants?: Tenant[];
+  tenantSchedule: Schedule[];
+  schedulesLandlord?: Schedule[];
+  schedulesLandlordApproved?: Schedule[];
   schedulesTenant?: Schedule[];
   schedulesApproved?: Schedule[];
   calendar_events : EventInput[] = [];
+
   constructor(
     private tokenService: TokenStorageService,
     private userService: UserService,
     private dialog: MatDialog,
     private dormService: DormService,
-    private chatService: ChatService,
     private scheduleService: ScheduleService,
     private router: Router,
     private route: ActivatedRoute,
   ) {}
+
   ngOnInit() {
     this.dorm_id = this.route.snapshot.paramMap.get('id');
 
@@ -61,6 +79,8 @@ export class DormDetailsLandlordComponent implements OnInit {
       this.currentUser = this.tokenService.getUser();
       // this.retrieveUser();
       this.retrieveDorm();
+      this.retrieveForApprovalScheduleLandlord();
+      this.retrieveForApprovedScheduleLandlord();
   }
   
   retrieveDorm(): void {
@@ -68,11 +88,37 @@ export class DormDetailsLandlordComponent implements OnInit {
       .subscribe({
         next: (data) => {
           this.dorm = data;
+          this.tenants = this.dorm.tenants;
         },
         error: (e) => console.error(e)
       });
   }
 
+  retrieveForApprovalScheduleLandlord(): void {
+    this.scheduleService.getAllScheduleLandlord(this.currentUser.id)
+      .subscribe({
+        next: (data) => {
+          this.schedulesLandlord = data;
+          console.log(this.schedulesLandlord)
+
+        },
+        error: (e) => console.error(e)
+      });
+  }
+
+  retrieveForApprovedScheduleLandlord(): void {
+    this.scheduleService.getAllScheduleLandlordApproved(this.currentUser.id)
+      .subscribe({
+        next: (data) => {
+          this.schedulesLandlordApproved = data;
+        },
+        error: (e) => console.error(e)
+      });
+  }
+
+  addTenantToDorm(){
+
+  }
   openImageZoomDialog(images: any) {
     let dialogRef = this.dialog.open(ImageZoomComponent, {
       width: '900px',
@@ -173,5 +219,29 @@ export class DormDetailsLandlordComponent implements OnInit {
     dialogRef.afterClosed().subscribe((result) => {
       this.retrieveDorm();
     });
+  }
+
+  openScheduleApproveDialog(schedule: Schedule): void{
+    let dialogRef = this.dialog.open(ScheduleApproveComponent, { 
+      width: '500px', 
+      height: '80vh',
+      data: schedule
+    }); 
+    dialogRef.afterClosed().subscribe(result => { 
+      this.retrieveForApprovalScheduleLandlord();
+      this.retrieveForApprovedScheduleLandlord();
+     }); 
+  }
+
+  openAcceptTenantDialog(schedule: Schedule): void{
+    let dialogRef = this.dialog.open(AcceptAsTenantDialogComponent, { 
+      width: '500px', 
+      height: '80vh',
+      data: schedule
+    }); 
+    dialogRef.afterClosed().subscribe(result => { 
+      this.retrieveForApprovalScheduleLandlord();
+      this.retrieveForApprovedScheduleLandlord();
+     }); 
   }
 }
