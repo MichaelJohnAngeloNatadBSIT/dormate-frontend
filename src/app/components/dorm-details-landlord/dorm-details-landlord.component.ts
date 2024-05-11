@@ -235,8 +235,8 @@ export class DormDetailsLandlordComponent implements OnInit {
 
   openAcceptTenantDialog(schedule: Schedule): void{
     let dialogRef = this.dialog.open(AcceptAsTenantDialogComponent, { 
-      width: '500px', 
-      height: '80vh',
+      width: '400px', 
+      height: '50vh',
       data: schedule
     }); 
     dialogRef.afterClosed().subscribe(result => { 

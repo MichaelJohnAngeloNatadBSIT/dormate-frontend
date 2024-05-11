@@ -10,6 +10,10 @@ export interface User {
     image_id: String;
     mobile_number: String;
     verified: any;
+    dorm_id: string,
+    dorm_title: string,
+    dorm_landlord: string,
+    is_tenant: boolean,
 }
 
 

@@ -47,6 +47,10 @@ export class ScheduleService {
     return this.http.put(`${baseUrl}/update_schedule/${id}`, data);
   }
 
+  updateScheduleOnly(id: any, data: any): Observable<any> {
+    return this.http.put(`${baseUrl}/update_schedule_only/${id}`, data);
+  }
+
   deleteSchedule(id: any): Observable<any> {
     return this.http.delete(`${baseUrl}/delete_schedule/${id}`);
   }

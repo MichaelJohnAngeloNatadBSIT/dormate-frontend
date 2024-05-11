@@ -1,46 +1,14 @@
-<!-- <div class="container">
-    <div class="close-button-container">
-      <button class="close-button" mat-icon-button [mat-dialog-close]="true"> 
-        <mat-icon class="close-icon" color="warn">close</mat-icon>
-      </button>
-    </div>
-    <div class="content-container text-center">
-      <h1>User Information</h1>
-      <img
-        class="user-image"
-        [src]="user.user_image"
-        alt="User image"
-      />
-      <div class="user-info">
-        <h4>
-          Full Name: <b>{{ user.first_name }} {{ user.last_name }}</b>
-        </h4>
-        <p>
-          Email: <b>{{ user.email }}</b>
-        </p>
-        <p>
-          Address: <b>{{ user.address }}</b>
-        </p>
-        <p>
-          Mobile Number: <b>{{ user.mobile_number }}</b>
-        </p>
-        <p>
-          Verified User: 
-            <b>
-              <i *ngIf="user.verified" class="fa fa-check-circle-o" style="font-size:15px;color:#5687fb">Verified</i>
-              <i *ngIf="!user.verified" class="fa fa-times" style="font-size:15px;color:#94918c">Not Verified</i>
-            </b>
-        </p>
-        <button
-          type="button"
-          class="btn btn-success btn-block"
-          (click)="approveUserSchedule(data._id)"
-        >
-          Approve Visit Schedule
-        </button>
-      </div>
-    </div>
+<div class="container">
+  <button class="close-button" mat-icon-button [mat-dialog-close]="true"> 
+      <mat-icon class="close-icon" color="warn">close</mat-icon>
+  </button>
+  <div mat-dialog-content>
+      <h1 mat-dialog-title>Are you sure that you want to add <b>{{ scheduleData.tenant_full_name }}</b> this dorm post?</h1>
   </div>
-  
 
--->
+  <div mat-dialog-actions>
+      <button mat-button mat-dialog-close color="primary" (click)="onNoClick()">No</button>
+      <button mat-button mat-dialog-close color="primary" (click)="acceptAsTenant()">Yes</button>
+  </div>
+</div>
+

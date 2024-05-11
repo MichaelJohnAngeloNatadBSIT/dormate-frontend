@@ -137,65 +137,66 @@
       </div>
       <!-- app.component.html -->
       <hr />
-      <h4><strong>Dorm Visitors and Tenants</strong></h4>
-      <div class="table-responsive">
-        <table class="table">
-          <thead>
-            <tr>
-              <th>Visitor Full Name</th>
-              <th>Approve Visit</th>
-              <th>Accept Visitor As Tenant</th>
-              <th>Remove As Tenant</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let tenantVisit of schedulesLandlord">
-              <td>{{ tenantVisit.tenant_full_name }} (Visitor)</td>
-              <td>
-                <div class="d-flex">
-                  <button
-                    class="btn btn-sm btn-primary mr-1"
-                    (click)="openScheduleApproveDialog(tenantVisit)"
-                  >
-                    Accept Dorm Visit
-                  </button>
-                </div>
-              </td>
-              <td>
-              </td>
-              <td></td>
-            </tr>
 
-            <tr *ngFor="let tenantVisitApproved of schedulesLandlordApproved">
-              <td>{{ tenantVisitApproved.tenant_full_name }} (Visitor)</td>
-              <td></td>
-              <td>
-                <div class="d-flex" *ngIf="tenantVisitApproved.approve_visit">
-                  <button class="btn btn-sm btn-success" (click)="openAcceptTenantDialog(tenantVisitApproved)">
-                    Accept As Tenant
-                  </button>
-                </div>
-              </td>
-              <td></td>
-            </tr>
-
-            <tr *ngFor="let tenant of tenants">
-              <td>{{ tenant.tenant_full_name }} (Tenant)</td>
-              <td></td>
-
-              <td></td>
-
-              <td>
-                <div class="d-flex">
-                  <button class="btn btn-sm btn-danger">
-                    Remove As Tenant
-                  </button>
-                </div>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+      <div class="visitor-tenant-table" *ngIf="schedulesLandlord.length > 0 || schedulesLandlordApproved.length > 0 || tenants.length > 0">
+        <h4><strong>Dorm Visitors and Tenants</strong></h4>
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Visitor Full Name</th>
+                        <th>Approve Visit</th>
+                        <th>Accept Visitor As Tenant</th>
+                        <th>Remove As Tenant</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Iterate over schedulesLandlord -->
+                    <tr *ngFor="let tenantVisit of schedulesLandlord">
+                        <td>{{ tenantVisit.tenant_full_name }} (Visitor)</td>
+                        <td>
+                            <div class="d-flex">
+                                <button class="btn btn-sm btn-primary mr-1" (click)="openScheduleApproveDialog(tenantVisit)">
+                                    Accept Dorm Visit
+                                </button>
+                            </div>
+                        </td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+    
+                    <!-- Iterate over schedulesLandlordApproved -->
+                    <tr *ngFor="let tenantVisitApproved of schedulesLandlordApproved">
+                        <td>{{ tenantVisitApproved.tenant_full_name }} (Visitor)</td>
+                        <td></td>
+                        <td>
+                            <div class="d-flex" *ngIf="tenantVisitApproved.approve_visit">
+                                <button class="btn btn-sm btn-success" (click)="openAcceptTenantDialog(tenantVisitApproved)">
+                                    Accept As Tenant
+                                </button>
+                            </div>
+                        </td>
+                        <td></td>
+                    </tr>
+    
+                    <!-- Iterate over tenants -->
+                    <tr *ngFor="let tenant of tenants">
+                        <td>{{ tenant.tenant_full_name }} (Tenant)</td>
+                        <td></td>
+                        <td></td>
+                        <td>
+                            <div class="d-flex">
+                                <button class="btn btn-sm btn-danger">
+                                    Remove As Tenant
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    
     </div>
   </div>
 </div>

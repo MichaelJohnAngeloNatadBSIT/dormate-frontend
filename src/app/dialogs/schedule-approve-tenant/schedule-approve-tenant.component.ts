@@ -27,7 +27,7 @@ export class ScheduleApproveTenantComponent {
     ngOnInit(): void {
         // console.log(this.data);
         this.retrieveDorm();
-        this.retrieveUser();
+        // this.retrieveUser();
     }
 
     retrieveDorm(): void {
@@ -41,15 +41,15 @@ export class ScheduleApproveTenantComponent {
         });
     }
 
-    retrieveUser(): void {
-      this.userService.retrieveUserWithId(this.data.tenant_id)
-        .subscribe({
-          next: (data) => {
-              this.user = data;
-          },
-          error: (e) => console.error(e)
-        });
-    }
+    // retrieveUser(): void {
+    //   this.userService.retrieveUserWithId(this.data.tenant_id)
+    //     .subscribe({
+    //       next: (data) => {
+    //           this.user = data;
+    //       },
+    //       error: (e) => console.error(e)
+    //     });
+    // }
 
     approveUserSchedule(schedule_id:any){
       const data = {
