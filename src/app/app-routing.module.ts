@@ -20,7 +20,7 @@ import { DormDetailsLandlordComponent } from './components/dorm-details-landlord
 const routes: Routes = [
   { path: '', redirectTo: 'landing-page', pathMatch: 'full'},
   { path: 'dorms', component: DormsListComponent },
-  { path: 'dorms/:id', component: DormDetailsComponent },
+  { path: 'dorms/:id', component: DormDetailsComponent, canActivate: [AuthGuard] },
   { path: 'add', component: AddDormComponent, canActivate: [AuthGuard] },
   { path: 'about-us', component: AboutUsComponent },
   { path: 'login', component: LoginComponent },
@@ -31,11 +31,8 @@ const routes: Routes = [
   { path: 'user', component: BoardUserComponent },
   { path: 'landlord', component: BoardLandlordComponent },
   { path: 'landing-page', component: LandingPageComponent },
-  { path: 'dorm-detail/:id', component: DormComponent },
-  { path: 'dorm-detail-landlord/:id', component: DormDetailsLandlordComponent }
-
-
-
+  { path: 'dorm-detail/:id', component: DormComponent, canActivate: [AuthGuard] },
+  { path: 'dorm-detail-landlord/:id', component: DormDetailsLandlordComponent, canActivate: [AuthGuard] }
 
 ];
 

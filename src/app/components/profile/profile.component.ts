@@ -143,7 +143,7 @@ export class ProfileComponent implements OnInit {
           this.schedulesApproved = data;
           this.schedulesApproved.forEach(d =>{
             this.calendar_events = this.calendar_events.concat(
-              { start: new Date(d.schedule_date), title: d.user_full_name+" will visit "+d.dorm_title, test: 'test' }
+              { start: new Date(d.schedule_date), title: d.tenant_full_name +" will visit "+d.dorm_title, test: 'test' }
             );
           })
         },
@@ -158,7 +158,7 @@ export class ProfileComponent implements OnInit {
           this.schedulesApproved = data;
           this.schedulesApproved.forEach(d =>{
             this.calendar_events = this.calendar_events.concat(
-              { start: new Date(d.schedule_date), title: d.user_full_name+" will visit "+d.dorm_title, test: 'test' }
+              { start: new Date(d.schedule_date), title: d.tenant_full_name+" will visit "+d.dorm_title, test: 'test' }
             );
           })
         },
