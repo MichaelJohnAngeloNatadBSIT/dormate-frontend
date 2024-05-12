@@ -1,8 +1,10 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
+import { User } from 'src/app/interface/user';
 import { Schedule } from 'src/app/models/schedules.model';
 import { DormService } from 'src/app/services/dorm.service';
 import { ScheduleService } from 'src/app/services/schedule.service';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-accept-as-tenant-dialog',
@@ -12,18 +14,20 @@ import { ScheduleService } from 'src/app/services/schedule.service';
 export class AcceptAsTenantDialogComponent implements OnInit {
 
   scheduleData: Schedule;
+  // user: User;
   tenant: any[];
   tenant_accepted: any;
+  user_updated_data: any;
 
   constructor(
     public dialogRef: MatDialogRef<AcceptAsTenantDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
     private dormService: DormService,
     private scheduleService: ScheduleService,
+    private userService: UserService,
   ){}
 
   ngOnInit(): void {
-    console.log(this.data);
     this.scheduleData = this.data;
     // Assuming tenantData is an array
     this.tenant = [{
@@ -37,17 +41,38 @@ export class AcceptAsTenantDialogComponent implements OnInit {
   }
   
   acceptAsTenant(){
-    this.dormService.addTenant(this.data.dorm_id, this.tenant).subscribe((data) => {
+    this.dormService.addTenant(this.data.dorm_id, this.tenant).subscribe({
+      next: (res) => {
+
+      },
+      error: (e) => console.error(e)
     });
 
     this.tenant_accepted = {
       is_accepted_tenant : true
     };
 
-    this.scheduleService.updateScheduleOnly(this.data._id, this.tenant_accepted).subscribe((data) => {
-      console.log(data);
+    this.scheduleService.updateScheduleOnly(this.data._id, this.tenant_accepted).subscribe({
+      next: (res) => {
+
+      },
+      error: (e) => console.error(e)
     });
     
+    this.user_updated_data = {
+      dorm_id: this.data.dorm_id,
+      dorm_title: this.data.dorm_title,
+      dorm_landlord_user_id: this.data.landlord_id,
+      is_tenant: true,
+    };
+
+    this.userService.updateUser(this.data.tenant_user_id, this.user_updated_data).subscribe({
+      next: (res) => {
+
+      },
+      error: (e) => console.error(e)
+    });
+
   }
 
   onNoClick(): void {

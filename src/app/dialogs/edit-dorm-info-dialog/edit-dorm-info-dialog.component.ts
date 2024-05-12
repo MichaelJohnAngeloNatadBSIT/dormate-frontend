@@ -25,7 +25,7 @@ export class EditDormInfoDialogComponent {
     vacancy: 0,
     rent: 0,
     for_rent: false,
-    published: false,
+    publish: false,
   };
 
   constructor(

@@ -16,7 +16,7 @@ export class DormDetailsComponent implements OnInit {
     title: '',
     description: '',
     for_rent: false,
-    published: false,
+    publish: false,
   };
 
   message = ''

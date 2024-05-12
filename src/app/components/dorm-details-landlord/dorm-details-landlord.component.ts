@@ -22,6 +22,7 @@ import { DeleteDormDialogComponent } from 'src/app/dialogs/delete-dorm-dialog/de
 import { PublishDialogComponent } from 'src/app/dialogs/publish-dialog/publish-dialog.component';
 import { ScheduleApproveComponent } from 'src/app/dialogs/schedule-approve/schedule-approve.component';
 import { AcceptAsTenantDialogComponent } from 'src/app/dialogs/accept-as-tenant-dialog/accept-as-tenant-dialog.component';
+import { EvictAsTenantDialogComponent } from 'src/app/dialogs/evict-as-tenant-dialog/evict-as-tenant-dialog.component';
 
 interface Tenant {
   tenant_username?: string;
@@ -99,8 +100,6 @@ export class DormDetailsLandlordComponent implements OnInit {
       .subscribe({
         next: (data) => {
           this.schedulesLandlord = data;
-          console.log(this.schedulesLandlord)
-
         },
         error: (e) => console.error(e)
       });
@@ -116,9 +115,6 @@ export class DormDetailsLandlordComponent implements OnInit {
       });
   }
 
-  addTenantToDorm(){
-
-  }
   openImageZoomDialog(images: any) {
     let dialogRef = this.dialog.open(ImageZoomComponent, {
       width: '900px',
@@ -242,6 +238,20 @@ export class DormDetailsLandlordComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => { 
       this.retrieveForApprovalScheduleLandlord();
       this.retrieveForApprovedScheduleLandlord();
+      this.retrieveDorm();
+     }); 
+  }
+
+  openEvictTenantDialog(tenant: Tenant, dorm: Dorm): void{
+    let dialogRef = this.dialog.open(EvictAsTenantDialogComponent, { 
+      width: '400px', 
+      height: '50vh',
+      data: { tenant, dorm }
+    }); 
+    dialogRef.afterClosed().subscribe(result => { 
+      this.retrieveForApprovalScheduleLandlord();
+      this.retrieveForApprovedScheduleLandlord();
+      this.retrieveDorm();
      }); 
   }
 }

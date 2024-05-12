@@ -12,7 +12,7 @@ export interface User {
     verified: any;
     dorm_id: string,
     dorm_title: string,
-    dorm_landlord: string,
+    dorm_landlord_user_id: string,
     is_tenant: boolean,
 }
 

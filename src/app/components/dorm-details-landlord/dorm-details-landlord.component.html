@@ -25,8 +25,8 @@
       </swiper>
       <h2 class="w3-text-blue">
         {{ dorm?.title }}
-        <i *ngIf="dorm?.published" class="icon fa fa-check-circle-o">Posted</i>
-        <i *ngIf="!dorm?.published" class="icon fa fa-times">Not Yet Posted</i>
+        <i *ngIf="dorm?.publish" class="icon fa fa-check-circle-o">Posted</i>
+        <i *ngIf="!dorm?.publish" class="icon fa fa-times">Not Yet Posted</i>
         <i
           *ngIf="dorm?.payment_status == 'paid'"
           class="icon fa fa-check-circle-o"
@@ -41,7 +41,7 @@
         <div class="text-center mt-3">
           <p class="card-text">
             {{
-              dorm?.published
+              dorm?.publish
                 ? "Dorm listing is Published"
                 : "Upload Dorm Certificates, Images and pay our Posting Fee to approve publishing of your dorm listing"
             }}
@@ -83,14 +83,14 @@
             <button
               (click)="openPublishDormDialog(dorm)"
               class="btn btn-success dialog-button mr-2"
-              *ngIf="dorm?.published == false"
+              *ngIf="dorm?.publish == false"
             >
               List Dorm As For Rent
             </button>
             <button
               (click)="openPublishDormDialog(dorm)"
               class="btn btn-secondary dialog-button mr-2"
-              *ngIf="dorm?.published == true"
+              *ngIf="dorm?.publish == true"
             >
               Unlist Dorm As For Rent
             </button>
@@ -138,7 +138,7 @@
       <!-- app.component.html -->
       <hr />
 
-      <div class="visitor-tenant-table" *ngIf="schedulesLandlord.length > 0 || schedulesLandlordApproved.length > 0 || tenants.length > 0">
+      <div class="visitor-tenant-table" *ngIf="schedulesLandlord?.length > 0 || schedulesLandlordApproved?.length > 0 || tenants?.length > 0">
         <h4><strong>Dorm Visitors and Tenants</strong></h4>
         <div class="table-responsive">
             <table class="table">
@@ -186,7 +186,7 @@
                         <td></td>
                         <td>
                             <div class="d-flex">
-                                <button class="btn btn-sm btn-danger">
+                                <button class="btn btn-sm btn-danger" (click)="openEvictTenantDialog(tenant, dorm)">
                                     Remove As Tenant
                                 </button>
                             </div>

@@ -37,9 +37,13 @@
       alt="User image"
     />
     <div class="user-info">
-      <h4>
+      <p>
         Full Name: <b>{{ user?.first_name }} {{ user?.last_name }}</b>
-      </h4>
+      </p>
+
+      <p>
+        Visiting Schedule: <b>{{ schedule?.schedule_date | date:'MMM d, y' }} {{ schedule?.schedule_time }}</b>
+      </p>
       <p>
         Email: <b>{{ user?.email }}</b>
       </p>

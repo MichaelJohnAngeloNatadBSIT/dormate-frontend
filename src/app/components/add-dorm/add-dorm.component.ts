@@ -35,7 +35,7 @@ export class AddDormComponent {
     vacancy: 1,
     rent: 0,
     for_rent: false,
-    published: false,
+    publish: false,
   };
 
   constructor(

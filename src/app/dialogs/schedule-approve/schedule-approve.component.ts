@@ -2,6 +2,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog'; 
 import { User } from 'src/app/interface/user';
 import { Dorm } from 'src/app/models/dorms.model';
+import { Schedule } from 'src/app/models/schedules.model';
 import { DormService } from 'src/app/services/dorm.service';
 import { ScheduleService } from 'src/app/services/schedule.service';
 import { UserService } from 'src/app/services/user.service';
@@ -15,6 +16,7 @@ import { SwiperOptions } from 'swiper';
 export class ScheduleApproveComponent implements OnInit {
   dorm: Dorm;
   user: User;
+  schedule: Schedule;
   constructor(
     public dialogRef: MatDialogRef<ScheduleApproveComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
@@ -24,9 +26,9 @@ export class ScheduleApproveComponent implements OnInit {
     private dialog: MatDialog
   ){}
     ngOnInit(): void {
-        console.log(this.data);
-        this.retrieveDorm();
-        this.retrieveUser();
+      this.schedule = this.data;
+      this.retrieveDorm();
+      this.retrieveUser();
     }
 
     retrieveDorm(): void {
