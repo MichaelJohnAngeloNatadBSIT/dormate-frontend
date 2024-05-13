@@ -32,7 +32,7 @@
           Mobile Number: <b>{{ user?.mobile_number }}</b>
         </p>
 
-        <p>
+        <p *ngIf="user?.dorm_tenant_date">
             Tenant of your Dorm Since: <b>{{ user?.dorm_tenant_date | date:'MMMM d, y' }}</b>
         </p>
       </div>

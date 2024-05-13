@@ -160,7 +160,7 @@
             <tbody>
               <!-- Iterate over schedulesLandlord -->
               <tr *ngFor="let tenantVisit of schedulesLandlord">
-                <td class="tenant-visitor-name">{{ tenantVisit.tenant_full_name }} (Visitor)</td>
+                <td class="tenant-visitor-name" (click)="openTenantVisitorDialog(tenantVisit.tenant_user_id)">{{ tenantVisit.tenant_full_name }} (Visitor)</td>
                 <td>
                   <div class="d-flex">
                     <button
@@ -177,7 +177,7 @@
 
               <!-- Iterate over schedulesLandlordApproved -->
               <tr *ngFor="let tenantVisitApproved of schedulesLandlordApproved">
-                <td class="tenant-visitor-name">{{ tenantVisitApproved.tenant_full_name }} (Visitor)</td>
+                <td class="tenant-visitor-name" (click)="openTenantVisitorDialog(tenantVisitApproved.tenant_user_id)">{{ tenantVisitApproved.tenant_full_name }} (Visitor)</td>
                 <td></td>
                 <td>
                   <div class="d-flex" *ngIf="tenantVisitApproved.approve_visit">
