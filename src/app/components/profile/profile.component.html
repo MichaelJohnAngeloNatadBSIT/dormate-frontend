@@ -87,6 +87,15 @@
                 </div>
               </div>
               <hr />
+              <div class="row" *ngIf="user.dorm_id">
+                <div class="col-sm-3">
+                  <h4 class="mb-0">Currently Rented Dorm</h4>
+                </div>
+                <div class="col-sm-9 text-secondary">
+                  {{ user?.dorm_title }}
+                </div>
+              </div>
+              <hr />
               <div class="row">
                 <div class="col-sm-12">
                   <a
@@ -106,6 +115,14 @@
                     target="__blank"
                     (click)="openChangePassDialog()"
                     >Change Password</a
+                  >
+
+                  <a
+                    class="btn btn-outline-dark user-details-btn"
+                    target="__blank"
+                    (click)="goToDormDetailTenant(user.dorm_id)"
+                    *ngIf="user.dorm_id"
+                    >Currently Rented Dorm</a
                   >
                 </div>
               </div>
@@ -174,7 +191,7 @@
       </div>
 
       <div class="col-md-8 mb-3">
-        <h1>Your Dorms</h1>
+        <h1>Your Dorm Posts</h1>
         <a
           class="btn btn-outline-primary user-details-btn"
           target="__blank"

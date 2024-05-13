@@ -1,0 +1,97 @@
+<!-- <body> -->
+    <div class="w3-container">
+        <!-- !PAGE CONTENT! -->
+        <div class="w3-main w3-white">
+          <!-- Push down content on small screens -->
+          <div class="w3-hide-large" style="margin-top: 90px"></div>
+      
+          <!-- Slideshow Header -->
+          <div class="w3-container" id="apartment">
+            <swiper [config]="config">
+              <div
+                class="swiper-wrapper"
+                (click)="openImageZoomDialog(dorm.dorm_images)"
+              >
+                <div class="swiper-slide d-flex justify-content-center" *ngFor="let image of dorm.dorm_images">
+                  <img
+                    src="{{ image }}"
+                    alt="img 1" 
+                    class="dorm_image img-responsive"
+                  />
+                </div>
+              </div>
+            </swiper>
+            <h2 class="w3-text-blue">{{ dorm.title }}</h2>
+          </div>
+      
+          <div class="w3-container">
+            <h4><strong>The space</strong></h4>
+            <div class="w3-row w3-large">
+              <div class="w3-col s6">
+                <p>
+                  <i class="fa fa-fw fa-male"></i> Vacancy: {{ dorm.vacancy || 0 }}
+                </p>
+                <p><i class="fa fa-fw fa-bath"></i> Bathrooms: {{ dorm.bathroom }}</p>
+                <p><i class="fa fa-fw fa-bed"></i> Rooms: {{ dorm.bedroom }}</p>
+              </div>
+              <div class="w3-col s6">
+                <p>
+                  <i class="fa fa-map-marker" style="width: 30px"></i>{{ dorm.address
+                  }}<br />
+                </p>
+                <p>
+                  <i class="fa fa-phone" style="width: 30px"></i
+                  >{{ dorm.contact_number }}<br />
+                </p>
+                <p>
+                  <i class="fa fa-user" style="width: 30px"> </i>{{ dorm.username
+                  }}<br />
+                </p>
+              </div>
+            </div>
+            <hr />
+      
+            <h4><strong>Rules and Description</strong></h4>
+            <p>
+              {{ dorm.description }}
+            </p>
+            <p>Schedule A Visit to this Dorm now</p>
+            <p>
+              <!-- <button
+                class="w3-button w3-green w3-third"
+                type="button"
+                class="btn btn-primary btn-lg btn-block"
+                (click)="openInfoSchedDialog(dorm)"
+              >
+                Schedule A Visit
+              </button> -->
+            </p>
+          </div>
+        </div>
+      
+        <div class="container">
+            <h2>Write a Review</h2>
+            <form>
+                <!-- <div class="form-group">
+                    <label for="name">Your Name:</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Your Email:</label>
+                    <input type="email" id="email" name="email" required>
+                </div> -->
+                <div class="form-group">
+                    <label for="rating">Rating:</label>
+                    <input type="number" id="rating" name="rating" min="1" max="5" required>
+                </div>
+                <div class="form-group">
+                    <label for="review">Your Review:</label>
+                    <textarea id="review" name="review" required></textarea>
+                </div>
+                <div class="form-group">
+                    <button type="submit">Submit Review</button>
+                </div>
+            </form>
+        </div>
+      </div>
+      

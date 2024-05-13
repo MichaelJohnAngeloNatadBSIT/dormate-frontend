@@ -15,6 +15,7 @@ import { AboutUsComponent } from './components/about-us/about-us.component';
 import { LandingPageComponent } from './components/landing-page/landing-page.component';
 import { DormComponent } from './components/dorm/dorm.component';
 import { DormDetailsLandlordComponent } from './components/dorm-details-landlord/dorm-details-landlord.component';
+import { DormDetailsTenantComponent } from './components/dorm-details-tenant/dorm-details-tenant.component';
 
 
 const routes: Routes = [
@@ -32,7 +33,8 @@ const routes: Routes = [
   { path: 'landlord', component: BoardLandlordComponent },
   { path: 'landing-page', component: LandingPageComponent },
   { path: 'dorm-detail/:id', component: DormComponent, canActivate: [AuthGuard] },
-  { path: 'dorm-detail-landlord/:id', component: DormDetailsLandlordComponent, canActivate: [AuthGuard] }
+  { path: 'dorm-detail-landlord/:id', component: DormDetailsLandlordComponent, canActivate: [AuthGuard] },
+  { path: 'dorm-detail-tenant/:id', component: DormDetailsTenantComponent, canActivate: [AuthGuard] },
 
 ];
 

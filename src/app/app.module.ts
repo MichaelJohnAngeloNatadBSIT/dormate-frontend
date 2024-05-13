@@ -60,6 +60,7 @@ import { EvictAsTenantDialogComponent } from './dialogs/evict-as-tenant-dialog/e
 import { TenantVisitorInfoDialogComponent } from './dialogs/tenant-visitor-info-dialog/tenant-visitor-info-dialog.component';
 import { RejectAsTenantDialogComponent } from './dialogs/reject-as-tenant-dialog/reject-as-tenant-dialog.component';
 import { ScheduleRejectComponent } from './dialogs/schedule-reject/schedule-reject.component';
+import { DormDetailsTenantComponent } from './components/dorm-details-tenant/dorm-details-tenant.component';
 
 
 @NgModule({
@@ -103,7 +104,8 @@ import { ScheduleRejectComponent } from './dialogs/schedule-reject/schedule-reje
     EvictAsTenantDialogComponent,
     TenantVisitorInfoDialogComponent,
     RejectAsTenantDialogComponent,
-    ScheduleRejectComponent
+    ScheduleRejectComponent,
+    DormDetailsTenantComponent
   ],
   imports: [
     BrowserModule,

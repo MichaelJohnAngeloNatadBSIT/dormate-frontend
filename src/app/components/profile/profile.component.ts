@@ -106,6 +106,10 @@ export class ProfileComponent implements OnInit {
     this.router.navigate(['dorm-detail-landlord', dormId]);
   }
 
+  goToDormDetailTenant(dormId: string) {
+    this.router.navigate(['dorm-detail-tenant', dormId]);
+  }
+
   retrieveForApprovalDorm(): void {
     this.dormService.getForApproval(this.currentUser.id)
       .subscribe({
