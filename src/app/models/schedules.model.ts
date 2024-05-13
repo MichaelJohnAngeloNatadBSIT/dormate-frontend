@@ -13,4 +13,5 @@ export class Schedule {
     user_full_name?: string;
     dorm_title?: string;
     is_accepted_tenant?: boolean;
+    approve_visit?: boolean;
 }

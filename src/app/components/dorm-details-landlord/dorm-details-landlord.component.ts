@@ -24,6 +24,8 @@ import { ScheduleApproveComponent } from 'src/app/dialogs/schedule-approve/sched
 import { AcceptAsTenantDialogComponent } from 'src/app/dialogs/accept-as-tenant-dialog/accept-as-tenant-dialog.component';
 import { EvictAsTenantDialogComponent } from 'src/app/dialogs/evict-as-tenant-dialog/evict-as-tenant-dialog.component';
 import { TenantVisitorInfoDialogComponent } from 'src/app/dialogs/tenant-visitor-info-dialog/tenant-visitor-info-dialog.component';
+import { RejectAsTenantDialogComponent } from 'src/app/dialogs/reject-as-tenant-dialog/reject-as-tenant-dialog.component';
+import { ScheduleRejectComponent } from 'src/app/dialogs/schedule-reject/schedule-reject.component';
 
 interface Tenant {
   tenant_username?: string;
@@ -230,8 +232,33 @@ export class DormDetailsLandlordComponent implements OnInit {
      }); 
   }
 
+  openScheduleRejectDialog(schedule: Schedule): void{
+    let dialogRef = this.dialog.open(ScheduleRejectComponent, { 
+      width: '500px', 
+      height: '80vh',
+      data: schedule
+    }); 
+    dialogRef.afterClosed().subscribe(result => { 
+      this.retrieveForApprovalScheduleLandlord();
+      this.retrieveForApprovedScheduleLandlord();
+     }); 
+  }
+
   openAcceptTenantDialog(schedule: Schedule): void{
     let dialogRef = this.dialog.open(AcceptAsTenantDialogComponent, { 
+      width: '400px', 
+      height: '50vh',
+      data: schedule
+    }); 
+    dialogRef.afterClosed().subscribe(result => { 
+      this.retrieveForApprovalScheduleLandlord();
+      this.retrieveForApprovedScheduleLandlord();
+      this.retrieveDorm();
+     }); 
+  }
+
+  openRejectTenantDialog(schedule: Schedule): void{
+    let dialogRef = this.dialog.open(RejectAsTenantDialogComponent, { 
       width: '400px', 
       height: '50vh',
       data: schedule

@@ -1,0 +1,73 @@
+<div class="container">
+    <div class="close-button-container">
+      <button class="close-button" mat-icon-button [mat-dialog-close]="true"> 
+        <mat-icon class="close-icon" color="warn">close</mat-icon>
+      </button>
+    </div>
+    <div class="content-container text-center">
+      <h2>Dorm Information</h2>
+      <div class="dorm-images">
+        <swiper [config]="config">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide" *ngFor="let image of dorm?.dorm_images">
+              <img src="{{ image }}" alt="img 1" class="dorm_image" />
+            </div>
+          </div>
+  
+          <!-- Add Pagination -->
+          <div class="swiper-pagination"></div>
+  
+          <!-- Add Arrows -->
+          <div class="swiper-button-next"></div>
+          <div class="swiper-button-prev"></div>
+        </swiper>
+      </div>
+      <div class="dorm-info">
+        <h4>
+          Post Title: <b>{{ dorm?.title }}</b>
+        </h4>
+        <p>
+          Address: <b>{{ dorm?.address }}</b>
+        </p>
+      </div>
+      <h1>User Information</h1>
+      <img
+        class="user-image"
+        [src]="user?.user_image"
+        alt="User image"
+      />
+      <div class="user-info">
+        <p>
+          Full Name: <b>{{ user?.first_name }} {{ user?.last_name }}</b>
+        </p>
+  
+        <p>
+          Visiting Schedule: <b>{{ schedule?.schedule_date | date:'MMM d, y' }} {{ schedule?.schedule_time }}</b>
+        </p>
+        <p>
+          Email: <b>{{ user?.email }}</b>
+        </p>
+        <p>
+          Address: <b>{{ user?.address }}</b>
+        </p>
+        <p>
+          Mobile Number: <b>{{ user?.mobile_number }}</b>
+        </p>
+        <p>
+          Verified User: 
+            <b>
+              <i *ngIf="user?.verified" class="fa fa-check-circle-o" style="font-size:15px;color:#5687fb">Verified</i>
+              <i *ngIf="!user?.verified" class="fa fa-times" style="font-size:15px;color:#94918c">Not Verified</i>
+            </b>
+        </p>
+        <button
+          type="button"
+          class="btn btn-danger btn-block"
+          (click)="rejectUserSchedule(data._id)"
+        >
+          Reject Visit Schedule
+        </button>
+      </div>
+    </div>
+  </div>
+  

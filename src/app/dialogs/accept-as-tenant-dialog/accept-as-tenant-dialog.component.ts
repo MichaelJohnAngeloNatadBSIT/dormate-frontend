@@ -1,6 +1,5 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
-import { User } from 'src/app/interface/user';
 import { Schedule } from 'src/app/models/schedules.model';
 import { DormService } from 'src/app/services/dorm.service';
 import { ScheduleService } from 'src/app/services/schedule.service';

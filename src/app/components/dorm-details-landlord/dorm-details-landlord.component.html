@@ -152,9 +152,9 @@
             <thead>
               <tr>
                 <th>Visitor Full Name</th>
-                <th>Approve Visit</th>
-                <th>Accept Visitor As Tenant</th>
-                <th>Remove As Tenant</th>
+                <th>Approve/Reject Visit</th>
+                <th>Accept/Reject Visitor As Tenant</th>
+                <th>Evict Tenant</th>
               </tr>
             </thead>
             <tbody>
@@ -169,6 +169,13 @@
                     >
                       Accept Dorm Visit
                     </button>
+
+                    <button
+                      class="btn btn-sm btn-danger mr-1"
+                      (click)="openScheduleRejectDialog(tenantVisit)"
+                    >
+                      Reject Dorm Visit
+                    </button>
                   </div>
                 </td>
                 <td></td>
@@ -182,10 +189,17 @@
                 <td>
                   <div class="d-flex" *ngIf="tenantVisitApproved.approve_visit">
                     <button
-                      class="btn btn-sm btn-success"
+                      class="btn btn-sm btn-success mr-1"
                       (click)="openAcceptTenantDialog(tenantVisitApproved)"
                     >
                       Accept As Tenant
+                    </button>
+
+                    <button
+                      class="btn btn-sm btn-danger mr-1"
+                      (click)="openRejectTenantDialog(tenantVisitApproved)"
+                    >
+                      Reject As Tenant
                     </button>
                   </div>
                 </td>
@@ -203,7 +217,7 @@
                       class="btn btn-sm btn-danger"
                       (click)="openEvictTenantDialog(tenant, dorm)"
                     >
-                      Remove As Tenant
+                      Evict Tenant
                     </button>
                   </div>
                 </td>
