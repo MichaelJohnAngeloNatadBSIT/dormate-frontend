@@ -1651,3 +1651,15 @@ a {
   color: #94918c;
 }
 
+.table.hoverable tbody .tenant-visitor-name:hover {
+  background-color: #3498db;
+  cursor: pointer;
+}
+
+.table.clickable tbody .tenant-visitor-name {
+  transition: background-color 0.3s;
+}
+
+.table.clickable tbody .tenant-visitor-name:hover {
+  background-color: #3498db;
+}

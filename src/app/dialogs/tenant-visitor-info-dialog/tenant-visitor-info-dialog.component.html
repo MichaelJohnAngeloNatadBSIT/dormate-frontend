@@ -1,0 +1,41 @@
+<div class="container">
+    <div class="close-button-container">
+      <button class="close-button" mat-icon-button [mat-dialog-close]="true"> 
+        <mat-icon class="close-icon" color="warn">close</mat-icon>
+      </button>
+    </div>
+    <div class="content-container text-center">
+      <h1>User Information</h1>
+      <img
+        class="user-image"
+        [src]="user?.user_image"
+        alt="User image"
+      />
+      <div class="user-info">
+        <p>
+            Verified User: 
+              <b>
+                <i *ngIf="user?.verified" class="fa fa-check-circle-o" style="font-size:15px;color:#5687fb">Verified</i>
+                <i *ngIf="!user?.verified" class="fa fa-times" style="font-size:15px;color:#94918c">Not Verified</i>
+              </b>
+          </p>
+        <p>
+          Full Name: <b>{{ user?.first_name }} {{ user?.last_name }}</b>
+        </p>
+        <p>
+          Email: <b>{{ user?.email }}</b>
+        </p>
+        <p>
+          Address: <b>{{ user?.address }}</b>
+        </p>
+        <p>
+          Mobile Number: <b>{{ user?.mobile_number }}</b>
+        </p>
+
+        <p>
+            Tenant of your Dorm Since: <b>{{ user?.dorm_tenant_date | date:'MMMM d, y' }}</b>
+        </p>
+      </div>
+    </div>
+  </div>
+  

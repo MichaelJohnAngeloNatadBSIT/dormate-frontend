@@ -153,7 +153,7 @@ export class DormService {
   }
 
   addTenant(dorm_id: any, tenant: any[]): Observable <any>{
-    return this.http.put(`${baseUrl}/add_tenant/${dorm_id}`, tenant);
+    return this.http.post(`${baseUrl}/add_tenant/${dorm_id}`, tenant);
   }
 
   evictTenant(dorm_id: any, tenant_user_id: any): Observable <any>{

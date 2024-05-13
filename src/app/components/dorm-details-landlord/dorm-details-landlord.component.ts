@@ -23,6 +23,7 @@ import { PublishDialogComponent } from 'src/app/dialogs/publish-dialog/publish-d
 import { ScheduleApproveComponent } from 'src/app/dialogs/schedule-approve/schedule-approve.component';
 import { AcceptAsTenantDialogComponent } from 'src/app/dialogs/accept-as-tenant-dialog/accept-as-tenant-dialog.component';
 import { EvictAsTenantDialogComponent } from 'src/app/dialogs/evict-as-tenant-dialog/evict-as-tenant-dialog.component';
+import { TenantVisitorInfoDialogComponent } from 'src/app/dialogs/tenant-visitor-info-dialog/tenant-visitor-info-dialog.component';
 
 interface Tenant {
   tenant_username?: string;
@@ -247,6 +248,19 @@ export class DormDetailsLandlordComponent implements OnInit {
       width: '400px', 
       height: '50vh',
       data: { tenant, dorm }
+    }); 
+    dialogRef.afterClosed().subscribe(result => { 
+      this.retrieveForApprovalScheduleLandlord();
+      this.retrieveForApprovedScheduleLandlord();
+      this.retrieveDorm();
+     }); 
+  }
+
+  openTenantVisitorDialog(user_id: any): void{
+    let dialogRef = this.dialog.open(TenantVisitorInfoDialogComponent, { 
+      width: '500px', 
+      height: '70vh',
+      data: user_id
     }); 
     dialogRef.afterClosed().subscribe(result => { 
       this.retrieveForApprovalScheduleLandlord();

@@ -57,6 +57,7 @@ import { PaymentDialogComponent } from './dialogs/payment-dialog/payment-dialog.
 import { DormDetailsLandlordComponent } from './components/dorm-details-landlord/dorm-details-landlord.component';
 import { AcceptAsTenantDialogComponent } from './dialogs/accept-as-tenant-dialog/accept-as-tenant-dialog.component';
 import { EvictAsTenantDialogComponent } from './dialogs/evict-as-tenant-dialog/evict-as-tenant-dialog.component';
+import { TenantVisitorInfoDialogComponent } from './dialogs/tenant-visitor-info-dialog/tenant-visitor-info-dialog.component';
 
 
 @NgModule({
@@ -97,7 +98,8 @@ import { EvictAsTenantDialogComponent } from './dialogs/evict-as-tenant-dialog/e
     PaymentDialogComponent,
     DormDetailsLandlordComponent,
     AcceptAsTenantDialogComponent,
-    EvictAsTenantDialogComponent
+    EvictAsTenantDialogComponent,
+    TenantVisitorInfoDialogComponent
   ],
   imports: [
     BrowserModule,

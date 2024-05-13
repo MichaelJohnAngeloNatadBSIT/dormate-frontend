@@ -41,6 +41,7 @@ export class AcceptAsTenantDialogComponent implements OnInit {
   }
   
   acceptAsTenant(){
+    const currentTimestamp = Date.now();
     this.dormService.addTenant(this.data.dorm_id, this.tenant).subscribe({
       next: (res) => {
 
@@ -64,7 +65,10 @@ export class AcceptAsTenantDialogComponent implements OnInit {
       dorm_title: this.data.dorm_title,
       dorm_landlord_user_id: this.data.landlord_id,
       is_tenant: true,
+      dorm_tenant_date: currentTimestamp 
     };
+
+    console.log(currentTimestamp);
 
     this.userService.updateUser(this.data.tenant_user_id, this.user_updated_data).subscribe({
       next: (res) => {
