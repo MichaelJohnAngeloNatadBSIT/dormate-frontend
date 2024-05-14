@@ -1,4 +1,5 @@
 /* W3.CSS 4.15 December 2020 by Jan Egil and Borge Refsnes */
+@import '~bootstrap/dist/css/bootstrap.min.css';
 html {
     box-sizing: border-box;
   }
@@ -1711,4 +1712,98 @@ html {
     .container {
         margin: 20px;
     }
+}
+
+p {
+  font-family: Lato;
+}
+
+ngb-rating {
+  color: red;
+  font-size: 40px;
+}
+
+.star {
+  position: relative;
+  display: inline-block;
+  font-size: 3rem;
+  color: #d3d3d3;
+}
+.full {
+  color: red;
+}
+.half {
+  position: absolute;
+  display: inline-block;
+  overflow: hidden;
+  color: red;
+}
+
+
+
+/* Review Container */
+.review-container {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  max-width: 600px;
+  width: 90%;
+  padding: 20px;
+  margin: 20px;
+  max-width: 1200px;
+}
+
+/* Review Header */
+.review-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.customer-photo {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin-right: 15px;
+}
+
+.customer-info {
+  flex: 1;
+}
+
+.customer-name {
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
+.review-date {
+  color: #777;
+  font-size: 0.9em;
+}
+
+/* Review Content */
+.review-content p {
+  line-height: 1.6;
+  font-size: 1em;
+  color: #333;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .review-container {
+      padding: 15px;
+  }
+
+  .customer-photo {
+      width: 40px;
+      height: 40px;
+  }
+
+  .customer-name {
+      font-size: 1.1em;
+  }
+
+  .review-content p {
+      font-size: 0.95em;
+  }
 }

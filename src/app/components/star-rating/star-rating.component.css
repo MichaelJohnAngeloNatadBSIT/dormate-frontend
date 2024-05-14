@@ -1,0 +1,14 @@
+.star-rating {
+    display: flex;
+    align-items: center;
+  }
+  
+  button.mat-icon-button {
+    color: gold;
+    font-size: 24px;
+  }
+  
+  button.mat-icon-button:hover {
+    color: darkorange;
+  }
+  

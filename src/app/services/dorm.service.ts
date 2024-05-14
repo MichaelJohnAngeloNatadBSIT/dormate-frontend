@@ -160,4 +160,8 @@ export class DormService {
     return this.http.delete(`${baseUrl}/evict_tenant/${dorm_id}/${tenant_user_id}`);
   }
 
+  addReview(dorm_id: any, review: any[]): Observable <any>{
+    return this.http.post(`${baseUrl}/add_review/${dorm_id}`, review);
+  }
+
 }

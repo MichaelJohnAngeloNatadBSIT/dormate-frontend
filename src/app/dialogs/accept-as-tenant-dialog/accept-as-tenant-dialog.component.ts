@@ -17,6 +17,7 @@ export class AcceptAsTenantDialogComponent implements OnInit {
   tenant: any[];
   tenant_accepted: any;
   user_updated_data: any;
+  
 
   constructor(
     public dialogRef: MatDialogRef<AcceptAsTenantDialogComponent>,
@@ -24,23 +25,33 @@ export class AcceptAsTenantDialogComponent implements OnInit {
     private dormService: DormService,
     private scheduleService: ScheduleService,
     private userService: UserService,
+    
   ){}
 
   ngOnInit(): void {
     this.scheduleData = this.data;
+
     // Assuming tenantData is an array
-    this.tenant = [{
-        tenant_user_id: this.scheduleData.tenant_user_id,
-        tenant_username: this.scheduleData.tenant_username,
-        tenant_full_name: this.scheduleData.tenant_full_name,
-        tenant_contact_number: this.scheduleData.tenant_contact_number,
-        tenant_address: this.scheduleData.tenant_address,
-        approve_tenant: true
-      }];
+    // this.tenant = [{
+    //   tenant_user_id: this.scheduleData.tenant_user_id,
+    //   tenant_username: this.scheduleData.tenant_username,
+    //   tenant_full_name: this.scheduleData.tenant_full_name,
+    //   tenant_contact_number: this.scheduleData.tenant_contact_number,
+    //   tenant_address: this.scheduleData.tenant_address,
+    //   approve_tenant: true
+    // }];
   }
   
   acceptAsTenant(){
     const currentTimestamp = Date.now();
+    this.tenant = [{
+      tenant_user_id: this.scheduleData.tenant_user_id,
+      tenant_username: this.scheduleData.tenant_username,
+      tenant_full_name: this.scheduleData.tenant_full_name,
+      tenant_contact_number: this.scheduleData.tenant_contact_number,
+      tenant_address: this.scheduleData.tenant_address,
+      approve_tenant: true
+    }];
     this.dormService.addTenant(this.data.dorm_id, this.tenant).subscribe({
       next: (res) => {
 
@@ -66,8 +77,6 @@ export class AcceptAsTenantDialogComponent implements OnInit {
       is_tenant: true,
       dorm_tenant_date: currentTimestamp 
     };
-
-    console.log(currentTimestamp);
 
     this.userService.updateUser(this.data.tenant_user_id, this.user_updated_data).subscribe({
       next: (res) => {

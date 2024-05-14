@@ -1,0 +1,6 @@
+<div class="star-rating">
+    <button *ngFor="let star of stars; let i = index" mat-icon-button (click)="rate(i + 1)">
+      <mat-icon>{{ star }}</mat-icon>
+    </button>
+  </div>
+  

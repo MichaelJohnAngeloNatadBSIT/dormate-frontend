@@ -26,16 +26,7 @@ import { EvictAsTenantDialogComponent } from 'src/app/dialogs/evict-as-tenant-di
 import { TenantVisitorInfoDialogComponent } from 'src/app/dialogs/tenant-visitor-info-dialog/tenant-visitor-info-dialog.component';
 import { RejectAsTenantDialogComponent } from 'src/app/dialogs/reject-as-tenant-dialog/reject-as-tenant-dialog.component';
 import { ScheduleRejectComponent } from 'src/app/dialogs/schedule-reject/schedule-reject.component';
-
-interface Tenant {
-  tenant_username?: string;
-  tenant_user_id?: string;
-  tenant_full_name?: string;
-  tenant_contact_number?: string;
-  tenant_address?: string;
-  verified?: boolean;
-  approve_tenant?: boolean;
-}
+import { Tenant } from 'src/app/interface/tenant';
 
 @Component({
   selector: 'app-dorm-details-landlord',

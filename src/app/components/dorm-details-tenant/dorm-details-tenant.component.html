@@ -55,43 +55,56 @@
             <p>
               {{ dorm.description }}
             </p>
-            <p>Schedule A Visit to this Dorm now</p>
+            <!-- <p>Schedule A Visit to this Dorm now</p>
             <p>
-              <!-- <button
+              <button
                 class="w3-button w3-green w3-third"
                 type="button"
                 class="btn btn-primary btn-lg btn-block"
                 (click)="openInfoSchedDialog(dorm)"
               >
                 Schedule A Visit
-              </button> -->
-            </p>
+              </button>
+            </p> -->
           </div>
         </div>
       
-        <div class="container">
-            <h2>Write a Review</h2>
-            <form>
-                <!-- <div class="form-group">
-                    <label for="name">Your Name:</label>
-                    <input type="text" id="name" name="name" required>
-                </div>
-                <div class="form-group">
-                    <label for="email">Your Email:</label>
-                    <input type="email" id="email" name="email" required>
-                </div> -->
-                <div class="form-group">
-                    <label for="rating">Rating:</label>
-                    <input type="number" id="rating" name="rating" min="1" max="5" required>
-                </div>
-                <div class="form-group">
-                    <label for="review">Your Review:</label>
-                    <textarea id="review" name="review" required></textarea>
-                </div>
-                <div class="form-group">
-                    <button type="submit">Submit Review</button>
-                </div>
-            </form>
-        </div>
+
+
+
       </div>
+
+      <div class="container">
+        <h2>Write a Review</h2>
+        <form (ngSubmit)="onSubmit()" #reviewForm="ngForm">
+          <div class="form-group">
+              <label for="rating">Rating:</label>
+              <app-star-rating [rating]="currentRating" (ratingUpdated)="onRatingUpdated($event)"></app-star-rating>
+          </div>
+          <div class="form-group">
+              <label for="review">Your Review:</label>
+              <textarea id="review" name="review" [(ngModel)]="reviewText" required></textarea>
+          </div>
+          <div class="form-group">
+              <button type="submit" [disabled]="!reviewForm.form.valid">Submit Review</button>
+          </div>
+      </form>
+    </div>
+
+      <div class="container">
+        <div class="review" *ngFor="let review of reviews">
+            <div class="review-header">
+                <img [src]="review?.tenant_user_image" alt="Customer photo" class="customer-photo">
+                <div class="customer-info">
+                    <h3 class="customer-name">{{ review?.tenant_username }}</h3>
+                    <p class="review-date">{{ review?.createdAt | date: 'MMM d, y, h:mm:ss a'}}</p>
+                </div>
+            </div>
+            <div class="review-content">
+                <p>
+                    {{review?.tenant_review}}
+                </p>
+            </div>
+        </div>
+    </div>
       

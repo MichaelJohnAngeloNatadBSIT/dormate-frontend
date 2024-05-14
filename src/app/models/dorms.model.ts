@@ -20,5 +20,6 @@ export class Dorm {
     payment_reference_number?: any;
     payment_status?: any;
     tenants?: any[];
+    tenantReviews?: any[];
 }
 

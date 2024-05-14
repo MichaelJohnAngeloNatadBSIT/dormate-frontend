@@ -61,6 +61,8 @@ import { TenantVisitorInfoDialogComponent } from './dialogs/tenant-visitor-info-
 import { RejectAsTenantDialogComponent } from './dialogs/reject-as-tenant-dialog/reject-as-tenant-dialog.component';
 import { ScheduleRejectComponent } from './dialogs/schedule-reject/schedule-reject.component';
 import { DormDetailsTenantComponent } from './components/dorm-details-tenant/dorm-details-tenant.component';
+import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
+import { StarRatingComponent } from './components/star-rating/star-rating.component';
 
 
 @NgModule({
@@ -105,7 +107,8 @@ import { DormDetailsTenantComponent } from './components/dorm-details-tenant/dor
     TenantVisitorInfoDialogComponent,
     RejectAsTenantDialogComponent,
     ScheduleRejectComponent,
-    DormDetailsTenantComponent
+    DormDetailsTenantComponent,
+    StarRatingComponent
   ],
   imports: [
     BrowserModule,
@@ -128,6 +131,7 @@ import { DormDetailsTenantComponent } from './components/dorm-details-tenant/dor
     }),
     FullCalendarModule,
     PdfViewerModule,
+    NgbModule
   ],
   providers: [
               authInterceptorProviders, 
