@@ -27,6 +27,7 @@ import { TenantVisitorInfoDialogComponent } from 'src/app/dialogs/tenant-visitor
 import { RejectAsTenantDialogComponent } from 'src/app/dialogs/reject-as-tenant-dialog/reject-as-tenant-dialog.component';
 import { ScheduleRejectComponent } from 'src/app/dialogs/schedule-reject/schedule-reject.component';
 import { Tenant } from 'src/app/interface/tenant';
+import { Review } from 'src/app/interface/review';
 
 @Component({
   selector: 'app-dorm-details-landlord',
@@ -48,6 +49,7 @@ export class DormDetailsLandlordComponent implements OnInit {
   schedulesTenant?: Schedule[];
   schedulesApproved?: Schedule[];
   calendar_events : EventInput[] = [];
+  reviews : Review[];
 
   constructor(
     private tokenService: TokenStorageService,
@@ -84,6 +86,7 @@ export class DormDetailsLandlordComponent implements OnInit {
         next: (data) => {
           this.dorm = data;
           this.tenants = this.dorm.tenants;
+          this.reviews = this.dorm.tenantReviews;
         },
         error: (e) => console.error(e)
       });

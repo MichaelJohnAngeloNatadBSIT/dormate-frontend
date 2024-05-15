@@ -9,6 +9,7 @@ import { ImageZoomComponent } from 'src/app/dialogs/image-zoom/image-zoom.compon
 import { TokenStorageService } from 'src/app/services/token-storage.service';
 import { InfoScheduleDialogComponent } from 'src/app/dialogs/info-schedule-dialog/info-schedule-dialog.component';
 import { User } from 'src/app/interface/user';
+import { Review } from 'src/app/interface/review';
 
 
 @Component({
@@ -20,6 +21,7 @@ export class DormComponent {
 dorm_id : string;
 dorm: Dorm;
 currentUser: User;
+reviews: Review[];
   constructor(
                 private route: ActivatedRoute, 
                 private dormService: DormService, 
@@ -33,6 +35,7 @@ currentUser: User;
       this.dormService.getDormById(this.dorm_id).subscribe({
         next: (data) => {
           this.dorm = data;
+          this.reviews = this.dorm.tenantReviews;
         },
         error: (e) => console.error(e)
       })

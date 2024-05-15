@@ -69,4 +69,31 @@
     </div>
   </div>
 
+  <div class="container">
+    <h2>Reviews for this Dorm</h2>
+    <div class="review" *ngFor="let review of reviews">
+      <div class="review-header">
+        <img
+          [src]="review?.tenant_user_image"
+          alt="Customer photo"
+          class="customer-photo"
+        />
+        <div class="customer-info">
+          <app-star-rating
+            [rating]="review?.tenant_star_rating"
+          ></app-star-rating>
+          <h3 class="customer-name">{{ review?.tenant_username }}</h3>
+          <p class="review-date">
+            {{ review?.createdAt | date : "MMM d, y, h:mm:ss a" }}
+          </p>
+        </div>
+      </div>
+      <div class="review-content">
+        <p>
+          {{ review?.tenant_review }}
+        </p>
+      </div>
+    </div>
+  </div>
+
 </div>
