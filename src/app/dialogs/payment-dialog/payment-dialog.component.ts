@@ -43,8 +43,16 @@ reference_number: any;
     this.paymentService.createPayment(this.userInfo).subscribe((resp) => {
       this.dormResp = resp;
       this.dorm = this.dormResp.data;
+      console.log(this.dorm);
+      this.checkOutUrl = this.dorm.payment_checkout_url;
+      this.payment_status = this.dorm.payment_status;
+      if(this.dorm.payment_reference_number){
+        this.retrievePaymentStatus(this.dorm.payment_reference_number);  
+      }
+
+      
       //this.checkOutUrl = this.dorm.payment_checkout_url;
-        this.retrievePaymentDorm();
+        // this.retrievePaymentDorm();
     }, (error) => {
       console.error("Error occurred while creating payment:", error);
       // Handle error or inform the user accordingly
@@ -58,8 +66,7 @@ reference_number: any;
           this.paymentDorm = data;
           this.checkOutUrl = this.paymentDorm.payment_checkout_url;
           this.reference_number = this.paymentDorm.payment_reference_number;
-          this.retrievePaymentStatus(this.reference_number);
-          
+          this.retrievePaymentStatus(this.reference_number);   
         },
         error: (e) => console.error(e)
       });
@@ -110,9 +117,11 @@ reference_number: any;
     // });
 
           // Check if this.dorm is defined and contains payment_checkout_url
-          if (this.dorm && this.dorm.payment_checkout_url) {
+          // if (this.dorm && this.dorm.payment_checkout_url) {
+            if (this.dorm && this.checkOutUrl) {
             // Open payment checkout URL in a new tab
-            window.open(this.dorm.payment_checkout_url, '_blank');
+            // window.open(this.dorm.payment_checkout_url, '_blank');
+            window.open(this.checkOutUrl, '_blank');
           } else {
             console.error("Payment checkout URL not found in response");
             // Handle error or inform the user accordingly
