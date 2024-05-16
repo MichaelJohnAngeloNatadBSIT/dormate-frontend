@@ -39,18 +39,20 @@ reference_number: any;
       dorm_id: _id
     };
 
-    
+
     this.paymentService.createPayment(this.userInfo).subscribe((resp) => {
       this.dormResp = resp;
       this.dorm = this.dormResp.data;
+      console.log(this.dorm)
       //this.checkOutUrl = this.dorm.payment_checkout_url;
-      this.retrievePaymentDorm();
+        this.retrievePaymentDorm();
+  
+
 
     }, (error) => {
       console.error("Error occurred while creating payment:", error);
       // Handle error or inform the user accordingly
     });
-
   }
 
   retrievePaymentDorm(): void {
