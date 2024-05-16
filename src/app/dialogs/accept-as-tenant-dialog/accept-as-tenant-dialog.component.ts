@@ -50,7 +50,7 @@ export class AcceptAsTenantDialogComponent implements OnInit {
       tenant_full_name: this.scheduleData.tenant_full_name,
       tenant_contact_number: this.scheduleData.tenant_contact_number,
       tenant_address: this.scheduleData.tenant_address,
-      approve_tenant: true
+      approve_tenant: true,
     }];
     this.dormService.addTenant(this.data.dorm_id, this.tenant).subscribe({
       next: (res) => {

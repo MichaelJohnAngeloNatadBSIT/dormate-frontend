@@ -52,7 +52,9 @@ export class EvictAsTenantDialogComponent implements OnInit {
       dorm_title: "",
       dorm_landlord_user_id: "",
       is_tenant: false,
+      approve_tenant: true,
       dorm_tenant_date: "" 
+      
     };
 
     this.userService.updateUser(this.data.tenant.tenant_user_id, this.user_evict_data).subscribe({

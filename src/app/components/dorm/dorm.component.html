@@ -69,7 +69,7 @@
     </div>
   </div>
 
-  <div class="container">
+  <div class="container" *ngIf="reviews?.length">
     <h2>Reviews for this Dorm</h2>
     <div class="review" *ngFor="let review of reviews">
       <div class="review-header">
