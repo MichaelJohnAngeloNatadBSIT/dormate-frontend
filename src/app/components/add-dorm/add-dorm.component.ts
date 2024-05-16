@@ -10,6 +10,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { DormImagesUploadDialogComponent } from 'src/app/dialogs/dorm-images-upload-dialog/dorm-images-upload-dialog.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ViewEncapsulation } from '@angular/core';
+import { PaymentService } from 'src/app/services/payment.service';
 
 @Component({
   encapsulation: ViewEncapsulation.None,
@@ -45,7 +46,8 @@ export class AddDormComponent {
     private fb : FormBuilder,
     private router: Router,
     private dialog: MatDialog,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private paymentService: PaymentService
     ) { 
       this.createForm();
     }
@@ -107,6 +109,7 @@ export class AddDormComponent {
       this.router.navigate(['/profile']);
 
     }
+
   }
 
   showSnackbarTopPosition(content, action, duration) {

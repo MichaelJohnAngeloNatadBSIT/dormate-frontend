@@ -39,7 +39,17 @@ reference_number: any;
       dorm_id: _id
     };
 
-    this.retrievePaymentDorm();
+    
+    this.paymentService.createPayment(this.userInfo).subscribe((resp) => {
+      this.dormResp = resp;
+      this.dorm = this.dormResp.data;
+      //this.checkOutUrl = this.dorm.payment_checkout_url;
+      this.retrievePaymentDorm();
+
+    }, (error) => {
+      console.error("Error occurred while creating payment:", error);
+      // Handle error or inform the user accordingly
+    });
 
   }
 
@@ -83,23 +93,32 @@ reference_number: any;
   
 
   paymentPortal() {
-    this.paymentService.createPayment(this.userInfo).subscribe((resp) => {
-      this.dormResp = resp;
-      this.dorm = this.dormResp.data;
-      //this.checkOutUrl = this.dorm.payment_checkout_url;
+    // this.paymentService.createPayment(this.userInfo).subscribe((resp) => {
+    //   this.dormResp = resp;
+    //   this.dorm = this.dormResp.data;
+    //   //this.checkOutUrl = this.dorm.payment_checkout_url;
   
-      // Check if this.dorm is defined and contains payment_checkout_url
-      if (this.dorm && this.dorm.payment_checkout_url) {
-        // Open payment checkout URL in a new tab
-        window.open(this.dorm.payment_checkout_url, '_blank');
-      } else {
-        console.error("Payment checkout URL not found in response");
-        // Handle error or inform the user accordingly
-      }
-    }, (error) => {
-      console.error("Error occurred while creating payment:", error);
-      // Handle error or inform the user accordingly
-    });
+    //   // Check if this.dorm is defined and contains payment_checkout_url
+    //   if (this.dorm && this.dorm.payment_checkout_url) {
+    //     // Open payment checkout URL in a new tab
+    //     window.open(this.dorm.payment_checkout_url, '_blank');
+    //   } else {
+    //     console.error("Payment checkout URL not found in response");
+    //     // Handle error or inform the user accordingly
+    //   }
+    // }, (error) => {
+    //   console.error("Error occurred while creating payment:", error);
+    //   // Handle error or inform the user accordingly
+    // });
+
+          // Check if this.dorm is defined and contains payment_checkout_url
+          if (this.dorm && this.dorm.payment_checkout_url) {
+            // Open payment checkout URL in a new tab
+            window.open(this.dorm.payment_checkout_url, '_blank');
+          } else {
+            console.error("Payment checkout URL not found in response");
+            // Handle error or inform the user accordingly
+          }
   }
   
   
