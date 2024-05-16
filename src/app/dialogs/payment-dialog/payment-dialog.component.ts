@@ -43,12 +43,8 @@ reference_number: any;
     this.paymentService.createPayment(this.userInfo).subscribe((resp) => {
       this.dormResp = resp;
       this.dorm = this.dormResp.data;
-      console.log(this.dorm)
       //this.checkOutUrl = this.dorm.payment_checkout_url;
         this.retrievePaymentDorm();
-  
-
-
     }, (error) => {
       console.error("Error occurred while creating payment:", error);
       // Handle error or inform the user accordingly
@@ -75,7 +71,7 @@ reference_number: any;
         this.payment = resp.data.data.attributes;
         this.payment_status = this.payment.status; // Set payment_status based on payment.status
         const dormData = { payment_status: this.payment_status };
-        if(this.payment_status === 'paid'){
+        if(this.payment_status === 'paid' && this.dorm.payment_status === 'unpaid'){
           this.dormService.update(this.data._id, dormData).subscribe(
             (response: any) => {
               console.log(response);
