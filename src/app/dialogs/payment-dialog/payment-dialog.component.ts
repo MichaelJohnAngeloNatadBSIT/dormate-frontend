@@ -28,12 +28,8 @@ reference_number: any;
   ) {}
   
   ngOnInit(): void {
-    //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
-    //Add 'implements OnInit' to the class.
-    // Extract user_id and dorm_id from the data object passed into the dialog
     const { user_id, _id } = this.data;
 
-    // Create a userInfo object to store the extracted data as JSON
     this.userInfo = {
       user_id: user_id,
       dorm_id: _id
@@ -43,7 +39,6 @@ reference_number: any;
     this.paymentService.createPayment(this.userInfo).subscribe((resp) => {
       this.dormResp = resp;
       this.dorm = this.dormResp.data;
-      console.log(this.dorm);
       this.checkOutUrl = this.dorm.payment_checkout_url;
       this.payment_status = this.dorm.payment_status;
       if(this.dorm.payment_reference_number){
@@ -75,6 +70,7 @@ reference_number: any;
   retrievePaymentStatus(reference_number: any) {
     this.paymentService.getPayment(reference_number).subscribe(
       (resp: any) => {
+        console.log(resp);
         this.payment = resp.data.data.attributes;
         this.payment_status = this.payment.status; // Set payment_status based on payment.status
         const dormData = { payment_status: this.payment_status };
@@ -88,6 +84,16 @@ reference_number: any;
             }
           );
         }
+
+        const paymentData = { status: this.payment.status , checkout_url: this.payment.checkout_url}
+        this.paymentService.updatePayment(paymentData).subscribe(
+            (response: any) => {
+              console.log(response);
+            },
+            (error: any) => {
+              console.log(error);
+            }
+          );
         
       },
       (error) => {
@@ -98,23 +104,6 @@ reference_number: any;
   
 
   paymentPortal() {
-    // this.paymentService.createPayment(this.userInfo).subscribe((resp) => {
-    //   this.dormResp = resp;
-    //   this.dorm = this.dormResp.data;
-    //   //this.checkOutUrl = this.dorm.payment_checkout_url;
-  
-    //   // Check if this.dorm is defined and contains payment_checkout_url
-    //   if (this.dorm && this.dorm.payment_checkout_url) {
-    //     // Open payment checkout URL in a new tab
-    //     window.open(this.dorm.payment_checkout_url, '_blank');
-    //   } else {
-    //     console.error("Payment checkout URL not found in response");
-    //     // Handle error or inform the user accordingly
-    //   }
-    // }, (error) => {
-    //   console.error("Error occurred while creating payment:", error);
-    //   // Handle error or inform the user accordingly
-    // });
 
           // Check if this.dorm is defined and contains payment_checkout_url
           // if (this.dorm && this.dorm.payment_checkout_url) {

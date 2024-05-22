@@ -10,11 +10,11 @@ export interface User {
     image_id: String;
     mobile_number: String;
     verified: any;
-    dorm_id: string,
-    dorm_title: string,
-    dorm_landlord_user_id: string,
-    is_tenant: boolean,
-    dorm_tenant_date: Date,
+    dorm_id: string;
+    dorm_title: string;
+    dorm_landlord_user_id: string;
+    is_tenant: boolean;
+    dorm_tenant_date: Date;
 }
 
 

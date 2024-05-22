@@ -16,4 +16,8 @@ export class PaymentService {
   getPayment(data: any){
     return this.http.get(`${baseUrl}/get-payment/${data}`);
   }
+
+  updatePayment(data: any){
+    return this.http.put(`${baseUrl}/update-payment`, data);
+  }
 }
