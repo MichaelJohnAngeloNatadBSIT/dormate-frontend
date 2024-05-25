@@ -4,6 +4,7 @@ import { TokenStorageService } from './services/token-storage.service';
 import { AuthService } from './services/auth.service';
 import { Router } from '@angular/router';
 import { User } from './interface/user';
+import { VisitService } from './services/visit.service';
 
 
 @Component({
@@ -26,12 +27,14 @@ export class AppComponent {
   // currentUser: User;
   user : User;
   isUserLoggedIn: boolean;
+  visitCount: number = 0;
 
   constructor(
     public responsiveService:ResponsiveService, 
     private tokenStorageService: TokenStorageService,
     private authService: AuthService,
     public router: Router,
+    private visitService: VisitService,
     ) {
       this.authService.isUserLoggedIn.subscribe( value => {
         this.isUserLoggedIn = value;
@@ -55,22 +58,24 @@ export class AppComponent {
       this.authService.isUserLoggedIn.next(true);
     }
 
-
-
-    // this.userService.getUserBoard().subscribe({
-    //   next: data => {
-    //     this.content = data;
-    //     // console.log(data)
-    //   },
-    //   error: err => {
-    //     this.content = JSON.parse(err.error).message;
-    //   }
-    // });
-
-    // this.retrieveUser();
+    this.getVisitCount();
+    this.incrementVisitCount();
   }
 
-  //find out why this not working 
+
+  
+  getVisitCount() {
+    this.visitService.getVisitCount().subscribe(data => {
+      this.visitCount = data.count;
+    });
+  }
+
+  incrementVisitCount() {
+    this.visitService.incrementVisitCount().subscribe(data => {
+      this.visitCount = data.count;
+    });
+  }
+
   logout(): void {
     this.tokenStorageService.clean();
     
