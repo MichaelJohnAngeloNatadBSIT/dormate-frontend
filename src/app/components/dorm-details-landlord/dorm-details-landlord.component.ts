@@ -28,6 +28,7 @@ import { RejectAsTenantDialogComponent } from 'src/app/dialogs/reject-as-tenant-
 import { ScheduleRejectComponent } from 'src/app/dialogs/schedule-reject/schedule-reject.component';
 import { Tenant } from 'src/app/interface/tenant';
 import { Review } from 'src/app/interface/review';
+import { PaymentService } from 'src/app/services/payment.service';
 
 @Component({
   selector: 'app-dorm-details-landlord',
@@ -39,6 +40,7 @@ import { Review } from 'src/app/interface/review';
 export class DormDetailsLandlordComponent implements OnInit {
   dorm_id: string;
   dorm: Dorm;
+  dormTemp: Dorm;
   currentUser: User;
   user : User;
   dorms?: Dorm[];
@@ -50,6 +52,10 @@ export class DormDetailsLandlordComponent implements OnInit {
   schedulesApproved?: Schedule[];
   calendar_events : EventInput[] = [];
   reviews : Review[];
+  userInfo : any;
+  checkOutUrl: any;
+  dormResp: any;
+  payment_status: any;
 
   constructor(
     private tokenService: TokenStorageService,
@@ -59,6 +65,7 @@ export class DormDetailsLandlordComponent implements OnInit {
     private scheduleService: ScheduleService,
     private router: Router,
     private route: ActivatedRoute,
+    private paymentService: PaymentService
   ) {}
 
   ngOnInit() {
@@ -67,6 +74,23 @@ export class DormDetailsLandlordComponent implements OnInit {
     this.dormService.getDormById(this.dorm_id).subscribe({
       next: (data) => {
         this.dorm = data;
+
+        this.userInfo = {
+          user_id: this.dorm.user_id,
+          dorm_id: this.dorm._id
+        };
+    
+    
+        this.paymentService.createPayment(this.userInfo).subscribe((resp) => {
+          this.dormResp = resp;
+          this.dormTemp = this.dormResp.data;
+          this.checkOutUrl = this.dormTemp.payment_checkout_url;
+          this.payment_status = this.dormTemp.payment_status;
+        }, (error) => {
+          console.error("Error occurred while creating payment:", error);
+          // Handle error or inform the user accordingly
+        });
+        
       },
       error: (e) => console.error(e),
     });

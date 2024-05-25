@@ -28,30 +28,12 @@ reference_number: any;
   ) {}
   
   ngOnInit(): void {
-    const { user_id, _id } = this.data;
+    this.dorm = this.data;
 
-    this.userInfo = {
-      user_id: user_id,
-      dorm_id: _id
-    };
-
-
-    this.paymentService.createPayment(this.userInfo).subscribe((resp) => {
-      this.dormResp = resp;
-      this.dorm = this.dormResp.data;
-      this.checkOutUrl = this.dorm.payment_checkout_url;
-      this.payment_status = this.dorm.payment_status;
       if(this.dorm.payment_reference_number){
         this.retrievePaymentStatus(this.dorm.payment_reference_number);  
       }
 
-      
-      //this.checkOutUrl = this.dorm.payment_checkout_url;
-        // this.retrievePaymentDorm();
-    }, (error) => {
-      console.error("Error occurred while creating payment:", error);
-      // Handle error or inform the user accordingly
-    });
   }
 
   retrievePaymentDorm(): void {
@@ -104,16 +86,10 @@ reference_number: any;
   
 
   paymentPortal() {
-
-          // Check if this.dorm is defined and contains payment_checkout_url
-          // if (this.dorm && this.dorm.payment_checkout_url) {
-            if (this.dorm && this.checkOutUrl) {
-            // Open payment checkout URL in a new tab
-            // window.open(this.dorm.payment_checkout_url, '_blank');
-            window.open(this.checkOutUrl, '_blank');
+          if (this.dorm && this.dorm.payment_checkout_url) {
+            window.open(this.dorm.payment_checkout_url, '_blank');
           } else {
             console.error("Payment checkout URL not found in response");
-            // Handle error or inform the user accordingly
           }
   }
   
