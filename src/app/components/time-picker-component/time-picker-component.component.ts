@@ -17,7 +17,7 @@ export class TimePickerComponentComponent {
   // Generate time options with 30-minute intervals in 12-hour format
   private generateTimeOptions(): string[] {
     const options: string[] = [];
-    for (let hour = 0; hour < 24; hour++) {
+    for (let hour = 7; hour <= 17; hour++) { // Start at 7 and end at 17 (5 PM)
       for (let minute = 0; minute < 60; minute += 30) {
         const formattedHour = (hour % 12 === 0) ? 12 : hour % 12; // Convert 0 to 12
         const period = (hour >= 12) ? 'PM' : 'AM'; // Determine AM/PM
@@ -27,6 +27,7 @@ export class TimePickerComponentComponent {
     }
     return options;
   }
+  
 
   // Emit selected time
   selectTime(time: string) {

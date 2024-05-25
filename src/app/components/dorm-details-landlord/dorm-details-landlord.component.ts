@@ -80,7 +80,6 @@ export class DormDetailsLandlordComponent implements OnInit {
           dorm_id: this.dorm._id
         };
     
-    
         this.paymentService.createPayment(this.userInfo).subscribe((resp) => {
           this.dormResp = resp;
           this.dormTemp = this.dormResp.data;

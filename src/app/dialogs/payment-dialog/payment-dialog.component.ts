@@ -52,7 +52,6 @@ reference_number: any;
   retrievePaymentStatus(reference_number: any) {
     this.paymentService.getPayment(reference_number).subscribe(
       (resp: any) => {
-        console.log(resp);
         this.payment = resp.data.data.attributes;
         this.payment_status = this.payment.status; // Set payment_status based on payment.status
         const dormData = { payment_status: this.payment_status };
