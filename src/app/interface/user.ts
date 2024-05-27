@@ -15,6 +15,7 @@ export interface User {
     dorm_landlord_user_id: string;
     is_tenant: boolean;
     dorm_tenant_date: Date;
+    friend_list: any[];
 }
 
 

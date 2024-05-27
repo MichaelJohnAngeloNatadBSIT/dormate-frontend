@@ -1,0 +1,47 @@
+<div class="search-container">
+  <!-- <input
+    type="text"
+    class="form-control"
+    placeholder="Search the username of your friend"
+    [(ngModel)]="title"
+
+    />
+    <button
+    class="btn btn-outline-secondary button-icon m-2"
+    type="button"
+    (click)="searchFriendRequest()"
+    >
+    <p>Search</p>
+    </button> -->
+  <ul id="search-list" *ngFor="let friend of friends; let i = index">
+    <li>
+      <div class="user-info">
+        <span *ngIf="friend.requested_by_user_id === currentUserId">{{ friend?.friend_username }}</span>
+        <span *ngIf="friend.requested_by_user_id !== currentUserId">{{ friend?.requested_by_username }}</span>
+        <i *ngIf="friend?.friend_verified" class="fa fa-check-circle-o verified"
+          >Verified</i
+        >
+        <i *ngIf="!friend?.friend_verified" class="fa fa-times not-verified"
+          >Not Verified</i
+        >
+      </div>
+      <button
+        class="action-button"
+        (click)="acceptFriendRequest(currentUserId, friend?.requested_by_user_id)"
+        *ngIf="friend.requested_by_user_id !== currentUserId && friend.friend_approved === false"
+      >
+        Accept Friend Request
+      </button>
+      <p class="text-primary" *ngIf="friend.requested_by_user_id !== currentUserId && friend.friend_approved === true">
+        Accepted Already
+      </p> 
+
+      <p class="text-primary" *ngIf="friend.requested_by_user_id === currentUserId && friend.friend_approved === false">
+        Waiting for the friend request accept
+      </p>     
+      <p class="text-primary" *ngIf="friend.requested_by_user_id === currentUserId && friend.friend_approved === true">
+        Accepted Already
+      </p>
+    </li>
+  </ul>
+</div>

@@ -1,0 +1,143 @@
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #f0f0f0;
+}
+
+.search-container {
+    width: 100%;
+    max-width: 900px;
+    height: 70vh;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
+}
+
+#search-bar {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 16px;
+}
+
+#search-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    flex-grow: 1;
+    overflow: hidden;
+}
+
+#search-list li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    cursor: pointer;
+    height: 100%; /* Adjust the height value as needed */
+    min-height: 20px;
+    margin-bottom: 5px; /* Add margin between li items */
+}
+
+
+#search-list li:hover {
+    background-color: #f0f0f0;
+}
+
+.action-button {
+    padding: 6px 12px;
+    border: none;
+    background-color: #007BFF;
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.action-button:hover {
+    background-color: #0056b3;
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-grow: 1;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.user-info span {
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.verified {
+    font-size: 15px;
+    color: #5687fb;
+}
+
+.not-verified {
+    font-size: 15px;
+    color: #94918c;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .search-container {
+        height: 60vh;
+        padding: 15px;
+    }
+
+    .action-button {
+        font-size: 12px;
+        padding: 5px 10px;
+    }
+
+    .user-info {
+        gap: 6px;
+    }
+
+    #search-list li {
+        margin-bottom: 4px; /* Adjust margin for medium-sized screens */
+    }
+}
+
+@media (max-width: 480px) {
+    .search-container {
+        width: 95%;
+        height: 50vh;
+        padding: 10px;
+    }
+
+    #search-bar {
+        font-size: 14px;
+        padding: 8px;
+    }
+
+    .action-button {
+        font-size: 12px;
+        padding: 4px 8px;
+    }
+
+    .user-info span {
+        font-size: 14px;
+    }
+        
+    #search-list li {
+        margin-bottom: 3px; /* Adjust margin for smaller screens */
+    }
+}

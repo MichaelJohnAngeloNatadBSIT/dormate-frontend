@@ -63,6 +63,8 @@ import { ScheduleRejectComponent } from './dialogs/schedule-reject/schedule-reje
 import { DormDetailsTenantComponent } from './components/dorm-details-tenant/dorm-details-tenant.component';
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 import { StarRatingComponent } from './components/star-rating/star-rating.component';
+import { AddFriendListComponent } from './components/add-friend-list/add-friend-list.component';
+import { FriendRequestListComponent } from './components/friend-request-list/friend-request-list.component';
 
 
 @NgModule({
@@ -108,7 +110,9 @@ import { StarRatingComponent } from './components/star-rating/star-rating.compon
     RejectAsTenantDialogComponent,
     ScheduleRejectComponent,
     DormDetailsTenantComponent,
-    StarRatingComponent
+    StarRatingComponent,
+    AddFriendListComponent,
+    FriendRequestListComponent
   ],
   imports: [
     BrowserModule,

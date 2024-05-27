@@ -29,6 +29,8 @@ import { ValidIdDialogComponent } from 'src/app/dialogs/valid-id-dialog/valid-id
 import { PublishDialogComponent } from 'src/app/dialogs/publish-dialog/publish-dialog.component';
 import { PaymentDialogComponent } from 'src/app/dialogs/payment-dialog/payment-dialog.component';
 import { Route, Router } from '@angular/router';
+import { AddFriendListComponent } from '../add-friend-list/add-friend-list.component';
+import { FriendRequestListComponent } from '../friend-request-list/friend-request-list.component';
 
 
 @Component({
@@ -319,4 +321,20 @@ export class ProfileComponent implements OnInit {
     },
     spaceBetween: 30
   }; 
+
+  openFriendList(user: User){
+    let dialogRef = this.dialog.open(AddFriendListComponent, { 
+      width: '900px', 
+      height: '70vh',
+      data: user
+    }); 
+  }
+
+  openFriendRequestList(user: User){
+    let dialogRef = this.dialog.open(FriendRequestListComponent, { 
+      width: '900px', 
+      height: '70vh',
+      data: user
+    }); 
+  }
 }

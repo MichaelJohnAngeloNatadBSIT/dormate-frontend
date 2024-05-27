@@ -39,8 +39,11 @@
 
                 <p class="text-secondary mb-1">{{ user?.address }}</p>
 
-                <!-- <button class="btn btn-primary">Follow</button> -->
-                <!-- <button class="btn btn-outline-primary">Message</button> -->
+                <!-- <button class="btn btn-primary m-2">Add A Friend</button> -->
+
+                <button class="btn btn-outline-primary m-1" (click)="openFriendList(user)">Add A Friend</button>
+                <button class="btn btn-outline-primary m-1" (click)="openFriendRequestList(user)">See Friend Requests</button>
+                <button class="btn btn-outline-primary m-1" (click)="openFriendList(user)">Refer A Friend to Dorm</button>
               </div>
             </div>
           </div>
@@ -120,8 +123,8 @@
                   <a
                     class="btn btn-outline-dark user-details-btn"
                     target="__blank"
-                    (click)="goToDormDetailTenant(user.dorm_id)"
-                    *ngIf="user.dorm_id"
+                    (click)="goToDormDetailTenant(user?.dorm_id)"
+                    *ngIf="user?.dorm_id"
                     >Currently Rented Dorm</a
                   >
                 </div>
