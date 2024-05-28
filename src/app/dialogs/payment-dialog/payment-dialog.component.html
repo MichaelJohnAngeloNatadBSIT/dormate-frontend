@@ -27,7 +27,7 @@
   <div class="d-flex justify-content-between px-3 pt-4 pb-3">
     <div><span class="back" (click)="closeDialog()">Go back</span></div>
     <p *ngIf="!data.payment_reference_number">Please try again later as we are currently generating your payment gateway</p>
-    <button type="button" class="btn btn-primary button" (click)="paymentPortal()" *ngIf="payment_status == 'unpaid'">
+    <button type="button" class="btn btn-primary button" (click)="paymentPortal()" *ngIf="payment_status == 'unpaid' &&  data.payment_reference_number">
       Create Payment
     </button>
     <button type="button" class="btn btn-primary button" (click)="paymentPortal()" [disabled]="payment_status == 'paid'" *ngIf="payment_status == 'paid'">

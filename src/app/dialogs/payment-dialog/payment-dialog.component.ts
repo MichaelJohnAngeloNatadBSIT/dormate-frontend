@@ -20,6 +20,7 @@ paymentDorm: Dorm;
 checkOutUrl: any;
 payment_status: string;
 reference_number: any;
+
   constructor(
     public dialogRef: MatDialogRef<PaymentDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
@@ -30,7 +31,8 @@ reference_number: any;
   ngOnInit(): void {
     this.dorm = this.data;
 
-      if(this.dorm.payment_reference_number){
+    this.payment_status = this.dorm.payment_status;
+      if(this.payment_status === "unpaid"){
         this.retrievePaymentStatus(this.dorm.payment_reference_number);  
       }
 
@@ -58,10 +60,10 @@ reference_number: any;
         if(this.payment_status === 'paid' && this.dorm.payment_status === 'unpaid'){
           this.dormService.update(this.data._id, dormData).subscribe(
             (response: any) => {
-              console.log(response);
+              
             },
             (error: any) => {
-              console.log(error);
+
             }
           );
         }
@@ -69,10 +71,10 @@ reference_number: any;
         const paymentData = { status: this.payment.status , checkout_url: this.payment.checkout_url}
         this.paymentService.updatePayment(paymentData).subscribe(
             (response: any) => {
-              console.log(response);
+
             },
             (error: any) => {
-              console.log(error);
+              
             }
           );
         
