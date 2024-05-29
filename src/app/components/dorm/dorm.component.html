@@ -58,13 +58,22 @@
       <p>Schedule A Visit to this Dorm now</p>
       <p>
         <button
-          class="w3-button w3-green w3-third"
-          type="button"
-          class="btn btn-primary btn-lg btn-block"
-          (click)="openInfoSchedDialog(dorm)"
-        >
-          Schedule A Visit
-        </button>
+        *ngIf="currentUser.id != dorm.user_id"
+        type="button"
+        class="btn btn-primary btn-lg btn-block"
+        (click)="openInfoSchedDialog(dorm)"
+      >
+        Schedule A Visit
+      </button>
+      <button
+        *ngIf="currentUser.id == dorm.user_id"
+        type="button"
+        class="btn btn-primary btn-lg btn-block"
+        (click)="openInfoSchedDialog(dorm)"
+        disabled
+      >
+        Schedule A Visit
+      </button>
       </p>
     </div>
   </div>
@@ -81,6 +90,7 @@
         <div class="customer-info">
           <app-star-rating
             [rating]="review?.tenant_star_rating"
+            [isClickable]="false"
           ></app-star-rating>
           <h3 class="customer-name">{{ review?.tenant_username }}</h3>
           <p class="review-date">

@@ -14,13 +14,14 @@ import { map, startWith } from 'rxjs/operators';
 import { FormControl, FormGroup } from '@angular/forms';
 
 import { Observable } from 'rxjs';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 export class Barangay {
   constructor(public name: string) {}
 }
 
 export class PriceRange {
-  constructor(public name: string, public minValue: number, public maxValue: number) {}
+  constructor(public name: string, public minValue: number, public maxValue: number,) {}
 }
 
 
@@ -83,7 +84,8 @@ export class DormsListComponent implements OnInit {
     private tokenService: TokenStorageService,
     private userService: UserService,
     private dialog: MatDialog,
-    private router: Router
+    private router: Router,
+    private snackBar: MatSnackBar,
   ) {
     this.filteredBarangay = this.barangayCtrl.valueChanges.pipe(
       startWith(''),
@@ -160,12 +162,31 @@ export class DormsListComponent implements OnInit {
     if (!isAuthenticated) {
       this.router.navigate(['/login']);
     } else {
-      let dialogRef = this.dialog.open(InfoScheduleDialogComponent, {
-        width: '600px',
-        height: '400px',
-        data: { user: this.currentUser, dorm: dorm },
-      });
+      if(this.currentUser.verified != false){
+        if(this.currentUser.id == dorm.user_id){ 
+          let dialogRef = this.dialog.open(InfoScheduleDialogComponent, {
+            width: '600px',
+            height: '400px',
+            data: { user: this.currentUser, dorm: dorm },
+          });
+        }else{
+          this.showSnackbarTopPosition('Please Make Your account Verified by Uploading a Valid ID','Ok', '10000')
+        }
     }
+    else{
+      this.showSnackbarTopPosition('Please Make Your account Verified by Uploading a Valid ID','Ok', '10000')
+      this.router.navigate(['/profile']);
+    }
+    }
+  }
+
+  showSnackbarTopPosition(content, action, duration) {
+    this.snackBar.open(content, action, {
+      duration: duration,
+      verticalPosition: "top", // Allowed values are  'top' | 'bottom'
+      horizontalPosition: "center", // Allowed values are 'start' | 'center' | 'end' | 'left' | 'right'
+      panelClass: ['custom-style']
+    });
   }
 
   openImageZoomDialog(images: any) {

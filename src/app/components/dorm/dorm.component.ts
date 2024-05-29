@@ -56,8 +56,9 @@ reviews: Review[];
       var isAuthenticated = this.tokenService.isLoggedIn();
       if (!isAuthenticated) { 
         this.router.navigate(['/login']); 
-    }
+       }
     else{
+      
       let dialogRef = this.dialog.open(InfoScheduleDialogComponent, { 
         width: '600px',
         height: '400px', 
