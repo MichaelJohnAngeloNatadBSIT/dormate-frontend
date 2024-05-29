@@ -83,7 +83,6 @@ export class InfoScheduleDialogComponent implements OnInit{
         schedule_date: this.form.get('schedule_date').value,
         schedule_time : this.form.get('schedule_time').value
       };
-      console.log(data);
       this.scheduleService.createSchedule(data)
       .subscribe({
         next: (res) => {

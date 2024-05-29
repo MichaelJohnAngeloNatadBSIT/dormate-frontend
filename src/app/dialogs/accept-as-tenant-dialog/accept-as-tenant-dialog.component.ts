@@ -54,7 +54,22 @@ export class AcceptAsTenantDialogComponent implements OnInit {
     }];
     this.dormService.addTenant(this.data.dorm_id, this.tenant).subscribe({
       next: (res) => {
+        console.log(res);
 
+        this.user_updated_data = {
+          dorm_id: this.data.dorm_id,
+          dorm_title: this.data.dorm_title,
+          dorm_landlord_user_id: this.data.landlord_id,
+          is_tenant: true,
+          dorm_tenant_date: currentTimestamp 
+        };
+    
+        this.userService.updateUser(this.data.tenant_user_id, this.user_updated_data).subscribe({
+          next: (res) => {
+    
+          },
+          error: (e) => console.error(e)
+        });
       },
       error: (e) => console.error(e)
     });
@@ -70,20 +85,6 @@ export class AcceptAsTenantDialogComponent implements OnInit {
       error: (e) => console.error(e)
     });
     
-    this.user_updated_data = {
-      dorm_id: this.data.dorm_id,
-      dorm_title: this.data.dorm_title,
-      dorm_landlord_user_id: this.data.landlord_id,
-      is_tenant: true,
-      dorm_tenant_date: currentTimestamp 
-    };
-
-    this.userService.updateUser(this.data.tenant_user_id, this.user_updated_data).subscribe({
-      next: (res) => {
-
-      },
-      error: (e) => console.error(e)
-    });
 
   }
 
