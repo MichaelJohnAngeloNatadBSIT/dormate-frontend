@@ -99,6 +99,8 @@ export class DormsListComponent implements OnInit {
   ngOnInit(): void {
     this.retrieveDorms();
     this.currentUser = this.tokenService.getUser();
+
+    console.log(this.currentUser);
     
     this.eventEditForm = new FormGroup({          
       'completed': new FormControl()
@@ -158,25 +160,27 @@ export class DormsListComponent implements OnInit {
   }
 
   openInfoSchedDialog(dorm: Dorm) {
+    if(this.currentUser.verified == true){
     var isAuthenticated = this.tokenService.isLoggedIn();
     if (!isAuthenticated) {
       this.router.navigate(['/login']);
     } else {
-      if(this.currentUser.verified != false){
-        if(this.currentUser.id == dorm.user_id){ 
+
+        // if(this.currentUser.id == dorm.user_id){ 
           let dialogRef = this.dialog.open(InfoScheduleDialogComponent, {
             width: '600px',
             height: '400px',
             data: { user: this.currentUser, dorm: dorm },
           });
-        }else{
-          this.showSnackbarTopPosition('Please Make Your account Verified by Uploading a Valid ID','Ok', '10000')
-        }
+        // }else{
+        //   this.showSnackbarTopPosition('Please Make Your account Verified by Uploading a Valid ID','Ok', '10000')
+        // }
+    }
+
     }
     else{
       this.showSnackbarTopPosition('Please Make Your account Verified by Uploading a Valid ID','Ok', '10000')
       this.router.navigate(['/profile']);
-    }
     }
   }
 

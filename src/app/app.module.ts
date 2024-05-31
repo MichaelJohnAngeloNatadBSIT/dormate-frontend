@@ -65,6 +65,7 @@ import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 import { StarRatingComponent } from './components/star-rating/star-rating.component';
 import { AddFriendListComponent } from './components/add-friend-list/add-friend-list.component';
 import { FriendRequestListComponent } from './components/friend-request-list/friend-request-list.component';
+import { ReferFriendListComponent } from './components/refer-friend-list/refer-friend-list.component';
 
 
 @NgModule({
@@ -112,7 +113,8 @@ import { FriendRequestListComponent } from './components/friend-request-list/fri
     DormDetailsTenantComponent,
     StarRatingComponent,
     AddFriendListComponent,
-    FriendRequestListComponent
+    FriendRequestListComponent,
+    ReferFriendListComponent
   ],
   imports: [
     BrowserModule,

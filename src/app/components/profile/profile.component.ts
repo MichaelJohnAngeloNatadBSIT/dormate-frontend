@@ -31,6 +31,7 @@ import { PaymentDialogComponent } from 'src/app/dialogs/payment-dialog/payment-d
 import { Route, Router } from '@angular/router';
 import { AddFriendListComponent } from '../add-friend-list/add-friend-list.component';
 import { FriendRequestListComponent } from '../friend-request-list/friend-request-list.component';
+import { ReferFriendListComponent } from '../refer-friend-list/refer-friend-list.component';
 
 
 @Component({
@@ -332,6 +333,14 @@ export class ProfileComponent implements OnInit {
 
   openFriendRequestList(user: User){
     let dialogRef = this.dialog.open(FriendRequestListComponent, { 
+      width: '900px', 
+      height: '70vh',
+      data: user
+    }); 
+  }
+
+  openReferFriendList(user: User){
+    let dialogRef = this.dialog.open(ReferFriendListComponent, { 
       width: '900px', 
       height: '70vh',
       data: user

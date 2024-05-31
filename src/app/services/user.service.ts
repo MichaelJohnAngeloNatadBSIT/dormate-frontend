@@ -109,6 +109,10 @@ export class UserService {
     return this.http.get(`${USER_URL}friend_request_list/${user_id}`);
   }
 
+  referFriend(user_id: any, data: any): Observable <any>{
+    return this.http.post(`${USER_URL}refer_friend/${user_id}`, data);
+  }
+
 
 
 
