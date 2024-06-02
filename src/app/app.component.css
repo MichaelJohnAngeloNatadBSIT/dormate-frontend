@@ -62,7 +62,7 @@ body{
 
 }
 
-footer {
+/* footer {
   clear: both;
   position: absolute;
   height: 60px;
@@ -70,7 +70,7 @@ footer {
   bottom: 0;
   background-color: #2f3753;
   width: 100%;
-}
+} */
 
 /**
  * index.scss
@@ -386,4 +386,75 @@ ul li ul li {
   /* margin-top: 25px; */
   margin: 0;
   padding: 0;
+}
+
+.footer {
+  background-color: #2f3753;
+  color: #fff;
+  padding: 40px 0;
+}
+
+.footer-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.footer-info,
+.footer-links,
+.footer-social {
+  flex: 1;
+}
+
+.footer-info h5,
+.footer-links h5,
+.footer-social h5 {
+  font-size: 18px;
+  margin-bottom: 15px;
+}
+
+.footer-info p {
+  margin: 5px 0;
+}
+
+.footer-links ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-links ul li {
+  margin-bottom: 5px;
+}
+
+.footer-links ul li a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.footer-links ul li a:hover {
+  color: #5687fb;
+}
+
+.footer-social-icons {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-social-icons li {
+  display: inline-block;
+  margin-right: 10px;
+}
+
+.footer-social-icons li:last-child {
+  margin-right: 0;
+}
+
+.footer-social-icons li a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 18px;
+}
+
+.footer-social-icons li a:hover {
+  color: #5687fb;
 }
