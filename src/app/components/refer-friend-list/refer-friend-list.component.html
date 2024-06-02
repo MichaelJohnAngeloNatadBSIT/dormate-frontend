@@ -24,11 +24,13 @@
   
         <p class="text-primary" *ngIf="friend.requested_by_user_id === currentUserId && friend.friend_approved === false">
           Waiting for the friend request accept
+                 friend.requested_by_user_id === currentUserId &&
         </p>      -->
         <button
           class="action-button"
           (click)="referFriend(friend)"
-           *ngIf="friend.requested_by_user_id === currentUserId && friend.friend_approved === true">
+           *ngIf=" friend.friend_approved === true">
+           
           Refer Friend
         </button>
       </li>

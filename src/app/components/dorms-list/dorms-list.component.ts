@@ -75,6 +75,7 @@ export class DormsListComponent implements OnInit {
   currentIndex = -1;
   title = '';
   currentUser: User;
+  currentUserTemp: User;
   user: User;
   userImage: any;
   dorm: Dorm;
@@ -98,7 +99,11 @@ export class DormsListComponent implements OnInit {
 
   ngOnInit(): void {
     this.retrieveDorms();
-    this.currentUser = this.tokenService.getUser();
+    this.currentUserTemp = this.tokenService.getUser();
+
+    this.userService.retrieveUserWithId(this.currentUserTemp.id).subscribe((data)=>{
+      this.currentUser = data
+    });
 
     console.log(this.currentUser);
     

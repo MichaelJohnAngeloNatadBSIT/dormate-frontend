@@ -16,6 +16,7 @@ export interface User {
     is_tenant: boolean;
     dorm_tenant_date: Date;
     friend_list: any[];
+    referral: any[];
 }
 
 

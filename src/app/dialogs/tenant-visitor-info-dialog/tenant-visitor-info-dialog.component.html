@@ -23,6 +23,9 @@
           Full Name: <b>{{ user?.first_name }} {{ user?.last_name }}</b>
         </p>
         <p>
+          Full Name: <b>{{ user?.username }}</b>
+        </p>
+        <p>
           Email: <b>{{ user?.email }}</b>
         </p>
         <p>
@@ -31,6 +34,21 @@
         <p>
           Mobile Number: <b>{{ user?.mobile_number }}</b>
         </p>
+        <div class="referrals" *ngFor="let refer of userReferrals">
+          <div *ngIf="refer.referral_friend_dorm_id == data.dorm_id">
+            <p>This user is referred by:</p>
+            <p>
+              Username: <b>{{ refer.referral_friend_username }}</b>
+            </p>
+            <p>
+              Full Name: <b>{{ refer.referral_friend_full_name }}</b>
+            </p>
+            <p>
+              <b>{{ refer.referral_friend_verified }}</b>
+            </p>
+          </div>
+        </div>
+ 
 
         <p *ngIf="user?.dorm_tenant_date">
             Tenant of your Dorm Since: <b>{{ user?.dorm_tenant_date | date:'MMMM d, y' }}</b>

@@ -51,6 +51,7 @@ export class FriendRequestListComponent implements OnInit {
       next: (data) => {
         this.usersFriendRequest = data;
         this.friends = this.usersFriendRequest.friend_list;
+        console.log(this.friends);
 
       },
       error: (e) => console.error(e),

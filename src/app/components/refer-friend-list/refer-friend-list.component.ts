@@ -39,6 +39,7 @@ retrieveUserFriendRequest(userId: any): void {
     next: (data) => {
       this.usersFriend = data;
       this.friends = this.usersFriend.friend_list;
+      console.log(this.friends)
 
     },
     error: (e) => console.error(e),
@@ -46,6 +47,13 @@ retrieveUserFriendRequest(userId: any): void {
 }
 
 referFriend(user: Friend){
+  var userIdToUpdate;
+  if(user.friend_user_id == this.currentUser.id){
+    userIdToUpdate = user.requested_by_user_id;
+  }
+  else{
+    userIdToUpdate = user.friend_user_id
+  }
 
   this.referreredFriend = [{
     referral_friend_username: this.currentUser.username,
@@ -57,7 +65,7 @@ referFriend(user: Friend){
     referred_by_friend: true
   }];
 
-  this.userService.referFriend(user.friend_user_id, this.referreredFriend).subscribe({
+  this.userService.referFriend(userIdToUpdate, this.referreredFriend).subscribe({
     next: (data) => {
 
     },

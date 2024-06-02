@@ -162,7 +162,7 @@
               <tr *ngFor="let tenantVisit of schedulesLandlord">
                 <td
                   class="tenant-visitor-name"
-                  (click)="openTenantVisitorDialog(tenantVisit.tenant_user_id)"
+                  (click)="openTenantVisitorDialog(tenantVisit.tenant_user_id, dorm?._id)"
                 >
                   {{ tenantVisit.tenant_full_name }} (Visitor)
                 </td>
@@ -192,7 +192,7 @@
                 <td
                   class="tenant-visitor-name"
                   (click)="
-                    openTenantVisitorDialog(tenantVisitApproved.tenant_user_id)
+                    openTenantVisitorDialog(tenantVisitApproved.tenant_user_id, dorm?._id)
                   "
                 >
                   {{ tenantVisitApproved.tenant_full_name }} (Visitor)
@@ -222,7 +222,7 @@
               <tr *ngFor="let tenant of tenants">
                 <td
                   class="tenant-visitor-name"
-                  (click)="openTenantVisitorDialog(tenant.tenant_user_id)"
+                  (click)="openTenantVisitorDialog(tenant.tenant_user_id, dorm?._id)"
                 >
                   {{ tenant.tenant_full_name }} (Tenant)
                 </td>
@@ -257,6 +257,7 @@
         <div class="customer-info">
           <app-star-rating
             [rating]="review?.tenant_star_rating"
+            [isClickable]="false"
           ></app-star-rating>
           <h3 class="customer-name">{{ review?.tenant_username }}</h3>
           <p class="review-date">

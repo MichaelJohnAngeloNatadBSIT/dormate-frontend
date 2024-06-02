@@ -300,11 +300,11 @@ export class DormDetailsLandlordComponent implements OnInit {
      }); 
   }
 
-  openTenantVisitorDialog(user_id: any): void{
+  openTenantVisitorDialog(user_id: any, dorm_id): void{
     let dialogRef = this.dialog.open(TenantVisitorInfoDialogComponent, { 
       width: '500px', 
       height: '70vh',
-      data: user_id
+      data: {user_id, dorm_id}
     }); 
     dialogRef.afterClosed().subscribe(result => { 
       this.retrieveForApprovalScheduleLandlord();
