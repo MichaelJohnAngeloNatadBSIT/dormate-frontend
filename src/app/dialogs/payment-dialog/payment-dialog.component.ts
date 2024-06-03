@@ -32,9 +32,10 @@ reference_number: any;
     this.dorm = this.data;
 
     this.payment_status = this.dorm.payment_status;
-      if(this.payment_status === "unpaid"){
-        this.retrievePaymentStatus(this.dorm.payment_reference_number);  
-      }
+    if (this.payment_status === "unpaid" && this.dorm.payment_reference_number) {
+      this.retrievePaymentStatus(this.dorm.payment_reference_number);
+    }
+    
 
   }
 

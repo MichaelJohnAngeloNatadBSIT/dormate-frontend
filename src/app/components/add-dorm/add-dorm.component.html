@@ -171,21 +171,17 @@
                 <div class="row">
                   <div class="col-md-6">
                     <div class="form-group">
-                      <label for="form_rent"
-                        >Contact Number</label
-                      >
+                      <label for="form_contact_number" class="text-primary">Contact Number *</label>
                       <input
                         id="form_contact_number"
-                        type="number"
+                        type="text"
                         name="contact_number"
                         class="form-control"
+                        placeholder="Please enter the contact number *"
                         required="required"
-                        rows="4"
-                        data-error="Please enter the contact number for this dorm."
+                        data-error="Contact number is required."
                         formControlName="contact_number"
-                        [(ngModel)]="dorm.contact_number"
-                        placeholder="Please enter the contact number for this dorm"
-                        ngModel maxlength="13"
+                        maxlength="11"
                       />
                     </div>
                     <div
@@ -199,8 +195,8 @@
                       <div *ngIf="dormForm.controls['contact_number'].errors.required">
                         Contact Number is required.
                       </div>
-                      <div *ngIf="dormForm.controls['contact_number'].errors.maxlength">
-                        It must be not be over 13 characters.
+                      <div *ngIf="dormForm.controls['contact_number'].errors.pattern">
+                        Contact Number must be exactly 11 digits.
                       </div>
                     </div>
                   </div>
