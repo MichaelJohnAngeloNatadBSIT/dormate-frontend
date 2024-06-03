@@ -64,6 +64,21 @@ export class AddDormComponent {
         contact_number: ['', [Validators.required, Validators.pattern("^[0-9]{11}$")]]
       });
     }
+
+validateNumberInput(event: Event): void {
+    const inputElement = event.target as HTMLInputElement;
+    let inputValue = inputElement.value.replace(/[^0-9]/g, '');
+    
+    if (inputValue.length > 10) {
+      inputValue = inputValue.slice(0, 10);
+    }
+
+    if (inputValue.charAt(0) === '0') {
+      inputValue = inputValue.slice(1);
+    }
+
+    inputElement.value = inputValue;
+  }    
     
 
   submitted = false;
@@ -97,15 +112,29 @@ export class AddDormComponent {
         contact_number: contactNumber,
         rent: this.dormForm.get('rent').value,
       };
+
+
   
       this.dormService.create(data)
         .subscribe({
           next: (res) => {
             this.submitted = true;
             this.openDormImgUploadDialog(res.data);
+
+            const userData = {
+              is_landlord: true,
+            }
+    
+            this.userService.updateUser(this.currentUser.id, userData).subscribe({
+              next: (res) => {
+              },
+              error: (e) => console.error(e)
+            });
           },
           error: (e) => console.error(e)
         });
+
+
     } else {
       this.showSnackbarTopPosition('Please Make Your account Verified by Uploading a Valid ID', 'Ok', '10000');
       this.router.navigate(['/profile']);

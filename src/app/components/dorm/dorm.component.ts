@@ -10,6 +10,7 @@ import { TokenStorageService } from 'src/app/services/token-storage.service';
 import { InfoScheduleDialogComponent } from 'src/app/dialogs/info-schedule-dialog/info-schedule-dialog.component';
 import { User } from 'src/app/interface/user';
 import { Review } from 'src/app/interface/review';
+import { UserService } from 'src/app/services/user.service';
 
 
 @Component({
@@ -21,10 +22,12 @@ export class DormComponent {
 dorm_id : string;
 dorm: Dorm;
 currentUser: User;
+currentUserTemp: User;
 reviews: Review[];
   constructor(
                 private route: ActivatedRoute, 
                 private dormService: DormService, 
+                private userService: UserService,
                 private dialog: MatDialog,
                 private tokenService: TokenStorageService,
                 private router: Router
@@ -40,7 +43,11 @@ reviews: Review[];
         error: (e) => console.error(e)
       })
 
-      this.currentUser = this.tokenService.getUser();
+      this.currentUserTemp = this.tokenService.getUser();
+
+      this.userService.retrieveUserWithId(this.currentUserTemp.id).subscribe((data)=>{
+        this.currentUser = data
+      });
     }
 
     openImageZoomDialog(images: any){

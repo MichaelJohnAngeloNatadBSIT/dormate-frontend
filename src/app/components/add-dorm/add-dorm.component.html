@@ -172,17 +172,21 @@
                   <div class="col-md-6">
                     <div class="form-group">
                       <label for="form_contact_number" class="text-primary">Contact Number *</label>
-                      <input
-                        id="form_contact_number"
-                        type="text"
-                        name="contact_number"
-                        class="form-control"
-                        placeholder="Please enter the contact number *"
-                        required="required"
-                        data-error="Contact number is required."
-                        formControlName="contact_number"
-                        maxlength="11"
-                      />
+                      <div class="input-group">
+                        <span class="input-group-text">+63</span>
+                        <input
+                          id="form_contact_number"
+                          type="tel"
+                          name="contact_number"
+                          class="form-control"
+                          placeholder="Please enter the contact number *"
+                          required="required"
+                          data-error="Contact number is required."
+                          formControlName="contact_number"
+                          maxlength="10"
+                          (input)="validateNumberInput($event)"
+                        />
+                      </div>
                     </div>
                     <div
                       *ngIf="
@@ -200,6 +204,7 @@
                       </div>
                     </div>
                   </div>
+                  
                   <div class="col-md-6">
                     <div class="form-group">
                       <label for="form_rent"

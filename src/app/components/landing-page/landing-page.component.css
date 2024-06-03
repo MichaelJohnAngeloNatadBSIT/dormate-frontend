@@ -84,3 +84,40 @@ header {
     padding: 10px;
     border-radius: 5px;
 }
+.carousel-inner img {
+    width: 100%;
+    height: 80vh;
+    object-fit: fill;
+    filter: blur(1px);
+}
+
+.carousel-item::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 255, 0.1); /* Blueish overlay */
+    z-index: 1; /* Ensure overlay is above the image but below the text */
+}
+
+.carousel-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 50px; /* Adjust font size as needed */
+    font-weight: bold;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    padding: 10px;
+    z-index: 2; /* Ensure text is above the overlay */
+    text-align: center; /* Center text alignment */
+}
+
+.carousel-item {
+    position: relative;
+}
+
