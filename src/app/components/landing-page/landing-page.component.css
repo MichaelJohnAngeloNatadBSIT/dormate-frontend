@@ -3,9 +3,10 @@ body {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    background: #E8E9EE;
 }
 
-.carousel-slides-top{
+.carousel-slides-top {
     padding-top: 90px;
 }
 
@@ -16,9 +17,15 @@ header {
     padding: 1rem;
 }
 
+.carousel-inner {
+    width: 100%;
+    height: 100vh;
+}
+
 .carousel-inner img {
-    width: 1150px;
-    height: 535px;
+    width: 100%;
+    height: 80vh;
+    object-fit:fill;
 }
 
 .carousel-caption {
@@ -27,16 +34,13 @@ header {
     color: white;
 }
 
-body {
-    background: #E8E9EE;
-  }
-
-.image-container img{
+.image-container img {
     width: 100%;
     max-width: 450px;
     height: 250px;
     margin-top: 90px;
 }
+
 @media only screen and (max-width: 768px) {
     .image-container {
         display: none;
@@ -45,23 +49,38 @@ body {
 
 .carousel-control-next-icon,
 .carousel-control-prev-icon {
-  width: 0.5vw;
-  height: 0.5vw;
+    width: 0.5vw;
+    height: 0.5vw;
 }
 
-.dm-logo{
-    width: 200px; height: 300px; margin-top: 50px; padding-left: 0;
+.dm-logo {
+    width: 200px;
+    height: 300px;
+    margin-top: 50px;
+    padding-left: 0;
 }
 
-.texts{
+.texts {
     text-indent: 60px;
 }
 
-.image-2{
+.image-2 {
     padding-right: 0;
 }
 
-.image-3{
-    padding-top: 10px; 
+.image-3 {
+    padding-top: 10px;
     padding-left: 0;
+}
+
+.carousel-text {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    color: white;
+    font-size: 50px;
+    font-weight: bold;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    padding: 10px;
+    border-radius: 5px;
 }
