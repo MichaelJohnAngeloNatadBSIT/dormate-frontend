@@ -75,10 +75,8 @@ export class RegisterComponent implements OnInit {
           Validators.maxLength(100),
         ]),
         mobile_number: new FormControl('', [
-          Validators.required,
-          Validators.pattern("^[0-9]*$"),
-          Validators.minLength(10),
-          Validators.maxLength(10)
+          Validators.required, 
+          Validators.pattern("^[0-9]{10}$")
         ]),
         role_choice: new FormControl('', [
           Validators.required,
@@ -88,6 +86,20 @@ export class RegisterComponent implements OnInit {
     );
   }
 
+  validateNumberInput(event: Event): void {
+    const inputElement = event.target as HTMLInputElement;
+    let inputValue = inputElement.value.replace(/[^0-9]/g, '');
+    
+    if (inputValue.length > 10) {
+      inputValue = inputValue.slice(0, 10);
+    }
+
+    if (inputValue.charAt(0) === '0') {
+      inputValue = inputValue.slice(1);
+    }
+
+    inputElement.value = inputValue;
+  } 
   onSubmit() {
     const formData = this.form.getRawValue();
     console.log(formData);

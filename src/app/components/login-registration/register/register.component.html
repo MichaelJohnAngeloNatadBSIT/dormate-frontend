@@ -61,20 +61,22 @@
               >Not more than 100 characters</mat-error
             >
           </mat-form-field>
-
           <mat-form-field class="example-full-width">
+    
             <input
               matInput
-              placeholder="Mobile Number"
-              type="number"
+              placeholder="Mobile Number +63"
+              type="tel"
               formControlName="mobile_number"
               id="mobile_number"
+              (input)="validateNumberInput($event)"
             />
+            
             <mat-error *ngIf="hasError('mobile_number', 'required')"
               >Mobile Number is required</mat-error
             >
-            <mat-error *ngIf="hasError('mobile_number', 'maxlength')"
-              >Not more than 12 characters</mat-error
+            <mat-error *ngIf="hasError('mobile_number', 'pattern')"
+              >Plese manually input your mobile number</mat-error
             >
           </mat-form-field>
 
