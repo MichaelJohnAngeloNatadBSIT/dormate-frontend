@@ -99,13 +99,15 @@ export class DormsListComponent implements OnInit {
 
   ngOnInit(): void {
     this.retrieveDorms();
-    this.currentUserTemp = this.tokenService.getUser();
-
-    this.userService.retrieveUserWithId(this.currentUserTemp.id).subscribe((data)=>{
-      this.currentUser = data
-    });
-
+    this.currentUser  = this.tokenService.getUser();
     console.log(this.currentUser);
+
+    // if(this.currentUserTemp.id ){
+    //   this.userService.retrieveUserWithId(this.currentUserTemp.id).subscribe((data)=>{
+    //     this.currentUser = data
+    //   });
+    // }
+
     
     this.eventEditForm = new FormGroup({          
       'completed': new FormControl()
