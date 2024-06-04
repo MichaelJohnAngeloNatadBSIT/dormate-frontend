@@ -194,11 +194,12 @@
       </div>
 
       <div class="col-md-8 mb-3">
-        <h1>Your Dorm Posts</h1>
+        <h1 *ngIf="currentUser.as_landlord">Your Dorm Posts</h1>
         <a
           class="btn btn-outline-primary user-details-btn"
           target="__blank"
           href="add"
+          *ngIf="currentUser.as_landlord"
           >List a new Dorm</a
         >
         <hr>

@@ -153,6 +153,9 @@
               >Confirm Password must not exceed 30 characters</mat-error
             >
           </mat-form-field>
+          <mat-radio-group formControlName="role_choice" aria-label="Select an option">
+            <mat-radio-button *ngFor="let choice of roleChoices" [value]="choice.value">{{choice.name}}</mat-radio-button>
+          </mat-radio-group>
         </mat-card-content>
         <button
           mat-raised-button

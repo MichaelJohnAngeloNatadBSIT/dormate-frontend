@@ -43,11 +43,12 @@ reviews: Review[];
         error: (e) => console.error(e)
       })
 
-      this.currentUserTemp = this.tokenService.getUser();
+      this.currentUser = this.tokenService.getUser();
 
-      this.userService.retrieveUserWithId(this.currentUserTemp.id).subscribe((data)=>{
-        this.currentUser = data
-      });
+      // this.userService.retrieveUserWithId(this.currentUserTemp.id).subscribe((data)=>{
+      //   this.currentUser = data
+      //   console.log(this.currentUser);
+      // });
     }
 
     openImageZoomDialog(images: any){

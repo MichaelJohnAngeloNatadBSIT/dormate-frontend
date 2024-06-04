@@ -28,6 +28,7 @@ export class AppComponent {
   user : User;
   isUserLoggedIn: boolean;
   visitCount: number = 0;
+  currentUser: User;
 
   constructor(
     public responsiveService:ResponsiveService, 
@@ -35,6 +36,7 @@ export class AppComponent {
     private authService: AuthService,
     public router: Router,
     private visitService: VisitService,
+    private tokenService: TokenStorageService
     ) {
       this.authService.isUserLoggedIn.subscribe( value => {
         this.isUserLoggedIn = value;
@@ -60,6 +62,8 @@ export class AppComponent {
 
     this.getVisitCount();
     this.incrementVisitCount();
+
+    this.currentUser = this.tokenService.getUser();
   }
 
 

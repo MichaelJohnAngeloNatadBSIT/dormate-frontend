@@ -35,7 +35,7 @@
             <li>
               <a href="about-us">About Us</a>
             </li>
-            <li *ngIf="isUserLoggedIn">
+            <li *ngIf="isUserLoggedIn && currentUser.as_landlord">
               <a href="add" *ngIf="isUserLoggedIn">List Dorm</a>
             </li>
             <li *ngIf="isMobileLayout && !isUserLoggedIn">

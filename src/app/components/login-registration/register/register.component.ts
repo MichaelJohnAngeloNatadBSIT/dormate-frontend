@@ -22,6 +22,18 @@ export class RegisterComponent implements OnInit {
     password: null,
     confirmPassword: null,
   };
+
+  roleChoices: any = [
+    {
+      value :  { as_tenant: true, as_landlord: false },
+      name : "Register as a Tenant"
+    },
+    {
+      value : { as_tenant: false, as_landlord: true },
+      name : "Register as a Landlord"
+    }
+  ];
+
   isSuccessful = false;
   isSignUpFailed = false;
   errorMessage = '';
@@ -68,6 +80,9 @@ export class RegisterComponent implements OnInit {
           Validators.minLength(10),
           Validators.maxLength(10)
         ]),
+        role_choice: new FormControl('', [
+          Validators.required,
+        ]),
       },
       { validators: ConfirmPasswordValidator('password', 'confirm_password') }
     );
@@ -75,6 +90,7 @@ export class RegisterComponent implements OnInit {
 
   onSubmit() {
     const formData = this.form.getRawValue();
+    console.log(formData);
 
     if (this.form.invalid) {
       return;
