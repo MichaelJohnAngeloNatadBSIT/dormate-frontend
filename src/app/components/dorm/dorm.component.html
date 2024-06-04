@@ -59,7 +59,7 @@
       <p *ngIf="currentUser.is_landlord" class="text-danger">You can't schedule a visit because you are currently a Landlord</p>
       <p>
         <button
-        *ngIf="currentUser.id != dorm.user_id && !currentUser.is_landlord" 
+        *ngIf="currentUser.id != dorm.user_id && !currentUser.as_landlord" 
         type="button"
         class="btn btn-primary btn-lg btn-block"
         (click)="openInfoSchedDialog(dorm)"
@@ -67,7 +67,7 @@
         Schedule A Visit
       </button>
       <button
-        *ngIf="currentUser.id == dorm.user_id || currentUser.is_landlord"
+        *ngIf="currentUser.id == dorm.user_id || currentUser.as_landlord"
         type="button"
         class="btn btn-primary btn-lg btn-block"
         (click)="openInfoSchedDialog(dorm)"
