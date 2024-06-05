@@ -12,6 +12,7 @@ export class Dorm {
     rent?: any;
     for_rent?: boolean;
     publish?: boolean;
+    admin_approval?: boolean;
     dorm_images?: any;
     contact_number?: any;
     visit_counter?: any;

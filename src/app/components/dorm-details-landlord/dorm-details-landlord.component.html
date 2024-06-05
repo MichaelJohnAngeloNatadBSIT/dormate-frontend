@@ -83,14 +83,14 @@
             <button
               (click)="openPublishDormDialog(dorm)"
               class="btn btn-success dialog-button mr-2"
-              *ngIf="dorm?.publish == false"
+              *ngIf="dorm?.publish == false && dorm?.admin_approval == true"
             >
               List Dorm As For Rent
             </button>
             <button
               (click)="openPublishDormDialog(dorm)"
               class="btn btn-secondary dialog-button mr-2"
-              *ngIf="dorm?.publish == true"
+              *ngIf="dorm?.publish == true && dorm?.admin_approval == true"
             >
               Unlist Dorm As For Rent
             </button>

@@ -56,7 +56,7 @@
         {{ dorm.description }}
       </p>
       <p *ngIf="currentUser.id != dorm.user_id && !currentUser.is_landlord" >Schedule A Visit to this Dorm now</p>
-      <p *ngIf="currentUser.is_landlord" class="text-danger">You can't schedule a visit because you are currently a Landlord</p>
+      <p *ngIf="currentUser.as_landlord" class="text-danger">You can't schedule a visit because you are currently a Landlord</p>
       <p>
         <button
         *ngIf="currentUser.id != dorm.user_id && !currentUser.as_landlord" 

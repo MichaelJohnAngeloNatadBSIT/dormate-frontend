@@ -44,7 +44,10 @@
               Full Name: <b>{{ refer.referral_friend_full_name }}</b>
             </p>
             <p>
-              <b>{{ refer.referral_friend_verified }}</b>
+              <b>
+                <i *ngIf="refer.referral_friend_verified" class="fa fa-check-circle-o" style="font-size:15px;color:#5687fb">Verified</i>
+                <i *ngIf="!refer.referral_friend_verified" class="fa fa-times" style="font-size:15px;color:#94918c">Not Verified</i>
+              </b>
             </p>
           </div>
         </div>

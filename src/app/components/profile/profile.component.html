@@ -35,6 +35,16 @@
                   style="font-size: 15px; color: #94918c"
                   >Not Verified</i
                 >
+                <i
+                  *ngIf="currentUser?.as_landlord"
+                  style="font-size: 15px; color: #29b1c9"
+                  >Landlord Account</i
+                >
+                <i
+                  *ngIf="currentUser?.as_tenant"
+                  style="font-size: 15px; color: #29b1c9"
+                  >Tenant Account</i
+                >
                 <h4>{{ user?.username }}</h4>
 
                 <p class="text-secondary mb-1">{{ user?.address }}</p>
