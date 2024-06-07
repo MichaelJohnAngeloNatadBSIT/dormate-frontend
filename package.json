@@ -31,6 +31,8 @@
     "@ng-bootstrap/ng-bootstrap": "^13.1.1",
     "@popperjs/core": "^2.11.8",
     "bootstrap": "^4.6.2",
+    "html2canvas": "^1.4.1",
+    "jspdf": "^2.5.1",
     "ng2-charts-schematics": "^0.1.7",
     "ng2-pdf-viewer": "^9.1.5",
     "ngx-toastr": "^16.2.0",

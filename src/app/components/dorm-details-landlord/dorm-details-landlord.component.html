@@ -57,6 +57,12 @@
 
           <div class="button-container">
             <button
+              (click)="generatePDF()"
+              class="btn btn-info dialog-button mr-2"
+            >
+              Generate Tenants Report
+            </button>
+            <button
               (click)="openDormImgUploadDialog(dorm)"
               class="btn btn-success dialog-button mr-2"
             >
@@ -87,6 +93,7 @@
             >
               List Dorm As For Rent
             </button>
+
             <button
               (click)="openPublishDormDialog(dorm)"
               class="btn btn-secondary dialog-button mr-2"
@@ -100,9 +107,10 @@
             >
               Delete Dorm
             </button>
-          </div>
-        </div>
 
+
+          </div>
+        </div> 
         <h4><strong>Dorm Information</strong></h4>
         <div class="w3-row w3-large">
           <div class="w3-col w3-half">
@@ -145,16 +153,17 @@
           schedulesLandlordApproved?.length > 0 ||
           tenants?.length > 0
         "
-      >
+        #pdfContent
+       >
         <h4><strong>Dorm Visitors and Tenants</strong></h4>
         <div class="table-responsive">
           <table class="table hoverable clickable">
             <thead>
               <tr>
-                <th>Visitor Full Name</th>
-                <th>Approve/Reject Visit</th>
-                <th>Accept/Reject Visitor As Tenant</th>
-                <th>Evict Tenant</th>
+                <th>Visitor/Tenant Full Name</th>
+                <th>Contact Number</th>
+                <th>Date of visit/Tenant of your dorm since</th>
+                <th>Action</th>
               </tr>
             </thead>
             <tbody>
@@ -166,6 +175,8 @@
                 >
                   {{ tenantVisit.tenant_full_name }} (Visitor)
                 </td>
+                <td>{{ tenantVisit.tenant_contact_number }}</td>
+                <td>{{ tenantVisit.schedule_date | date: 'mediumDate'  }}  {{ tenantVisit.schedule_time }}</td>
                 <td>
                   <div class="d-flex">
                     <button
@@ -183,8 +194,7 @@
                     </button>
                   </div>
                 </td>
-                <td></td>
-                <td></td>
+         
               </tr>
 
               <!-- Iterate over schedulesLandlordApproved -->
@@ -197,7 +207,8 @@
                 >
                   {{ tenantVisitApproved.tenant_full_name }} (Visitor)
                 </td>
-                <td></td>
+                <td>{{ tenantVisitApproved.tenant_contact_number }}</td>
+                <td>{{ tenantVisitApproved.schedule_date | date: 'mediumDate'  }}  {{ tenantVisitApproved.schedule_time }}</td>
                 <td>
                   <div class="d-flex" *ngIf="tenantVisitApproved.approve_visit">
                     <button
@@ -215,7 +226,7 @@
                     </button>
                   </div>
                 </td>
-                <td></td>
+    
               </tr>
 
               <!-- Iterate over tenants -->
@@ -226,8 +237,8 @@
                 >
                   {{ tenant.tenant_full_name }} (Tenant)
                 </td>
-                <td></td>
-                <td></td>
+                <td>{{ tenant.tenant_contact_number }}</td>
+                <td>{{ tenant.createdAt | date:'MMMM d, y'}}</td>
                 <td>
                   <div class="d-flex">
                     <button

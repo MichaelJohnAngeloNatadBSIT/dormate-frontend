@@ -47,11 +47,10 @@ body {
     padding: 10px;
     border-bottom: 1px solid #ddd;
     cursor: pointer;
-    height: 100%; /* Adjust the height value as needed */
+    height: 100%;
     min-height: 20px;
-    margin-bottom: 5px; /* Add margin between li items */
+    margin-bottom: 5px;
 }
-
 
 #search-list li:hover {
     background-color: #f0f0f0;
@@ -95,7 +94,6 @@ body {
     color: #94918c;
 }
 
-/* Responsive adjustments */
 @media (max-width: 768px) {
     .search-container {
         height: 60vh;
@@ -112,7 +110,7 @@ body {
     }
 
     #search-list li {
-        margin-bottom: 4px; /* Adjust margin for medium-sized screens */
+        margin-bottom: 4px;
     }
 }
 
@@ -136,8 +134,8 @@ body {
     .user-info span {
         font-size: 14px;
     }
-        
+
     #search-list li {
-        margin-bottom: 3px; /* Adjust margin for smaller screens */
+        margin-bottom: 3px;
     }
 }

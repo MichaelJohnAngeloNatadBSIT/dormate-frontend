@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Dorm } from 'src/app/models/dorms.model';
 import { DormService } from 'src/app/services/dorm.service';
@@ -29,6 +29,8 @@ import { ScheduleRejectComponent } from 'src/app/dialogs/schedule-reject/schedul
 import { Tenant } from 'src/app/interface/tenant';
 import { Review } from 'src/app/interface/review';
 import { PaymentService } from 'src/app/services/payment.service';
+import jsPDF from 'jspdf';
+import html2canvas from 'html2canvas';
 
 @Component({
   selector: 'app-dorm-details-landlord',
@@ -38,6 +40,7 @@ import { PaymentService } from 'src/app/services/payment.service';
 
 
 export class DormDetailsLandlordComponent implements OnInit {
+  @ViewChild('pdfContent') pdfContent!: ElementRef;
   dorm_id: string;
   dorm: Dorm;
   dormTemp: Dorm;
@@ -74,6 +77,7 @@ export class DormDetailsLandlordComponent implements OnInit {
     this.dormService.getDormById(this.dorm_id).subscribe({
       next: (data) => {
         this.dorm = data;
+        console.log(this.dorm);
 
         this.userInfo = {
           user_id: this.dorm.user_id,
@@ -109,6 +113,7 @@ export class DormDetailsLandlordComponent implements OnInit {
         next: (data) => {
           this.dorm = data;
           this.tenants = this.dorm.tenants;
+          console.log(this.tenants);
           this.reviews = this.dorm.tenantReviews;
         },
         error: (e) => console.error(e)
@@ -311,5 +316,18 @@ export class DormDetailsLandlordComponent implements OnInit {
       this.retrieveForApprovedScheduleLandlord();
       this.retrieveDorm();
      }); 
+  }
+
+  generatePDF() {
+    const DATA = this.pdfContent.nativeElement;
+    html2canvas(DATA).then(canvas => {
+      const fileWidth = 208;
+      const fileHeight = canvas.height * fileWidth / canvas.width;
+      const FILEURI = canvas.toDataURL('image/png');
+      const PDF = new jsPDF('p', 'mm', 'a4');
+      const position = 0;
+      PDF.addImage(FILEURI, 'PNG', 0, position, fileWidth, fileHeight);
+      PDF.save(this.dorm.title+'/'+this.dorm.lessor);
+    });
   }
 }

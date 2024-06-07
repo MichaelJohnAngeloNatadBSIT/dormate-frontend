@@ -23,11 +23,13 @@ export class PublishDialogComponent {
   ){
     
     this.publishForm = this.fb.group({
-      publish: ['true']
+      publish: ['true'],
+      for_rent: ['true']
     })
 
     this.unPublishForm = this.fb.group({
-      publish: ['false']
+      publish: ['false'],
+      for_rent: ['false']
     })
 
     this.router.routeReuseStrategy.shouldReuseRoute = () => {

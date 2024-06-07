@@ -1,19 +1,18 @@
 <div class="search-container">
-        <input
+    <input
         type="text"
         class="form-control"
         placeholder="Search the username of your friend"
         [(ngModel)]="title"
-
-        />
-        <button
+    />
+    <button
         class="btn btn-outline-secondary button-icon m-2"
         type="button"
         (click)="searchFriend()"
-        >
+    >
         <p>Search</p>
-      </button>
-    <ul id="search-list" *ngFor="let user of usersVerified; let i = index">
+    </button>
+    <ul id="search-list" *ngFor="let user of usersVerified | slice:0:10; let i = index">
         <li>
             <div class="user-info">
                 <span>{{ user?.username }}</span>

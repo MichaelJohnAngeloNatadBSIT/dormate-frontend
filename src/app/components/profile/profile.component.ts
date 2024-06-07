@@ -63,6 +63,7 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit(): void {
     this.currentUser = this.tokenService.getUser();
+    
     this.retrieveUser();
     this.retrieveForApprovalDorm();
     // this.chatService.setupSocketConnection();

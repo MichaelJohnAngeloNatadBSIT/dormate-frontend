@@ -5,6 +5,7 @@ import { AuthService } from './services/auth.service';
 import { Router } from '@angular/router';
 import { User } from './interface/user';
 import { VisitService } from './services/visit.service';
+import { ActivatedRoute } from '@angular/router';
 
 
 @Component({
@@ -29,6 +30,7 @@ export class AppComponent {
   isUserLoggedIn: boolean;
   visitCount: number = 0;
   currentUser: User;
+  userData: User;
 
   constructor(
     public responsiveService:ResponsiveService, 
@@ -36,7 +38,8 @@ export class AppComponent {
     private authService: AuthService,
     public router: Router,
     private visitService: VisitService,
-    private tokenService: TokenStorageService
+    private tokenService: TokenStorageService,
+    private route: ActivatedRoute
     ) {
       this.authService.isUserLoggedIn.subscribe( value => {
         this.isUserLoggedIn = value;
@@ -46,26 +49,23 @@ export class AppComponent {
 
   ngOnInit(): void {
     window.onresize = () => this.isMobileLayout = window.innerWidth <= 991;
-
     this.isLoggedIn = this.tokenStorageService.isLoggedIn();
     if (this.isLoggedIn) {
-      const user = this.tokenStorageService.getUser();
-      this.roles = user.roles;
+      this.currentUser = this.tokenStorageService.getUser();
+      // console.log(user);
+      // this.roles = this.currentUser.roles;
+      // // this.showAdminBoard = this.roles.includes('ROLE_ADMIN');
+      // // this.showLandlordBoard = this.roles.includes('ROLE_LANDLORD');
 
-      this.showAdminBoard = this.roles.includes('ROLE_ADMIN');
-      this.showLandlordBoard = this.roles.includes('ROLE_LANDLORD');
-
-      this.username = user.username;
-
+      this.username = this.currentUser.username;
       this.authService.isUserLoggedIn.next(true);
     }
+    
+    this.currentUser = this.tokenService.getUser();
 
     this.getVisitCount();
     this.incrementVisitCount();
 
-    this.currentUser = this.tokenService.getUser();
-
-    console.log(this.currentUser);
   }
 
 
