@@ -209,7 +209,7 @@
           class="btn btn-outline-primary user-details-btn"
           target="__blank"
           href="add"
-          *ngIf="currentUser.as_landlord"
+          *ngIf="currentUser.as_landlord && currentUser.verified"
           >List a new Dorm</a
         >
         <hr>

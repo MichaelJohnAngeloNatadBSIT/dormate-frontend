@@ -64,6 +64,8 @@ export class AppComponent {
     this.incrementVisitCount();
 
     this.currentUser = this.tokenService.getUser();
+
+    console.log(this.currentUser);
   }
 
 
