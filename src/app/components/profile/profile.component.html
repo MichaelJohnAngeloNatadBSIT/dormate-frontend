@@ -25,23 +25,25 @@
               <div class="mt-3">
                 <i
                   *ngIf="user?.verified"
-                  class="fa fa-check-circle"
+                  class="fa fa-check-circle mr-2"
                   style="font-size: 15px; color: #5687fb"
                   >Verified</i
                 >
                 <i
                   *ngIf="!user?.verified"
-                  class="fa fa-times"
+                  class="fa fa-times mr-2"
                   style="font-size: 15px; color: #94918c"
                   >Not Verified</i
                 >
                 <i
                   *ngIf="currentUser?.as_landlord"
+                  class="fa fa-user-circle"
                   style="font-size: 15px; color: #29b1c9"
                   >Landlord Account</i
                 >
                 <i
                   *ngIf="currentUser?.as_tenant"
+                  class="fa fa-user-circle"
                   style="font-size: 15px; color: #29b1c9"
                   >Tenant Account</i
                 >
@@ -49,8 +51,6 @@
 
                 <p class="text-secondary mb-1">{{ user?.address }}</p>
 
-                <!-- <button class="btn btn-primary m-2">Add A Friend</button> -->
-                <!-- to do add the referral function  -->
                 <button class="btn btn-outline-primary m-1" (click)="openFriendList(user)" *ngIf="user?.verified">Add A Friend</button>
                 <button class="btn btn-outline-primary m-1" (click)="openFriendRequestList(user)" *ngIf="user?.verified">See Friend Requests</button>
                 <button class="btn btn-outline-primary m-1" (click)="openReferFriendList(user)" *ngIf="user?.verified && user?.dorm_id">Refer A Friend to Dorm</button>
@@ -204,12 +204,12 @@
       </div>
 
       <div class="col-md-8 mb-3">
-        <h1 *ngIf="currentUser.as_landlord">Your Dorm Posts</h1>
+        <h1 *ngIf="currentUser?.as_landlord">Your Dorm Posts</h1>
         <a
           class="btn btn-outline-primary user-details-btn"
           target="__blank"
           href="add"
-          *ngIf="currentUser.as_landlord && currentUser.verified || user.as_landlord && user.verified"
+          *ngIf="currentUser?.as_landlord && currentUser?.verified || user?.as_landlord && user?.verified"
           >List a new Dorm</a
         >
         <hr>

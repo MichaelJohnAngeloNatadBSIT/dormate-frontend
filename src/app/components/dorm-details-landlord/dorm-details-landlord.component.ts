@@ -29,8 +29,11 @@ import { ScheduleRejectComponent } from 'src/app/dialogs/schedule-reject/schedul
 import { Tenant } from 'src/app/interface/tenant';
 import { Review } from 'src/app/interface/review';
 import { PaymentService } from 'src/app/services/payment.service';
-import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
+import jsPDF from 'jspdf';
+import 'jspdf-autotable';
+import { DatePipe } from '@angular/common';
+
 
 @Component({
   selector: 'app-dorm-details-landlord',
@@ -68,7 +71,8 @@ export class DormDetailsLandlordComponent implements OnInit {
     private scheduleService: ScheduleService,
     private router: Router,
     private route: ActivatedRoute,
-    private paymentService: PaymentService
+    private paymentService: PaymentService,
+    private datePipe: DatePipe
   ) {}
 
   ngOnInit() {
@@ -77,8 +81,6 @@ export class DormDetailsLandlordComponent implements OnInit {
     this.dormService.getDormById(this.dorm_id).subscribe({
       next: (data) => {
         this.dorm = data;
-        console.log(this.dorm);
-
         this.userInfo = {
           user_id: this.dorm.user_id,
           dorm_id: this.dorm._id
@@ -113,7 +115,6 @@ export class DormDetailsLandlordComponent implements OnInit {
         next: (data) => {
           this.dorm = data;
           this.tenants = this.dorm.tenants;
-          console.log(this.tenants);
           this.reviews = this.dorm.tenantReviews;
         },
         error: (e) => console.error(e)
@@ -319,15 +320,92 @@ export class DormDetailsLandlordComponent implements OnInit {
   }
 
   generatePDF() {
+    // Check if the necessary data is available
+    if (!this.dorm || !this.tenants || !this.schedulesLandlord || !this.schedulesLandlordApproved) {
+      console.error('Required data not available for generating PDF');
+      return;
+    }
+
     const DATA = this.pdfContent.nativeElement;
+  
     html2canvas(DATA).then(canvas => {
       const fileWidth = 208;
       const fileHeight = canvas.height * fileWidth / canvas.width;
       const FILEURI = canvas.toDataURL('image/png');
       const PDF = new jsPDF('p', 'mm', 'a4');
       const position = 0;
+  
       PDF.addImage(FILEURI, 'PNG', 0, position, fileWidth, fileHeight);
-      PDF.save(this.dorm.title+'/'+this.dorm.lessor);
+  
+      // Add title and description
+      PDF.setFontSize(18);
+      PDF.text(this.dorm.title, 10, fileHeight + 20);
+      PDF.setFontSize(14);
+      PDF.text(this.dorm.description, 10, fileHeight + 30);
+  
+      // Initial Y coordinate for the tables
+      let tableYPosition = fileHeight + 40;
+  
+      // Tenants Table
+      PDF.setFontSize(14);
+      PDF.text("Tenants of your Dorm", 10, tableYPosition);
+      tableYPosition += 10;  // Add some spacing after the text
+  
+      (PDF as any).autoTable({
+        head: [['Name', 'Username', 'Phone']],
+        body: this.tenants.map(tenant => [tenant.tenant_full_name, tenant.tenant_username, tenant.tenant_contact_number]),
+        startY: tableYPosition,
+        theme: 'grid',
+      });
+  
+      // Update the Y position after the first table
+      tableYPosition = (PDF as any).autoTable.previous.finalY + 20;  // Add some spacing after the table
+  
+      // Format the schedule dates
+      const formattedSchedulesLandlord = this.schedulesLandlord.map(schedule => [
+        this.datePipe.transform(schedule.schedule_date, 'mediumDate'),
+        schedule.schedule_time,
+        schedule.tenant_full_name
+      ]);
+  
+      const formattedSchedulesLandlordApproved = this.schedulesLandlordApproved.map(schedule => [
+        this.datePipe.transform(schedule.schedule_date, 'mediumDate'),
+        schedule.schedule_time,
+        schedule.tenant_full_name
+      ]);
+  
+      // Landlord Schedules Table
+      PDF.setFontSize(14);
+      PDF.text("Visits for your Dorm", 10, tableYPosition);
+      tableYPosition += 10;  // Add some spacing after the text
+  
+      (PDF as any).autoTable({
+        head: [['Date', 'Time', 'Tenant']],
+        body: formattedSchedulesLandlord,
+        startY: tableYPosition,
+        theme: 'grid',
+      });
+  
+      // Update the Y position after the second table
+      tableYPosition = (PDF as any).autoTable.previous.finalY + 20;  // Add some spacing after the table
+  
+      // Approved Landlord Schedules Table
+      PDF.setFontSize(14);
+      PDF.text("Approved Visits for your Dorm", 10, tableYPosition);
+      tableYPosition += 10;  // Add some spacing after the text
+  
+      (PDF as any).autoTable({
+        head: [['Date', 'Time', 'Tenant']],
+        body: formattedSchedulesLandlordApproved,
+        startY: tableYPosition,
+        theme: 'grid',
+      });
+  
+      // Save the PDF
+      PDF.save(`${this.dorm.title}_${this.dorm.lessor}.pdf`);
     });
   }
+  
+  
+  
 }

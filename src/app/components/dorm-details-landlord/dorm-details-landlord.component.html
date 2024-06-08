@@ -175,7 +175,7 @@
                 >
                   {{ tenantVisit.tenant_full_name }} (Visitor)
                 </td>
-                <td>{{ tenantVisit.tenant_contact_number }}</td>
+                <td>+63{{ tenantVisit.tenant_contact_number }}</td>
                 <td>{{ tenantVisit.schedule_date | date: 'mediumDate'  }}  {{ tenantVisit.schedule_time }}</td>
                 <td>
                   <div class="d-flex">
@@ -207,7 +207,7 @@
                 >
                   {{ tenantVisitApproved.tenant_full_name }} (Visitor)
                 </td>
-                <td>{{ tenantVisitApproved.tenant_contact_number }}</td>
+                <td>+63{{ tenantVisitApproved.tenant_contact_number }}</td>
                 <td>{{ tenantVisitApproved.schedule_date | date: 'mediumDate'  }}  {{ tenantVisitApproved.schedule_time }}</td>
                 <td>
                   <div class="d-flex" *ngIf="tenantVisitApproved.approve_visit">
@@ -237,7 +237,7 @@
                 >
                   {{ tenant.tenant_full_name }} (Tenant)
                 </td>
-                <td>{{ tenant.tenant_contact_number }}</td>
+                <td>+63{{ tenant.tenant_contact_number }}</td>
                 <td>{{ tenant.createdAt | date:'MMMM d, y'}}</td>
                 <td>
                   <div class="d-flex">

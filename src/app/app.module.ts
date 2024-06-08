@@ -66,6 +66,7 @@ import { StarRatingComponent } from './components/star-rating/star-rating.compon
 import { AddFriendListComponent } from './components/add-friend-list/add-friend-list.component';
 import { FriendRequestListComponent } from './components/friend-request-list/friend-request-list.component';
 import { ReferFriendListComponent } from './components/refer-friend-list/refer-friend-list.component';
+import { DatePipe } from '@angular/common';
 
 
 @NgModule({
@@ -144,7 +145,8 @@ import { ReferFriendListComponent } from './components/refer-friend-list/refer-f
               {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true},
               {provide: HTTP_INTERCEPTORS, useClass: EventInterceptor, multi: true},
               {provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi: true},
-              ChatService
+              ChatService,
+              DatePipe
             ],
   bootstrap: [AppComponent],
   entryComponents: [ErrorComponent, EventDialogComponent]
