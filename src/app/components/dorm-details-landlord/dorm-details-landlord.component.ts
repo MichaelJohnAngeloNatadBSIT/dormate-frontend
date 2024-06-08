@@ -325,7 +325,7 @@ export class DormDetailsLandlordComponent implements OnInit {
       console.error('Required data not available for generating PDF');
       return;
     }
-
+  
     const DATA = this.pdfContent.nativeElement;
   
     html2canvas(DATA).then(canvas => {
@@ -333,18 +333,25 @@ export class DormDetailsLandlordComponent implements OnInit {
       const fileHeight = canvas.height * fileWidth / canvas.width;
       const FILEURI = canvas.toDataURL('image/png');
       const PDF = new jsPDF('p', 'mm', 'a4');
-      const position = 0;
   
-      PDF.addImage(FILEURI, 'PNG', 0, position, fileWidth, fileHeight);
+      // Add the title first
+      PDF.setFontSize(20);
+      PDF.text("Dorm Visitation and Tenants Report", 10, 10); // Title at the top of the page
   
-      // Add title and description
+      // Add the image below the title
+      const titleHeight = 20; // Height occupied by the title
+      const imageYPosition = titleHeight + 10; // Some spacing after the title
+      PDF.addImage(FILEURI, 'PNG', 0, imageYPosition, fileWidth, fileHeight);
+  
+      // Add title and description below the image
+      const contentStartY = imageYPosition + fileHeight + 10; // Start content below the image
       PDF.setFontSize(18);
-      PDF.text(this.dorm.title, 10, fileHeight + 20);
+      PDF.text(this.dorm.title, 10, contentStartY);
       PDF.setFontSize(14);
-      PDF.text(this.dorm.description, 10, fileHeight + 30);
+      PDF.text(this.dorm.description, 10, contentStartY + 10);
   
       // Initial Y coordinate for the tables
-      let tableYPosition = fileHeight + 40;
+      let tableYPosition = contentStartY + 20;
   
       // Tenants Table
       PDF.setFontSize(14);
@@ -379,6 +386,13 @@ export class DormDetailsLandlordComponent implements OnInit {
       PDF.text("Visits for your Dorm", 10, tableYPosition);
       tableYPosition += 10;  // Add some spacing after the text
   
+      // Check if there's enough space for the table on the current page
+      const pageHeight = PDF.internal.pageSize.height;
+      if (tableYPosition + 100 > pageHeight) {
+        PDF.addPage();
+        tableYPosition = 20;  // Reset Y position for the new page
+      }
+  
       (PDF as any).autoTable({
         head: [['Date', 'Time', 'Tenant']],
         body: formattedSchedulesLandlord,
@@ -386,13 +400,19 @@ export class DormDetailsLandlordComponent implements OnInit {
         theme: 'grid',
       });
   
-      // Update the Y position after the second table
+      // Update the Y position after the table
       tableYPosition = (PDF as any).autoTable.previous.finalY + 20;  // Add some spacing after the table
   
       // Approved Landlord Schedules Table
       PDF.setFontSize(14);
       PDF.text("Approved Visits for your Dorm", 10, tableYPosition);
       tableYPosition += 10;  // Add some spacing after the text
+  
+      // Check if there's enough space for the table on the current page
+      if (tableYPosition + 100 > pageHeight) {
+        PDF.addPage();
+        tableYPosition = 20;  // Reset Y position for the new page
+      }
   
       (PDF as any).autoTable({
         head: [['Date', 'Time', 'Tenant']],
@@ -407,5 +427,5 @@ export class DormDetailsLandlordComponent implements OnInit {
   }
   
   
-  
+
 }
