@@ -89,7 +89,14 @@ header {
     height: 80vh;
     object-fit: fill;
     filter: blur(1px);
+    background: no-repeat center center fixed;
+    background-size: cover;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
 }
+
 
 .carousel-item::before {
     content: "";

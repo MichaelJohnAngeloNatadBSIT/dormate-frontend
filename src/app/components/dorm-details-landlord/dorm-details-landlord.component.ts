@@ -394,7 +394,7 @@ export class DormDetailsLandlordComponent implements OnInit {
       }
   
       (PDF as any).autoTable({
-        head: [['Date', 'Time', 'Tenant']],
+        head: [['Date', 'Time', 'Visitor Name']],
         body: formattedSchedulesLandlord,
         startY: tableYPosition,
         theme: 'grid',
@@ -415,7 +415,7 @@ export class DormDetailsLandlordComponent implements OnInit {
       }
   
       (PDF as any).autoTable({
-        head: [['Date', 'Time', 'Tenant']],
+        head: [['Date', 'Time', 'Visitor Name']],
         body: formattedSchedulesLandlordApproved,
         startY: tableYPosition,
         theme: 'grid',

@@ -25,11 +25,11 @@
       </swiper>
       <h2 class="w3-text-blue">
         {{ dorm?.title }}
-        <i *ngIf="dorm?.publish" class="icon fa fa-check-circle-o">Posted</i>
+        <i *ngIf="dorm?.publish" class="icon fa fa-check-circle">Posted</i>
         <i *ngIf="!dorm?.publish" class="icon fa fa-times">Not Yet Posted</i>
         <i
           *ngIf="dorm?.payment_status == 'paid'"
-          class="icon fa fa-check-circle-o"
+          class="icon fa fa-check-circle"
           >Posting Fee is Already Paid</i
         >
         <i *ngIf="dorm?.payment_status == 'unpaid'" class="icon fa fa-times"
@@ -71,6 +71,7 @@
             <button
               (click)="openCertUploadDialog(dorm)"
               class="btn btn-info dialog-button mr-2"
+              *ngIf="dorm?.admin_approval == false"
             >
               Upload Certificates
             </button>

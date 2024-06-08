@@ -36,7 +36,7 @@
         </p>
         <div class="referrals" *ngFor="let refer of userReferrals">
           <div *ngIf="refer.referral_friend_dorm_id == data.dorm_id">
-            <p>This user is referred by:</p>
+            <p class="h3">This user is referred by:</p>
             <p>
               Username: <b>{{ refer.referral_friend_username }}</b>
             </p>
@@ -45,7 +45,7 @@
             </p>
             <p>
               <b>
-                <i *ngIf="refer.referral_friend_verified" class="fa fa-check-circle-o" style="font-size:15px;color:#5687fb">Verified</i>
+                <i *ngIf="refer.referral_friend_verified" class="fa fa-check-circle" style="font-size:15px;color:#5687fb">Verified</i>
                 <i *ngIf="!refer.referral_friend_verified" class="fa fa-times" style="font-size:15px;color:#94918c">Not Verified</i>
               </b>
             </p>
