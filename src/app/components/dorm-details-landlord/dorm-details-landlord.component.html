@@ -173,13 +173,13 @@
                   <td
                     class="tenant-visitor-name"
                     (click)="openTenantVisitorDialog(tenantVisit.tenant_user_id, dorm?._id)"
-                    *ngIf="tenantVisit.dorm_id == dorm_id "
+                    *ngIf="tenantVisit.dorm_id == dorm_id"
                   >
                     {{ tenantVisit.tenant_full_name }} (Visitor)
                   </td>
-                  <td *ngIf="tenantVisit.dorm_id == dorm_id ">+63{{ tenantVisit.tenant_contact_number }}</td>
-                  <td *ngIf="tenantVisit.dorm_id == dorm_id ">{{ tenantVisit.schedule_date | date: 'mediumDate'  }}  {{ tenantVisit.schedule_time }}</td>
-                  <td *ngIf="tenantVisit.dorm_id == dorm_id ">
+                  <td *ngIf="tenantVisit.dorm_id == dorm_id">+63{{ tenantVisit.tenant_contact_number }}</td>
+                  <td *ngIf="tenantVisit.dorm_id == dorm_id">{{ tenantVisit.schedule_date | date: 'mediumDate'  }}  {{ tenantVisit.schedule_time }}</td>
+                  <td *ngIf="tenantVisit.dorm_id == dorm_id">
                     <div class="d-flex">
                       <button
                         class="btn btn-sm btn-primary mr-1"
@@ -205,12 +205,13 @@
                   (click)="
                     openTenantVisitorDialog(tenantVisitApproved.tenant_user_id, dorm?._id)
                   "
+                  *ngIf="tenantVisitApproved.dorm_id == dorm_id"
                 >
                   {{ tenantVisitApproved.tenant_full_name }} (Visitor)
                 </td>
-                <td>+63{{ tenantVisitApproved.tenant_contact_number }}</td>
-                <td>{{ tenantVisitApproved.schedule_date | date: 'mediumDate'  }}  {{ tenantVisitApproved.schedule_time }}</td>
-                <td>
+                <td *ngIf="tenantVisitApproved.dorm_id == dorm_id">+63{{ tenantVisitApproved.tenant_contact_number }}</td>
+                <td *ngIf="tenantVisitApproved.dorm_id == dorm_id">{{ tenantVisitApproved.schedule_date | date: 'mediumDate'  }}  {{ tenantVisitApproved.schedule_time }}</td>
+                <td *ngIf="tenantVisitApproved.dorm_id == dorm_id">
                   <div class="d-flex" *ngIf="tenantVisitApproved.approve_visit">
                     <button
                       class="btn btn-sm btn-success mr-1"
