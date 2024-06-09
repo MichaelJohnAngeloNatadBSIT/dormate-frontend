@@ -12,7 +12,7 @@
     >
         <p>Search</p>
     </button>
-    <ul id="search-list" *ngFor="let user of usersVerified | slice:0:10; let i = index">
+    <ul id="search-list" *ngFor="let user of usersVerified | slice:0:8; let i = index">
         <li>
             <div class="user-info">
                 <span>{{ user?.username }}</span>
