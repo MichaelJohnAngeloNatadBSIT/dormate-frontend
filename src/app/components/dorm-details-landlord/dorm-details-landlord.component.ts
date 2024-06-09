@@ -126,6 +126,7 @@ export class DormDetailsLandlordComponent implements OnInit {
       .subscribe({
         next: (data) => {
           this.schedulesLandlord = data;
+          console.log(this.schedulesLandlord)
         },
         error: (e) => console.error(e)
       });
@@ -136,6 +137,7 @@ export class DormDetailsLandlordComponent implements OnInit {
       .subscribe({
         next: (data) => {
           this.schedulesLandlordApproved = data;
+          console.log(this.schedulesLandlordApproved)
         },
         error: (e) => console.error(e)
       });
