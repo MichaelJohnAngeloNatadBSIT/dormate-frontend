@@ -49,7 +49,7 @@ export class DormsListComponent implements OnInit {
   barangay_list: Barangay[] = [
     { name: 'Asinan' },
     { name: 'Banicain' },
-    { name: 'Barreto' },
+    { name: 'Barretto' },
     { name: 'East Bajac-bajac' },
     { name: 'East Tapinac' },
     { name: 'Gordon Heights' },
