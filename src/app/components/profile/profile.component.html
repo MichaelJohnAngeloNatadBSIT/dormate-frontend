@@ -147,7 +147,7 @@
 
     <div class="row gutters-sm">
       <div class="col-md-4">
-        <mat-card>
+        <mat-card *ngIf="currentUser?.as_landlord && currentUser?.verified || user?.as_landlord && user?.verified">
           <mat-card-header>
             <p class="list-header">Waiting For Approval Visiting Schedules of your Posted Dorm </p>
           </mat-card-header>
@@ -169,7 +169,7 @@
 
         <hr>
 
-        <mat-card>
+        <mat-card *ngIf="currentUser?.as_tenant && currentUser?.verified || user?.as_tenant && user?.verified">
           <mat-card-header>
             <p class="list-header">Waiting For Approval Visiting Schedules to Dorm </p>
           </mat-card-header>
